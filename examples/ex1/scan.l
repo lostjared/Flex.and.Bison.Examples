@@ -1,3 +1,6 @@
+
+%option noyywrap
+
 %{
 
 #include"parse.tab.h"

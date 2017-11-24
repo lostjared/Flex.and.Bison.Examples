@@ -332,6 +332,9 @@ void yyfree (void *  );
 
 /* Begin user sect3 */
 
+#define yywrap(n) 1
+#define YY_SKIP_YYWRAP
+
 typedef unsigned char YY_CHAR;
 
 FILE *yyin = (FILE *) 0, *yyout = (FILE *) 0;
@@ -453,11 +456,11 @@ int yy_flex_debug = 0;
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
 #line 1 "scan.l"
-#line 2 "scan.l"
+#line 5 "scan.l"
 
 #include"parse.tab.h"
 
-#line 461 "lex.yy.c"
+#line 464 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -639,9 +642,9 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 7 "scan.l"
+#line 10 "scan.l"
 
-#line 645 "lex.yy.c"
+#line 648 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -726,66 +729,66 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 8 "scan.l"
+#line 11 "scan.l"
 { return TOKEN_ADD; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 9 "scan.l"
+#line 12 "scan.l"
 { return TOKEN_SUB; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 10 "scan.l"
+#line 13 "scan.l"
 { return TOKEN_MUL; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 11 "scan.l"
+#line 14 "scan.l"
 { return TOKEN_DIV; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 12 "scan.l"
+#line 15 "scan.l"
 { return TOKEN_OP; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 13 "scan.l"
+#line 16 "scan.l"
 { return TOKEN_CP; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 15 "scan.l"
+#line 18 "scan.l"
 { yylval = atoi(yytext); return TOKEN_NUMBER; }
 	YY_BREAK
 case 8:
 /* rule 8 can match eol */
 YY_RULE_SETUP
-#line 17 "scan.l"
+#line 20 "scan.l"
 { return TOKEN_EOL; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 19 "scan.l"
+#line 22 "scan.l"
 { }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 20 "scan.l"
+#line 23 "scan.l"
 { }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 21 "scan.l"
+#line 24 "scan.l"
 { printf("unknown char %c\n", *yytext); }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 23 "scan.l"
+#line 26 "scan.l"
 ECHO;
 	YY_BREAK
-#line 789 "lex.yy.c"
+#line 792 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1782,7 +1785,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 23 "scan.l"
+#line 26 "scan.l"
 
 
 
