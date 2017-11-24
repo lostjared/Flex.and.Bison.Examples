@@ -457,12 +457,13 @@ char *yytext;
 #line 5 "scanner.l"
 
 #include<iostream>
-int lines = 0;
+#include<string>
 
+int lines = 0;
 enum { ID=260, DIGIT };
 
 
-#line 466 "lex.yy.c"
+#line 467 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -644,10 +645,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 14 "scanner.l"
+#line 15 "scanner.l"
 
 
-#line 651 "lex.yy.c"
+#line 652 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -733,35 +734,35 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 16 "scanner.l"
+#line 17 "scanner.l"
 { lines++; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 17 "scanner.l"
-{ std::cout << "Identifier: " << yytext << "\n"; return ID; }
+#line 18 "scanner.l"
+{ std::cout << "Identifier: " << yytext << "\n"; if(std::string(yytext) == "quit") exit(0); return ID; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 18 "scanner.l"
+#line 19 "scanner.l"
 { std::cout << "Digits: " << yytext << "\n"; return DIGIT; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 19 "scanner.l"
+#line 20 "scanner.l"
 { }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 20 "scanner.l"
+#line 21 "scanner.l"
 { }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 22 "scanner.l"
+#line 23 "scanner.l"
 ECHO;
 	YY_BREAK
-#line 765 "lex.yy.c"
+#line 766 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1758,7 +1759,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 22 "scanner.l"
+#line 23 "scanner.l"
 
 
 

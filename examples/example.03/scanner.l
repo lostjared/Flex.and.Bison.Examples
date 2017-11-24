@@ -4,8 +4,9 @@
 %{
 
 #include<iostream>
-int lines = 0;
+#include<string>
 
+int lines = 0;
 enum { ID=260, DIGIT };
 
 
@@ -14,7 +15,7 @@ enum { ID=260, DIGIT };
 %%
 
 "\n" { lines++; }
-[a-zA-z]+[a-zA-z0-9]* { std::cout << "Identifier: " << yytext << "\n"; return ID; }
+[a-zA-z_]+[a-zA-z0-9_]* { std::cout << "Identifier: " << yytext << "\n"; if(std::string(yytext) == "quit") exit(0); return ID; }
 [0-9]+ { std::cout << "Digits: " << yytext << "\n"; return DIGIT; }
 [ \t]* { }
 . { }
