@@ -487,7 +487,9 @@ char *yytext;
 #line 5 "scanner.l"
     #include "astheader.hpp"
     #include "parser.tab.h"
-#line 491 "lex.yy.c"
+    #include<cstdlib>
+    #include<cstdio>
+#line 493 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -669,10 +671,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 11 "scanner.l"
+#line 13 "scanner.l"
 
 
-#line 676 "lex.yy.c"
+#line 678 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -766,56 +768,56 @@ do_action:	/* This label is used only to access EOF actions. */
 			goto yy_find_action;
 
 case 1:
-#line 14 "scanner.l"
-case 2:
-#line 15 "scanner.l"
-case 3:
 #line 16 "scanner.l"
-case 4:
+case 2:
 #line 17 "scanner.l"
-case 5:
+case 3:
 #line 18 "scanner.l"
-case 6:
+case 4:
 #line 19 "scanner.l"
+case 5:
+#line 20 "scanner.l"
+case 6:
+#line 21 "scanner.l"
 case 7:
 YY_RULE_SETUP
-#line 19 "scanner.l"
+#line 21 "scanner.l"
 { return yytext[0]; }
 	YY_BREAK
 case 8:
-#line 22 "scanner.l"
+#line 24 "scanner.l"
 case 9:
 YY_RULE_SETUP
-#line 22 "scanner.l"
-{ yylval.d = atoi(yytext); return NUMBER; }
+#line 24 "scanner.l"
+{ yylval.d = atof(yytext); return NUMBER; }
 	YY_BREAK
 case 10:
 /* rule 10 can match eol */
 YY_RULE_SETUP
-#line 23 "scanner.l"
+#line 25 "scanner.l"
 { return EOL; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 24 "scanner.l"
+#line 26 "scanner.l"
 
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 25 "scanner.l"
+#line 27 "scanner.l"
 { }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 26 "scanner.l"
+#line 28 "scanner.l"
 { yyerror("Mystery character: %c\n", *yytext); }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 28 "scanner.l"
+#line 30 "scanner.l"
 YY_FATAL_ERROR( "flex scanner jammed" );
 	YY_BREAK
-#line 819 "lex.yy.c"
+#line 821 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1824,7 +1826,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 28 "scanner.l"
+#line 30 "scanner.l"
 
 
 
