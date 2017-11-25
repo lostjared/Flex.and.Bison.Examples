@@ -3,26 +3,20 @@
 #include<cstdlib>
 
 AST *createAst(int node_type, AST *l, AST *r) {
-    AST *a = new AST();
+    AST *a = new AST(node_type, l, r, 0);
     if(!a) {
         std::cerr << "Out of space...\n";
         exit(EXIT_FAILURE);
     }
-    a->node_type = node_type;
-    a->left = l;
-    a->right = r;
     return a;
-    
 }
 AST *createNum(double d) {
-    AST *n = new AST();
+    AST *n = new AST('K', d);
     if(!n) {
         std::cerr << "Error couldn't allocate memory..\n";
         exit(EXIT_FAILURE);
     }
-    n->node_type = 'K';
-    n->number = d;
-    return n;
+     return n;
 }
 
 double eval(AST *ast) {
