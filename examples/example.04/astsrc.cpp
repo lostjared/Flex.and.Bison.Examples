@@ -54,15 +54,6 @@ double eval(AST *ast) {
     return v;
 }
 void freeAst(AST *node) {
-   /* if(node != 0 && node->left != 0)
-        freeAst(node->left);
-    if(node != 0 && node->right != 0)
-    	freeAst(node->right);
-    
-    if(node != 0)
-    	delete node;
-    */
-    
     switch(node->node_type) {
         case '+':
         case '-':
