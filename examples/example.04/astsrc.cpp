@@ -44,22 +44,41 @@ double eval(AST *ast) {
             if(v < 0) v = -v;
             break;
         case 'M':
+            v = -eval(ast->left);
             break;
         default:
-            yyerror("Error reached end..\n");
+            yyerror("Error reached invalid node type: %d \n", ast->node_type);
             break;
     }
     
     return v;
 }
 void freeAst(AST *node) {
-    if(node != 0 && node->left != 0)
+   /* if(node != 0 && node->left != 0)
         freeAst(node->left);
     if(node != 0 && node->right != 0)
     	freeAst(node->right);
     
     if(node != 0)
     	delete node;
+    */
+    
+    switch(node->node_type) {
+        case '+':
+        case '-':
+        case '*':
+        case '/':
+            freeAst(node->right);
+        case '|':
+        case 'M':
+            freeAst(node->left);
+        case 'K':
+            delete node;
+            break;
+        default:
+            std::cerr << "Error invalid node: " << node->node_type << "\n";
+            break;
+    }
 }
 
 void yyerror(const char *src, ...) {
