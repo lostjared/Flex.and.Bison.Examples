@@ -45,13 +45,15 @@ enum FuncCall {
 	FN_EXP,
     FN_LOG,
     FN_PRINT,
-    FN_EXIT
+    FN_EXIT,
+    FN_INPUT
 };
 class FnCall {
 public:
     int node_type;
     AST *l;
     FuncCall func_b;
+    int args;
 };
 
 class UFnCall {
@@ -93,6 +95,7 @@ AST *createAst(int node_type, AST *l, AST *r);
 AST *createNum(double d);
 AST *createCmp(int cmptype, AST *l, AST *r);
 AST *createFunc(int func_type, AST *l);
+AST *createFuncNoArgs(int func_type);
 AST *createCall(Symbol *s, AST *l);
 AST *createRef(Symbol *s);
 AST *createAssign(Symbol *s, AST *v);

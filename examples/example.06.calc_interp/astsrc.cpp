@@ -24,21 +24,36 @@ AST *createNum(double d) {
 }
 double CallBuiltIn(FnCall *fn) {
     FuncCall fb = fn->func_b;
-    double v = eval(fn->l);
-    switch(fb) {
-        case FN_SQRT:
-            return sqrt(v);
-        case FN_EXP:
-            return exp(v);
-        case FN_LOG:
-            return log(v);
-        case FN_PRINT:
-            std::cout << "Value: "  << v << "\n";
-            break;
-        case FN_EXIT:
-            std::cout << "Exiting with code: " << (unsigned int)v << "\n";
-            exit((unsigned int)v);
-            return v;
+    double v = 0;
+    if(fn->args >= 1) {
+        v = eval(fn->l);
+        switch(fb) {
+            case FN_SQRT:
+                return sqrt(v);
+            case FN_EXP:
+                return exp(v);
+            case FN_LOG:
+                return log(v);
+            case FN_PRINT:
+                std::cout << "Value: "  << v << "\n";
+                break;
+            case FN_EXIT:
+                std::cout << "Exiting with code: " << (unsigned int)v << "\n";
+                exit((unsigned int)v);
+                return v;
+            default:
+                break;
+        }
+    } else {
+        switch(fb) {
+            case FN_INPUT:
+                double d;
+                std::cout << "Input >";
+                std::cin >> d;
+                return d;
+            default:
+                break;
+        }
     }
     return 0;
 }
@@ -269,8 +284,23 @@ AST *createFunc(int func_type, AST *l) {
     fn->node_type = 'F';
     fn->l = l;
     fn->func_b = (FuncCall)func_type;
+    fn->args = 1;
     return (AST*)fn;
 }
+
+AST *createFuncNoArgs(int func_type) {
+    FnCall *fn = new FnCall();
+    if(!fn) {
+        std::cerr << "Out of memory..\n";
+        exit(EXIT_FAILURE);
+    }
+    fn->node_type = 'F';
+    fn->l = 0;
+    fn->func_b = (FuncCall)func_type;
+    fn->args = 0;
+    return (AST*)fn;
+}
+
 AST *createCall(Symbol *s, AST *l) {
     UFnCall *fn = new UFnCall();
     if(!fn) {

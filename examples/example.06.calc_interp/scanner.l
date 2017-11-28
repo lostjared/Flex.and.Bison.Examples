@@ -45,6 +45,7 @@ EXP ([Ee][-+]?[0-9]+)
 "log"  {yylval.fn = FN_LOG; return FUNC; }
 "print" { yylval.fn = FN_PRINT; return FUNC; }
 "exit" { yylval.fn = FN_EXIT; return FUNC; }
+"input" { yylval.fn = FN_INPUT; return FUNC; }
 
 [a-zA-z][a-zA-Z0-9]* { yylval.s = getSymbol(yytext); return NAME; }
 

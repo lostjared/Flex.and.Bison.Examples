@@ -71,6 +71,7 @@ exp: exp CMP exp { $$ = createCmp($2, $1, $3); }
 | NAME { $$ = createRef($1); }
 | NAME '=' exp { $$ = createAssign($1, $3); }
 | FUNC '(' explist ')' { $$ = createFunc($1, $3); }
+| FUNC '(' ')' { $$ = createFuncNoArgs($1); }
 | NAME '(' explist ')' { $$ = createCall($1, $3); }
 ;
 
