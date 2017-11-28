@@ -237,6 +237,7 @@ Symbol *getSymbol(const std::string &n) {
 
     if(symbols.find(n) == symbols.end()) {
         Symbol *s = new Symbol();
+        s->name = n;
         symbols[n] = s;
         return s;
     }
