@@ -6,6 +6,9 @@
     #include "parser.tab.h"
     #include<cstdlib>
     #include<cstdio>
+    
+    extern void releaseBuffer();
+    
 %}
 
 EXP ([Ee][-+]?[0-9]+)
@@ -41,6 +44,7 @@ EXP ([Ee][-+]?[0-9]+)
 "exp"  {yylval.fn = FN_EXP; return FUNC; }
 "log"  {yylval.fn = FN_LOG; return FUNC; }
 "print" { yylval.fn = FN_PRINT; return FUNC; }
+"exit" { yylval.fn = FN_EXIT; return FUNC; }
 
 [a-zA-z][a-zA-Z0-9]* { yylval.s = getSymbol(yytext); return NAME; }
 
@@ -48,8 +52,15 @@ EXP ([Ee][-+]?[0-9]+)
 "."?[0-9]+{EXP}? { yylval.d = atof(yytext); return NUMBER; }
 
 \n { return EOL; }
-\\\n { std::cout << "\n $>"; }
+\\\n { std::cout << "$> "; }
 "//".*
 [ \t] { }
 . { yyerror("Mystery character: %c\n", *yytext); }
+
+%%
+
+void releaseBuffer() {
+    yy_delete_buffer(YY_CURRENT_BUFFER);
+}
+
 

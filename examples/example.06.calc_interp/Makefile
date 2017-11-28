@@ -11,8 +11,7 @@ ast_test: parser.y scanner.l main.cpp astsrc.cpp astheader.hpp
 	$(CXX) -std=c++11 astsrc.cpp -c -o astsrc.o
 	$(CXX) -std=c++11 main.cpp -c -o main.o
 	$(CXX) parser.tab.o lex.yy.o astsrc.o main.o -o ast_test
-
-#	$(CXX) parser.tab.cpp lex.yy.cpp astsrc.cpp main.cpp -o ast_test
+#	$(CXX) parser.tab.cpp lex.yy.cpp astsrc.cpp main.cpp -o ast_test 
 
 
 clean:

@@ -34,6 +34,11 @@ double CallBuiltIn(FnCall *fn) {
             return log(v);
         case FN_PRINT:
             std::cout << "Value: "  << v << "\n";
+            break;
+        case FN_EXIT:
+            std::cout << "Exiting with code: " << (unsigned int)v << "\n";
+            exit((unsigned int)v);
+            return v;
     }
     return 0;
 }
@@ -343,5 +348,4 @@ void yyerror(const char *src, ...) {
     va_start(ap, src);
     fprintf(stderr, "Line %d: error ", yylineno);
     vfprintf(stderr, src, ap);
-    fprintf(stderr, "\n");
 }

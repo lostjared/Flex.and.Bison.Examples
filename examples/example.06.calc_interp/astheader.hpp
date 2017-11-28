@@ -44,7 +44,8 @@ enum FuncCall {
 	FN_SQRT,
 	FN_EXP,
     FN_LOG,
-    FN_PRINT
+    FN_PRINT,
+    FN_EXIT
 };
 class FnCall {
 public:
