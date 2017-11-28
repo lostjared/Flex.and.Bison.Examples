@@ -105,7 +105,7 @@
 #include<cstdio>
 #include<cstdlib>
 #include"astheader.hpp"
-    
+
 
 
 /* Enabling traces.  */
@@ -1477,7 +1477,7 @@ yyreduce:
 
   case 19:
 #line 69 "parser.y"
-    { (yyval.a) = createAst('M', NULL, (yyvsp[(2) - (2)].a)); ;}
+    { (yyval.a) = createAst('M', (yyvsp[(2) - (2)].a), NULL); ;}
     break;
 
   case 20:

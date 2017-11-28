@@ -7,7 +7,6 @@
 
 extern int yylineno;
 void yyerror(const char *s, ...);
-
 extern int yylex();
 
 struct AST {

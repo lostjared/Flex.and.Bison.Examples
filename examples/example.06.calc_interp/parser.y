@@ -5,7 +5,7 @@
 #include<cstdio>
 #include<cstdlib>
 #include"astheader.hpp"
-    
+
 %}
 
 %union {
@@ -66,7 +66,7 @@ exp: exp CMP exp { $$ = createCmp($2, $1, $3); }
 | exp '/' exp { $$ = createAst('/', $1, $3); }
 | '|' exp { $$ = createAst('|', $2, NULL); }
 | '(' exp ')' { $$ = $2; }
-| '-' exp %prec UMINUS { $$ = createAst('M', NULL, $2); }
+| '-' exp %prec UMINUS { $$ = createAst('M', $2, NULL); }
 | NUMBER { $$ = createNum($1); }
 | NAME { $$ = createRef($1); }
 | NAME '=' exp { $$ = createAssign($1, $3); }

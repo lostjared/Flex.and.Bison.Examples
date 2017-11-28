@@ -48,9 +48,8 @@ EXP ([Ee][-+]?[0-9]+)
 "."?[0-9]+{EXP}? { yylval.d = atof(yytext); return NUMBER; }
 
 \n { return EOL; }
-\\\n { std::cout << "\n >"; }
+\\\n { std::cout << "\n $>"; }
 "//".*
-
 [ \t] { }
 . { yyerror("Mystery character: %c\n", *yytext); }
 

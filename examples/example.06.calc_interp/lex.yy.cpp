@@ -926,7 +926,7 @@ case 31:
 /* rule 31 can match eol */
 YY_RULE_SETUP
 #line 51 "scanner.l"
-{ std::cout << "\n >"; }
+{ std::cout << "\n $>"; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
@@ -935,17 +935,17 @@ YY_RULE_SETUP
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 54 "scanner.l"
+#line 53 "scanner.l"
 { }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 55 "scanner.l"
+#line 54 "scanner.l"
 { yyerror("Mystery character: %c\n", *yytext); }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 57 "scanner.l"
+#line 56 "scanner.l"
 YY_FATAL_ERROR( "flex scanner jammed" );
 	YY_BREAK
 #line 952 "lex.yy.c"
@@ -1957,4 +1957,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 57 "scanner.l"
+#line 56 "scanner.l"
