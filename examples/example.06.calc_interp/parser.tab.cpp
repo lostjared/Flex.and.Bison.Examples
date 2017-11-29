@@ -1409,7 +1409,7 @@ yyreduce:
 
   case 5:
 #line 44 "parser.y"
-    { std::cout << "\n$> "; ;}
+    {  std::cout << "\n$> "; ;}
     break;
 
   case 6:

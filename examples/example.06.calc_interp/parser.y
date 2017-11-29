@@ -41,7 +41,7 @@ calclist:
     doref($3, $5, $8);
     std::cout << "Function Defined: " << $3->name << "\n$> ";
 }
-| calclist error EOL { std::cout << "\n$> "; }
+| calclist error EOL {  std::cout << "\n$> "; }
 ;
 
 stmt: IF exp THEN list { $$ = createFlow('I', $2, $4, NULL); }
