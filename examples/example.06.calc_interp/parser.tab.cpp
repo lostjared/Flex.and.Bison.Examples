@@ -1394,7 +1394,7 @@ yyreduce:
 #line 35 "parser.y"
     {
     double d = eval((yyvsp[(2) - (3)].a));
-    std::cout << " = " << d << "\n$>";
+    std::cout << " = " << d << "\n$> ";
     freeAst((yyvsp[(2) - (3)].a));
 ;}
     break;
@@ -1403,13 +1403,13 @@ yyreduce:
 #line 40 "parser.y"
     {
     doref((yyvsp[(3) - (9)].s), (yyvsp[(5) - (9)].sl), (yyvsp[(8) - (9)].a));
-    std::cout << "Function Defined: " << (yyvsp[(3) - (9)].s)->name << "\n$>";
+    std::cout << "Function Defined: " << (yyvsp[(3) - (9)].s)->name << "\n$> ";
 ;}
     break;
 
   case 5:
 #line 44 "parser.y"
-    { std::cout << "\n$>"; ;}
+    { std::cout << "\n$> "; ;}
     break;
 
   case 6:

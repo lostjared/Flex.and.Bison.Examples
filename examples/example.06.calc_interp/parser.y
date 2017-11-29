@@ -34,14 +34,14 @@
 calclist:
 | calclist stmt EOL {
     double d = eval($2);
-    std::cout << " = " << d << "\n$>";
+    std::cout << " = " << d << "\n$> ";
     freeAst($2);
 }
 | calclist LET NAME '(' symlist ')' '=' list EOL {
     doref($3, $5, $8);
-    std::cout << "Function Defined: " << $3->name << "\n$>";
+    std::cout << "Function Defined: " << $3->name << "\n$> ";
 }
-| calclist error EOL { std::cout << "\n$>"; }
+| calclist error EOL { std::cout << "\n$> "; }
 ;
 
 stmt: IF exp THEN list { $$ = createFlow('I', $2, $4, NULL); }
