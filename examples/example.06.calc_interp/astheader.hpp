@@ -8,6 +8,8 @@
 extern int yylineno;
 void yyerror(const char *s, ...);
 extern int yylex();
+extern unsigned int cursor;
+
 
 struct AST {
     int node_type;

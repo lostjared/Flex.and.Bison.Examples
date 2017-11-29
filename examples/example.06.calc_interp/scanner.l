@@ -10,7 +10,6 @@
     extern void inputLoop(std::istream &in);
     extern void inputLoop(int argc, char **argv);
     extern int yyparse();
-
 %}
 
 EXP ([Ee][-+]?[0-9]+)
@@ -55,7 +54,7 @@ EXP ([Ee][-+]?[0-9]+)
 "."?[0-9]+{EXP}? { yylval.d = atof(yytext); return NUMBER; }
 
 \n { return EOL; }
-\\\n { std::cout << "$> "; }
+\\\n { if(cursor == 0) std::cout << "$> "; }
 "//".*
 [ \t] { }
 . { yyerror("Mystery character: %c\n", *yytext); }

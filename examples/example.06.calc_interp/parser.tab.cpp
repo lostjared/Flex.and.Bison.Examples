@@ -444,9 +444,9 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    34,    34,    35,    40,    44,    47,    48,    49,    50,
-      53,    54,    62,    63,    64,    65,    66,    67,    68,    69,
-      70,    71,    72,    73,    74,    75,    78,    79,    81,    82
+       0,    34,    34,    35,    43,    49,    52,    53,    54,    55,
+      58,    59,    67,    68,    69,    70,    71,    72,    73,    74,
+      75,    76,    77,    78,    79,    80,    83,    84,    86,    87
 };
 #endif
 
@@ -1394,46 +1394,51 @@ yyreduce:
 #line 35 "parser.y"
     {
     double d = eval((yyvsp[(2) - (3)].a));
-    std::cout << " = " << d << "\n$> ";
+    if(cursor == 0) {
+        std::cout << " = " << d << "\n";
+        std::cout << "$> ";
+    }
     freeAst((yyvsp[(2) - (3)].a));
 ;}
     break;
 
   case 4:
-#line 40 "parser.y"
+#line 43 "parser.y"
     {
     doref((yyvsp[(3) - (9)].s), (yyvsp[(5) - (9)].sl), (yyvsp[(8) - (9)].a));
-    std::cout << "Function Defined: " << (yyvsp[(3) - (9)].s)->name << "\n$> ";
+    if(cursor == 0) {
+    	std::cout << "Function Defined: " << (yyvsp[(3) - (9)].s)->name << "\n$> ";
+    }
 ;}
     break;
 
   case 5:
-#line 44 "parser.y"
-    {  std::cout << "\n$> "; ;}
+#line 49 "parser.y"
+    {  std::cout << "\n"; if(cursor == 0) std::cout << "$> "; ;}
     break;
 
   case 6:
-#line 47 "parser.y"
+#line 52 "parser.y"
     { (yyval.a) = createFlow('I', (yyvsp[(2) - (4)].a), (yyvsp[(4) - (4)].a), NULL); ;}
     break;
 
   case 7:
-#line 48 "parser.y"
+#line 53 "parser.y"
     { (yyval.a) = createFlow('I', (yyvsp[(2) - (6)].a), (yyvsp[(4) - (6)].a), (yyvsp[(6) - (6)].a)); ;}
     break;
 
   case 8:
-#line 49 "parser.y"
+#line 54 "parser.y"
     { (yyval.a) = createFlow('W', (yyvsp[(2) - (4)].a), (yyvsp[(4) - (4)].a), NULL); ;}
     break;
 
   case 10:
-#line 53 "parser.y"
+#line 58 "parser.y"
     {(yyval.a) = NULL; ;}
     break;
 
   case 11:
-#line 54 "parser.y"
+#line 59 "parser.y"
     {
     if((yyvsp[(3) - (3)].a) == NULL)
     (yyval.a) = (yyvsp[(1) - (3)].a);
@@ -1443,93 +1448,93 @@ yyreduce:
     break;
 
   case 12:
-#line 62 "parser.y"
+#line 67 "parser.y"
     { (yyval.a) = createCmp((yyvsp[(2) - (3)].fn), (yyvsp[(1) - (3)].a), (yyvsp[(3) - (3)].a)); ;}
     break;
 
   case 13:
-#line 63 "parser.y"
+#line 68 "parser.y"
     { (yyval.a) = createAst('+', (yyvsp[(1) - (3)].a), (yyvsp[(3) - (3)].a)); ;}
     break;
 
   case 14:
-#line 64 "parser.y"
+#line 69 "parser.y"
     { (yyval.a) = createAst('-', (yyvsp[(1) - (3)].a), (yyvsp[(3) - (3)].a)); ;}
     break;
 
   case 15:
-#line 65 "parser.y"
+#line 70 "parser.y"
     { (yyval.a) = createAst('*', (yyvsp[(1) - (3)].a), (yyvsp[(3) - (3)].a)); ;}
     break;
 
   case 16:
-#line 66 "parser.y"
+#line 71 "parser.y"
     { (yyval.a) = createAst('/', (yyvsp[(1) - (3)].a), (yyvsp[(3) - (3)].a)); ;}
     break;
 
   case 17:
-#line 67 "parser.y"
+#line 72 "parser.y"
     { (yyval.a) = createAst('|', (yyvsp[(2) - (2)].a), NULL); ;}
     break;
 
   case 18:
-#line 68 "parser.y"
+#line 73 "parser.y"
     { (yyval.a) = (yyvsp[(2) - (3)].a); ;}
     break;
 
   case 19:
-#line 69 "parser.y"
+#line 74 "parser.y"
     { (yyval.a) = createAst('M', (yyvsp[(2) - (2)].a), NULL); ;}
     break;
 
   case 20:
-#line 70 "parser.y"
+#line 75 "parser.y"
     { (yyval.a) = createNum((yyvsp[(1) - (1)].d)); ;}
     break;
 
   case 21:
-#line 71 "parser.y"
+#line 76 "parser.y"
     { (yyval.a) = createRef((yyvsp[(1) - (1)].s)); ;}
     break;
 
   case 22:
-#line 72 "parser.y"
+#line 77 "parser.y"
     { (yyval.a) = createAssign((yyvsp[(1) - (3)].s), (yyvsp[(3) - (3)].a)); ;}
     break;
 
   case 23:
-#line 73 "parser.y"
+#line 78 "parser.y"
     { (yyval.a) = createFunc((yyvsp[(1) - (4)].fn), (yyvsp[(3) - (4)].a)); ;}
     break;
 
   case 24:
-#line 74 "parser.y"
+#line 79 "parser.y"
     { (yyval.a) = createFuncNoArgs((yyvsp[(1) - (3)].fn)); ;}
     break;
 
   case 25:
-#line 75 "parser.y"
+#line 80 "parser.y"
     { (yyval.a) = createCall((yyvsp[(1) - (4)].s), (yyvsp[(3) - (4)].a)); ;}
     break;
 
   case 27:
-#line 79 "parser.y"
+#line 84 "parser.y"
     { (yyval.a) = createAst('L',(yyvsp[(1) - (3)].a), (yyvsp[(3) - (3)].a)); ;}
     break;
 
   case 28:
-#line 81 "parser.y"
+#line 86 "parser.y"
     { (yyval.sl) = createSymList((yyvsp[(1) - (1)].s), NULL); ;}
     break;
 
   case 29:
-#line 82 "parser.y"
+#line 87 "parser.y"
     { (yyval.sl) = createSymList((yyvsp[(1) - (3)].s), (yyvsp[(3) - (3)].sl)); ;}
     break;
 
 
 /* Line 1267 of yacc.c.  */
-#line 1533 "parser.tab.c"
+#line 1538 "parser.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1743,7 +1748,7 @@ yyreturn:
 }
 
 
-#line 85 "parser.y"
+#line 90 "parser.y"
 
 
 
