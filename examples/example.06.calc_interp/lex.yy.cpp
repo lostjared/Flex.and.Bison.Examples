@@ -530,9 +530,10 @@ char *yytext;
     #include<cstdlib>
     #include<cstdio>
     
-    extern void releaseBuffer();
-    
-#line 536 "lex.yy.c"
+    extern void inputLoop(std::istream &in);
+    extern int yyparse();
+
+#line 537 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -714,10 +715,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 16 "scanner.l"
+#line 17 "scanner.l"
 
 
-#line 721 "lex.yy.c"
+#line 722 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -811,163 +812,163 @@ do_action:	/* This label is used only to access EOF actions. */
 			goto yy_find_action;
 
 case 1:
-#line 19 "scanner.l"
-case 2:
 #line 20 "scanner.l"
-case 3:
+case 2:
 #line 21 "scanner.l"
-case 4:
+case 3:
 #line 22 "scanner.l"
-case 5:
+case 4:
 #line 23 "scanner.l"
-case 6:
+case 5:
 #line 24 "scanner.l"
-case 7:
+case 6:
 #line 25 "scanner.l"
-case 8:
+case 7:
 #line 26 "scanner.l"
-case 9:
+case 8:
 #line 27 "scanner.l"
+case 9:
+#line 28 "scanner.l"
 case 10:
 YY_RULE_SETUP
-#line 27 "scanner.l"
+#line 28 "scanner.l"
 { return yytext[0]; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 29 "scanner.l"
+#line 30 "scanner.l"
 { yylval.fn = 1; return CMP; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 30 "scanner.l"
+#line 31 "scanner.l"
 { yylval.fn = 2; return CMP; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 31 "scanner.l"
+#line 32 "scanner.l"
 { yylval.fn = 3; return CMP; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 32 "scanner.l"
+#line 33 "scanner.l"
 { yylval.fn = 4; return CMP; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 33 "scanner.l"
+#line 34 "scanner.l"
 { yylval.fn = 5; return CMP; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 34 "scanner.l"
+#line 35 "scanner.l"
 { yylval.fn = 6; return CMP; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 36 "scanner.l"
+#line 37 "scanner.l"
 { return IF; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 37 "scanner.l"
+#line 38 "scanner.l"
 { return THEN; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 38 "scanner.l"
+#line 39 "scanner.l"
 { return ELSE; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 39 "scanner.l"
+#line 40 "scanner.l"
 { return WHILE; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 40 "scanner.l"
+#line 41 "scanner.l"
 { return DO; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 41 "scanner.l"
+#line 42 "scanner.l"
 { return LET; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 43 "scanner.l"
+#line 44 "scanner.l"
 {yylval.fn = FN_SQRT; return FUNC; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 44 "scanner.l"
+#line 45 "scanner.l"
 {yylval.fn = FN_EXP; return FUNC; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 45 "scanner.l"
+#line 46 "scanner.l"
 {yylval.fn = FN_LOG; return FUNC; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 46 "scanner.l"
+#line 47 "scanner.l"
 { yylval.fn = FN_PRINT; return FUNC; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 47 "scanner.l"
+#line 48 "scanner.l"
 { yylval.fn = FN_EXIT; return FUNC; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 48 "scanner.l"
+#line 49 "scanner.l"
 { yylval.fn = FN_INPUT; return FUNC; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 50 "scanner.l"
+#line 51 "scanner.l"
 { yylval.s = getSymbol(yytext); return NAME; }
 	YY_BREAK
 case 30:
-#line 53 "scanner.l"
+#line 54 "scanner.l"
 case 31:
 YY_RULE_SETUP
-#line 53 "scanner.l"
+#line 54 "scanner.l"
 { yylval.d = atof(yytext); return NUMBER; }
 	YY_BREAK
 case 32:
 /* rule 32 can match eol */
 YY_RULE_SETUP
-#line 55 "scanner.l"
+#line 56 "scanner.l"
 { return EOL; }
 	YY_BREAK
 case 33:
 /* rule 33 can match eol */
 YY_RULE_SETUP
-#line 56 "scanner.l"
+#line 57 "scanner.l"
 { std::cout << "$> "; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 57 "scanner.l"
+#line 58 "scanner.l"
 
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 58 "scanner.l"
+#line 59 "scanner.l"
 { }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 59 "scanner.l"
+#line 60 "scanner.l"
 { yyerror("Mystery character: %c\n", *yytext); }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 61 "scanner.l"
+#line 62 "scanner.l"
 YY_FATAL_ERROR( "flex scanner jammed" );
 	YY_BREAK
-#line 971 "lex.yy.c"
+#line 972 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1976,12 +1977,25 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 61 "scanner.l"
+#line 62 "scanner.l"
 
 
 
-void releaseBuffer() {
-    yy_delete_buffer(YY_CURRENT_BUFFER);
+void inputLoop(std::istream &in) {
+    std::cout << "$> ";
+    while(!in.eof()) {
+        std::string value;
+        std::getline(in, value);
+        YY_BUFFER_STATE buffer;
+        if(in && value.length() > 0) {
+            value += "\n\0";
+            buffer = yy_scan_string((char*)value.c_str());
+            yyparse();
+            yy_delete_buffer(YY_CURRENT_BUFFER);
+        } else {
+            std::cout << "$> ";
+        }
+    }
 }
 
 

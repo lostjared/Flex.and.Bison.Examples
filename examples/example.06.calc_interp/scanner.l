@@ -7,8 +7,9 @@
     #include<cstdlib>
     #include<cstdio>
     
-    extern void releaseBuffer();
-    
+    extern void inputLoop(std::istream &in);
+    extern int yyparse();
+
 %}
 
 EXP ([Ee][-+]?[0-9]+)
@@ -60,8 +61,21 @@ EXP ([Ee][-+]?[0-9]+)
 
 %%
 
-void releaseBuffer() {
-    yy_delete_buffer(YY_CURRENT_BUFFER);
+void inputLoop(std::istream &in) {
+    std::cout << "$> ";
+    while(!in.eof()) {
+        std::string value;
+        std::getline(in, value);
+        YY_BUFFER_STATE buffer;
+        if(in && value.length() > 0) {
+            value += "\n\0";
+            buffer = yy_scan_string((char*)value.c_str());
+            yyparse();
+            yy_delete_buffer(YY_CURRENT_BUFFER);
+        } else {
+            std::cout << "$> ";
+        }
+    }
 }
 
 
