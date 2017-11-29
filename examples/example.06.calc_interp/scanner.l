@@ -8,6 +8,7 @@
     #include<cstdio>
     
     extern void inputLoop(std::istream &in);
+    extern void inputLoop(int argc, char **argv);
     extern int yyparse();
 
 %}
@@ -78,4 +79,12 @@ void inputLoop(std::istream &in) {
     }
 }
 
+void inputLoop(int argc, char **argv) {
+    for(unsigned int i = 1; i < argc; i++) {
+        FILE *fptr;
+        fptr = fopen(argv[i], "r");
+        yyrestart(fptr);
+        yyparse();
+    }
+}
 

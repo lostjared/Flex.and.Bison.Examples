@@ -4,12 +4,15 @@
 #include "astheader.hpp"
 #include "parser.tab.h"
 
-extern void initLoop(std::istream &in);
+extern void inputLoop(std::istream &in);
+extern void inputLoop(int argc, char **argv);
 
-void inputLoop(std::istream &in);
-
-int main() {
-    inputLoop(std::cin);
+int main(int argc, char **argv) {
+    if(argc == 1)
+        inputLoop(std::cin);
+    else if(argc > 1) {
+        inputLoop(argc, argv);
+    }
     return 0;
 }
 
