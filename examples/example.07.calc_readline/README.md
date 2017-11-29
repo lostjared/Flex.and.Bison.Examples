@@ -29,8 +29,10 @@ $> print(y)
 
 Example:
 
-x = input()
-y = input()
-value = x*y
+	x = input()
+
+	y = input()
+
+	value = x*y
 
 
