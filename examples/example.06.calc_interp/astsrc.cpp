@@ -9,7 +9,7 @@ std::unordered_map<std::string, Symbol *> symbols;
 AST *createAst(int node_type, AST *l, AST *r) {
     AST *a = new AST(node_type, l, r, 0);
     if(!a) {
-        std::cerr << "Out of space...\n";
+        yyerror("Error allocating memory.\n");
         exit(EXIT_FAILURE);
     }
     return a;
@@ -17,7 +17,7 @@ AST *createAst(int node_type, AST *l, AST *r) {
 AST *createNum(double d) {
     AST *n = new AST('K', d);
     if(!n) {
-        std::cerr << "Error couldn't allocate memory..\n";
+        yyerror("Error allocating memory.\n");
         exit(EXIT_FAILURE);
     }
      return n;
@@ -135,8 +135,9 @@ double eval(AST *ast) {
             v = ((SymEqual*)ast)->s->value = eval( ((SymEqual*)ast)->v);
         }
             break;
-        case '+':
-            v = eval(ast->left) + eval(ast->right);
+        case '+': {
+           	v = eval(ast->left) + eval(ast->right);
+        }
             break;
         case '-':
             v = eval(ast->left) - eval(ast->right);
@@ -247,7 +248,7 @@ void freeAst(AST *node) {
         }
             break;
         default:
-            std::cerr << "Error invalid node: " << node->node_type << "\n";
+            yyerror("Error invalid node: %d \n", node->node_type);
             break;
     }
     delete node;
@@ -267,7 +268,7 @@ Symbol *getSymbol(const std::string &n) {
 AST *createCmp(int cmptype, AST *l, AST *r) {
     AST *n = new AST();
     if(!n) {
-        std::cerr << "Error allocating memory.\n";
+        yyerror("Error allocating memory.\n");
         exit(EXIT_FAILURE);
     }
     n->node_type = '0' + cmptype;
@@ -278,7 +279,7 @@ AST *createCmp(int cmptype, AST *l, AST *r) {
 AST *createFunc(int func_type, AST *l) {
     FnCall *fn = new FnCall();
     if(!fn) {
-        std::cerr << "Error memory.\n";
+        yyerror("Error allocating memory.\n");
         exit(EXIT_FAILURE);
     }
     fn->node_type = 'F';
@@ -291,7 +292,7 @@ AST *createFunc(int func_type, AST *l) {
 AST *createFuncNoArgs(int func_type) {
     FnCall *fn = new FnCall();
     if(!fn) {
-        std::cerr << "Out of memory..\n";
+        yyerror("Error allocating memory.\n");
         exit(EXIT_FAILURE);
     }
     fn->node_type = 'F';
@@ -304,7 +305,7 @@ AST *createFuncNoArgs(int func_type) {
 AST *createCall(Symbol *s, AST *l) {
     UFnCall *fn = new UFnCall();
     if(!fn) {
-        std::cerr << "Error on allocate..\n";
+        yyerror("Error allocating memory.\n");
         exit(EXIT_FAILURE);
     }
     fn->node_type = 'C';
@@ -315,7 +316,7 @@ AST *createCall(Symbol *s, AST *l) {
 AST *createRef(Symbol *s) {
     SymRef *ref = new SymRef();
     if(!ref) {
-        std::cerr << "Error on allocate..\n";
+        yyerror("Error allocating memory.\n");
         exit(EXIT_FAILURE);
     }
     ref->s = s;
@@ -325,7 +326,7 @@ AST *createRef(Symbol *s) {
 AST *createAssign(Symbol *s, AST *v) {
     SymEqual *equal = new SymEqual();
     if(!equal) {
-        std::cerr << "Error on allocate..\n";
+        yyerror("Error allocating memory.\n");
         exit(EXIT_FAILURE);
     }
     equal->node_type = '=';
@@ -336,7 +337,7 @@ AST *createAssign(Symbol *s, AST *v) {
 AST *createFlow(int node_type,AST *cond, AST *tl, AST *tr) {
     Flow *flow = new Flow();
     if(!flow) {
-        std::cerr << "Error on allocate..\n";
+        yyerror("Error allocating memory.\n");
         exit(EXIT_FAILURE);
     }
     flow->node_type = node_type;
@@ -349,7 +350,7 @@ AST *createFlow(int node_type,AST *cond, AST *tl, AST *tr) {
 SymList *createSymList(Symbol *s, SymList *next) {
     SymList *sl = new SymList();
     if(!sl) {
-        std::cerr << "Error could not allocate memory..\n";
+        yyerror("Error allocating memory.\n");
         exit(EXIT_FAILURE);
     }
     sl->sym = s;
