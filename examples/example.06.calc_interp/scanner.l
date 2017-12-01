@@ -48,7 +48,7 @@ EXP ([Ee][-+]?[0-9]+)
 "exit" { yylval.fn = FN_EXIT; return FUNC; }
 "input" { yylval.fn = FN_INPUT; return FUNC; }
 
-[a-zA-z][a-zA-Z0-9]* { yylval.s = getSymbol(yytext); return NAME; }
+[a-zA-Z][a-zA-Z0-9]* { yylval.s = getSymbol(yytext); return NAME; }
 
 [0-9]+"."[0-9]*{EXP}? |
 "."?[0-9]+{EXP}? { yylval.d = atof(yytext); return NUMBER; }
