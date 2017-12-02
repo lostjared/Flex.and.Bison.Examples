@@ -7,8 +7,10 @@ OBJ_FILES := $(addprefix ,$(notdir $(CPP_FILES:.cpp=.o)))
 source/%.o: source/%.cpp
 	$(CXX) $(CXX_FLAGS) -c -o $@ $<
 
-all: $(OBJ_FILES)
+mxltest: $(OBJ_FILES)
 	$(CXX) $(OBJ_FILES)  -o mxltest  
+
+all: mxltest
 
 flex: parser.yy lexer.l
 	bison -d parser.yy
