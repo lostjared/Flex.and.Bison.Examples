@@ -486,7 +486,7 @@ char *yytext;
 #line 1 "scanner.l"
 #line 5 "scanner.l"
     #include "astheader.hpp"
-    #include "parser.tab.h"
+    #include "parser.tab.hh"
     #include<cstdlib>
     #include<cstdio>
 #line 493 "lex.yy.c"
