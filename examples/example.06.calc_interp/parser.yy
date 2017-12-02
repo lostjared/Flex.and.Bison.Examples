@@ -47,6 +47,7 @@ calclist:
     }
 }
 | calclist error EOL {  std::cout << "\n"; if(cursor == 0) std::cout << "$> "; }
+| calclist EOL
 ;
 
 stmt: IF exp THEN list { $$ = createFlow('I', $2, $4, NULL); }

@@ -3,7 +3,7 @@
 
 %{
     #include "astheader.hpp"
-    #include "parser.tab.h"
+    #include "parser.tab.hh"
     #include<cstdlib>
     #include<cstdio>
     
