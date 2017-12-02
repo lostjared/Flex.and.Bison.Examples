@@ -27,8 +27,14 @@ main_list:
 | main_list EOL
 ;
 
-val_list: ID '=' ID { vars[$1->name] = $3->name; }
-| ID '=' STR { vars[$1->name] = $3->name; }
+val_list: ID '=' ID { vars[$1->name] = $3->name;
+    delete $1;
+    delete $3;
+}
+| ID '=' STR { vars[$1->name] = $3->name;
+    delete $1;
+    delete $3;
+}
 ;
 
 %%

@@ -415,7 +415,7 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    24,    24,    25,    26,    27,    30,    31
+       0,    24,    24,    25,    26,    27,    30,    34
 };
 #endif
 
@@ -1316,17 +1316,23 @@ yyreduce:
     {
         case 6:
 #line 30 "parser.y"
-    { vars[(yyvsp[(1) - (3)].s)->name] = (yyvsp[(3) - (3)].s)->name; ;}
+    { vars[(yyvsp[(1) - (3)].s)->name] = (yyvsp[(3) - (3)].s)->name;
+    delete (yyvsp[(1) - (3)].s);
+    delete (yyvsp[(3) - (3)].s);
+;}
     break;
 
   case 7:
-#line 31 "parser.y"
-    { vars[(yyvsp[(1) - (3)].s)->name] = (yyvsp[(3) - (3)].s)->name; ;}
+#line 34 "parser.y"
+    { vars[(yyvsp[(1) - (3)].s)->name] = (yyvsp[(3) - (3)].s)->name;
+    delete (yyvsp[(1) - (3)].s);
+    delete (yyvsp[(3) - (3)].s);
+;}
     break;
 
 
 /* Line 1267 of yacc.c.  */
-#line 1330 "parser.tab.c"
+#line 1336 "parser.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1540,6 +1546,6 @@ yyreturn:
 }
 
 
-#line 34 "parser.y"
+#line 40 "parser.y"
 
 
