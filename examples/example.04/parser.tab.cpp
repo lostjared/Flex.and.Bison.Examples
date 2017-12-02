@@ -78,7 +78,7 @@
 
 
 /* Copy the first part of user declarations.  */
-#line 2 "parser.y"
+#line 2 "parser.yy"
 
 
 #include<iostream>
@@ -108,13 +108,13 @@
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 11 "parser.y"
+#line 11 "parser.yy"
 {
     AST *a;
     double d;
 }
 /* Line 193 of yacc.c.  */
-#line 118 "parser.tab.c"
+#line 118 "parser.tab.cc"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
@@ -127,7 +127,7 @@ typedef union YYSTYPE
 
 
 /* Line 216 of yacc.c.  */
-#line 131 "parser.tab.c"
+#line 131 "parser.tab.cc"
 
 #ifdef short
 # undef short
@@ -1325,7 +1325,7 @@ yyreduce:
   switch (yyn)
     {
         case 3:
-#line 24 "parser.y"
+#line 24 "parser.yy"
     {
     std::cout << " = " << eval((yyvsp[(2) - (3)].a)) << "\n";
     freeAst((yyvsp[(2) - (3)].a));
@@ -1334,55 +1334,55 @@ yyreduce:
     break;
 
   case 4:
-#line 29 "parser.y"
+#line 29 "parser.yy"
     {
     std::cout << "$> ";
 ;}
     break;
 
   case 6:
-#line 35 "parser.y"
+#line 35 "parser.yy"
     { (yyval.a) = createAst('+', (yyvsp[(1) - (3)].a), (yyvsp[(3) - (3)].a)); ;}
     break;
 
   case 7:
-#line 36 "parser.y"
+#line 36 "parser.yy"
     { (yyval.a) = createAst('-', (yyvsp[(1) - (3)].a), (yyvsp[(3) - (3)].a)); ;}
     break;
 
   case 9:
-#line 40 "parser.y"
+#line 40 "parser.yy"
     { (yyval.a) = createAst('*', (yyvsp[(1) - (3)].a), (yyvsp[(3) - (3)].a)); ;}
     break;
 
   case 10:
-#line 41 "parser.y"
+#line 41 "parser.yy"
     { (yyval.a) = createAst('/', (yyvsp[(1) - (3)].a), (yyvsp[(3) - (3)].a)); ;}
     break;
 
   case 11:
-#line 43 "parser.y"
+#line 43 "parser.yy"
     { (yyval.a) = createNum((yyvsp[(1) - (1)].d)); ;}
     break;
 
   case 12:
-#line 44 "parser.y"
+#line 44 "parser.yy"
     { (yyval.a) = createAst('|', (yyvsp[(2) - (2)].a), NULL); ;}
     break;
 
   case 13:
-#line 45 "parser.y"
+#line 45 "parser.yy"
     { (yyval.a) = (yyvsp[(2) - (3)].a); ;}
     break;
 
   case 14:
-#line 46 "parser.y"
+#line 46 "parser.yy"
     { (yyval.a) = createAst('M', (yyvsp[(2) - (2)].a), NULL); ;}
     break;
 
 
 /* Line 1267 of yacc.c.  */
-#line 1386 "parser.tab.c"
+#line 1386 "parser.tab.cc"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1596,7 +1596,7 @@ yyreturn:
 }
 
 
-#line 48 "parser.y"
+#line 48 "parser.yy"
 
 
 

@@ -1,12 +1,12 @@
 
 all: ast_test
 
-ast_test: parser.y scanner.l main.cpp astsrc.cpp astheader.hpp
-	bison -d parser.y
+ast_test: parser.yy scanner.l main.cpp astsrc.cpp astheader.hpp
+	bison -d parser.yy
 	flex scanner.l
 	mv lex.yy.c lex.yy.cpp
 	$(CXX) lex.yy.cpp -c -o lex.yy.o
-	mv parser.tab.c parser.tab.cpp
+	mv parser.tab.cc parser.tab.cpp
 	$(CXX) parser.tab.cpp -c -o parser.tab.o
 	$(CXX) -std=c++11 astsrc.cpp -c -o astsrc.o
 	$(CXX) -std=c++11 main.cpp -c -o main.o
