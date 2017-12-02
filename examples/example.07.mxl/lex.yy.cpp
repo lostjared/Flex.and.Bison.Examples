@@ -480,7 +480,7 @@ char *yytext;
     #include<iostream>
     #include<map>
     #include "mxl.hpp"
-    #include "parser.tab.h"
+    #include "parser.tab.hh"
     
 #line 486 "lex.yy.c"
 

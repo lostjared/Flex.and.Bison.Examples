@@ -80,7 +80,7 @@
 
 
 /* Copy the first part of user declarations.  */
-#line 1 "parser.y"
+#line 1 "parser.yy"
 
 
 #include<iostream>
@@ -112,13 +112,13 @@ extern int yylex();
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 12 "parser.y"
+#line 12 "parser.yy"
 {
     Symbol *s;
     List *l;
 }
 /* Line 193 of yacc.c.  */
-#line 122 "parser.tab.c"
+#line 122 "parser.tab.cc"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
@@ -131,7 +131,7 @@ typedef union YYSTYPE
 
 
 /* Line 216 of yacc.c.  */
-#line 135 "parser.tab.c"
+#line 135 "parser.tab.cc"
 
 #ifdef short
 # undef short
@@ -1315,7 +1315,7 @@ yyreduce:
   switch (yyn)
     {
         case 6:
-#line 30 "parser.y"
+#line 30 "parser.yy"
     { vars[(yyvsp[(1) - (3)].s)->name] = (yyvsp[(3) - (3)].s)->name;
     delete (yyvsp[(1) - (3)].s);
     delete (yyvsp[(3) - (3)].s);
@@ -1323,7 +1323,7 @@ yyreduce:
     break;
 
   case 7:
-#line 34 "parser.y"
+#line 34 "parser.yy"
     { vars[(yyvsp[(1) - (3)].s)->name] = (yyvsp[(3) - (3)].s)->name;
     delete (yyvsp[(1) - (3)].s);
     delete (yyvsp[(3) - (3)].s);
@@ -1332,7 +1332,7 @@ yyreduce:
 
 
 /* Line 1267 of yacc.c.  */
-#line 1336 "parser.tab.c"
+#line 1336 "parser.tab.cc"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1546,6 +1546,6 @@ yyreturn:
 }
 
 
-#line 40 "parser.y"
+#line 40 "parser.yy"
 
 

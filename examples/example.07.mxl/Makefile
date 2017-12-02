@@ -10,9 +10,9 @@ source/%.o: source/%.cpp
 all: $(OBJ_FILES)
 	$(CXX) $(OBJ_FILES)  -o mxltest  
 
-flex: parser.y lexer.l
-	bison -d parser.y
-	mv parser.tab.c parser.tab.cpp
+flex: parser.yy lexer.l
+	bison -d parser.yy
+	mv parser.tab.cc parser.tab.cpp
 	flex lexer.l
 	mv lex.yy.c lex.yy.cpp
 
