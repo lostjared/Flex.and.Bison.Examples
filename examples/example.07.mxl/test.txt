@@ -1,0 +1,8 @@
+Value1 = "Values One"
+Value2 = "Values Two"
+
+Apple = "Oranges Here\n"
+
+Frodo = "Baggins"
+
+
