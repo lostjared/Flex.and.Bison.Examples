@@ -13,4 +13,14 @@ $ make flex
 
 to rebuild the files with flex/bison
 
+Simple tagging language use it like this:
+
+Cateogry =>
+"Key" = "value"
+Width = "200"
+Height = "400"
+
+User =>
+firstname = "Jared"
+lastname = "Bruni"
 
