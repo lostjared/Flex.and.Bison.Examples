@@ -1,7 +1,7 @@
 #include<iostream>
 #include<string>
 #include"mxl.hpp"
-
+#include<memory>
 
 
 int main(int argc, char **argv) {
@@ -9,8 +9,12 @@ int main(int argc, char **argv) {
         std::cout << "Error requires one argument..\n";
         exit(EXIT_FAILURE);
     }
-    readSource(argv[1]);
-    echoTokens();
+    std::unique_ptr<mxl::MXL> parser(mxl::MXL::parseMXL(argv[1]));
+    if(!parser) {
+        std::cout << "Failed to parse source..\n";
+        exit(EXIT_FAILURE);
+    }
+    parser->echoTokens();
     return 0;
 }
 

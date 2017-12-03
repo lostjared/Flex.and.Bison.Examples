@@ -1328,7 +1328,7 @@ yyreduce:
 
   case 8:
 #line 39 "parser.yy"
-    { vars[current_name][(yyvsp[(1) - (3)].s)->name] = trimQuotes((yyvsp[(3) - (3)].s)->name);
+    { vars[current_name][(yyvsp[(1) - (3)].s)->name] = mxl::trimQuotes((yyvsp[(3) - (3)].s)->name);
     delete (yyvsp[(1) - (3)].s);
     delete (yyvsp[(3) - (3)].s);
 ;}

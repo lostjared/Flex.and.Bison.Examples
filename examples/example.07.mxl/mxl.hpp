@@ -9,16 +9,32 @@
 extern void yyerror(const char *src, ...);
 extern int yylineno;
 extern std::string current_name;
-
-
-
-
-
 extern std::map<std::string, std::map<std::string, std::string> > vars;
-void readSource();
-void readSource(std::string data);
-void echoTokens();
-std::string &getValue(std::string tag, std::string key);
-std::string trimQuotes(std::string value);
+
+namespace mxl {
+    class MXL {
+        MXL() {}
+    public:
+        MXL(const std::map<std::string, std::map<std::string, std::string>> &v);
+        MXL(std::map<std::string, std::map<std::string, std::string>> &&v);
+        MXL(const MXL &m);
+        MXL(MXL &&m);
+        MXL &operator=(const MXL &m);
+        MXL &operator=(MXL &&m);
+        std::string &operator()(std::string cat, std::string key);
+        void echoTokens();
+        static MXL *parseMXL(const std::string &n);
+        std::map<std::string, std::map<std::string, std::string>> &map() { return vars; }
+    private:
+        std::map<std::string, std::map<std::string, std::string>> vars;
+    };
+    
+    void readSource();
+    bool readSource(std::string data);
+    void echoTokens();
+    std::string &getValue(std::string tag, std::string key);
+    std::string trimQuotes(std::string value);
+}
+
 #endif
 
