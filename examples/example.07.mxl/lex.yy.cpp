@@ -387,7 +387,7 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[19] =
     {   0,
-        0,    0,   10,    8,    5,    6,    8,    2,    3,    3,
+        0,    0,   10,    8,    5,    6,    8,    2,    3,    8,
         0,    4,    0,    1,    3,    7,    4,    0
     } ;
 
@@ -402,7 +402,7 @@ static yyconst flex_int32_t yy_ec[256] =
         6,    7,    1,    1,    8,    8,    8,    8,    8,    8,
         8,    8,    8,    8,    8,    8,    8,    8,    8,    8,
         8,    8,    8,    8,    8,    8,    8,    8,    8,    8,
-        9,   10,    9,    9,    8,    9,    8,    8,    8,    8,
+        1,    9,    1,    1,    8,    1,    8,    8,    8,    8,
 
         8,    8,    8,    8,    8,    8,    8,    8,    8,    8,
         8,    8,    8,    8,    8,    8,    8,    8,    8,    8,
@@ -423,37 +423,37 @@ static yyconst flex_int32_t yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static yyconst flex_int32_t yy_meta[11] =
+static yyconst flex_int32_t yy_meta[10] =
     {   0,
-        1,    1,    1,    1,    2,    1,    1,    2,    1,    1
+        1,    1,    1,    1,    2,    1,    1,    2,    1
     } ;
 
 static yyconst flex_int16_t yy_base[21] =
     {   0,
-        0,    0,   19,   27,   27,   27,    7,    9,    0,   12,
-       14,   10,    3,   27,    0,   27,   27,   27,   24,   10
+        0,    0,   18,   24,   24,   24,    6,   10,    0,   11,
+       12,    9,    3,   24,    0,   24,   24,   24,   21,    9
     } ;
 
 static yyconst flex_int16_t yy_def[21] =
     {   0,
-       18,    1,   18,   18,   18,   18,   19,   18,   20,   20,
+       18,    1,   18,   18,   18,   18,   19,   18,   20,   18,
        19,   18,   19,   18,   20,   18,   18,    0,   18,   18
     } ;
 
-static yyconst flex_int16_t yy_nxt[38] =
+static yyconst flex_int16_t yy_nxt[34] =
     {   0,
-        4,    5,    6,    7,    4,    8,    4,    9,    9,   10,
-       12,   15,   13,   17,   16,   14,   13,   12,   18,   18,
-       18,   18,   18,   13,   11,   11,    3,   18,   18,   18,
-       18,   18,   18,   18,   18,   18,   18
+        4,    5,    6,    7,    4,    8,    4,    9,   10,   12,
+       15,   13,   17,   16,   13,   12,   14,   18,   18,   18,
+       13,   11,   11,    3,   18,   18,   18,   18,   18,   18,
+       18,   18,   18
     } ;
 
-static yyconst flex_int16_t yy_chk[38] =
+static yyconst flex_int16_t yy_chk[34] =
     {   0,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        7,   20,   13,   12,   10,    8,    7,   11,    3,    0,
-        0,    0,    0,   11,   19,   19,   18,   18,   18,   18,
-       18,   18,   18,   18,   18,   18,   18
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    7,
+       20,   13,   12,   10,    7,   11,    8,    3,    0,    0,
+       11,   19,   19,   18,   18,   18,   18,   18,   18,   18,
+       18,   18,   18
     } ;
 
 /* Table of booleans, true if rule could match eol. */
@@ -726,7 +726,7 @@ yy_match:
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 27 );
+		while ( yy_base[yy_current_state] != 24 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];

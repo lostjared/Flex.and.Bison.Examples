@@ -7,7 +7,7 @@ std::map<std::string, std::map<std::string, std::string> > vars;
 std::string current_name="default";
 
 std::string trimQuotes(std::string value) {
-    if(value[0] == '\"' && value.length()>2) {
+    if(value[0] == '\"' && value.length()>=2) {
         std::string temp;
         temp = value.substr(1, value.length()-2);
         return temp;
@@ -33,6 +33,10 @@ void readSource() {
 
 void readSource(std::string data) {
     FILE *fptr = fopen(data.c_str(), "r");
+    if(!fptr) {
+        std::cerr << "Error oculd not open file: " << data << "\n";
+        exit(EXIT_FAILURE);
+    }
     yyrestart(fptr);
     readSource();
     fclose(fptr);

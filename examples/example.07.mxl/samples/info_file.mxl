@@ -5,9 +5,14 @@ w = "640"
 h = "480"
 title = "Window Title"
 
+Keyboard =>
+Key_A = "a"
+Key_B = "b"
+
 UserID =>
 firstname = "Jared"
-lastname = "Bruni
+lastname = "Bruni"
+
 
 
 
