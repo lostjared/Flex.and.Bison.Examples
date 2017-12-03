@@ -36,7 +36,7 @@ val_list: ID '=' ID { vars[current_name][$1->name] = $3->name;
     delete $1;
     delete $3;
 }
-| ID '=' STR { vars[current_name][$1->name] = $3->name;
+| ID '=' STR { vars[current_name][$1->name] = trimQuotes($3->name);
     delete $1;
     delete $3;
 }

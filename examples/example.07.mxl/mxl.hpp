@@ -27,5 +27,6 @@ void readSource();
 void readSource(std::string data);
 void echoTokens();
 std::string &getValue(std::string tag, std::string key);
+std::string trimQuotes(std::string value);
 #endif
 
