@@ -38,3 +38,24 @@ std::string value=getValue("Category", "Width");
 
 value would hold "200"
 
+Or use the the wrapper class like htis
+
+mxl::MXL *parser = mxl::MXL::parseMXL("code.mxl");
+
+don't forget to delete parser when done or use a smart pointer
+
+std::unique_ptr<mxl::MXL> parser(mxl::MXL::parseMXL("source.mxl"));
+
+if(parser) {
+
+// use parser
+  
+ if(parser->keyValid("Size", "int")) {
+
+        std::string val = parser->table("Size", "int");
+
+        std::cout << "Found Size value is: " << val << "\n";
+
+    }
+
+}
