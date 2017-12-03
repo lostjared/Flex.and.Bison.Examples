@@ -4,23 +4,15 @@
 #include<iostream>
 #include<string>
 #include<map>
+#include "symbol.hpp"
 
 extern void yyerror(const char *src, ...);
 extern int yylineno;
 extern std::string current_name;
 
-class Symbol {
-public:
-    Symbol(std::string name_) : name(name_) {}
-    std::string name;
-};
 
-class List {
-public:
-    Symbol *s;
-    List(Symbol *v) : s(v) {}
-    List *next;
-};
+
+
 
 extern std::map<std::string, std::map<std::string, std::string> > vars;
 void readSource();

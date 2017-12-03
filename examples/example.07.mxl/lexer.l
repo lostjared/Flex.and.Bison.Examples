@@ -2,11 +2,8 @@
 %option noyywrap yylineno nodefault
 
 %{
-    #include<iostream>
-    #include<map>
-    #include "mxl.hpp"
+    #include "symbol.hpp"
     #include "parser.tab.hh"
-    
 %}
 
 
