@@ -41,13 +41,15 @@
    enum yytokentype {
      ID = 258,
      STR = 259,
-     EOL = 260
+     EOL = 260,
+     ARROW = 261
    };
 #endif
 /* Tokens.  */
 #define ID 258
 #define STR 259
 #define EOL 260
+#define ARROW 261
 
 
 
@@ -60,7 +62,7 @@ typedef union YYSTYPE
     List *l;
 }
 /* Line 1529 of yacc.c.  */
-#line 64 "parser.tab.hh"
+#line 66 "parser.tab.hh"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

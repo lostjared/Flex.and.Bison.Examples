@@ -1,4 +1,3 @@
-
 #ifndef __MXL___H__
 #define __MXL___H__
 
@@ -8,6 +7,7 @@
 
 extern void yyerror(const char *src, ...);
 extern int yylineno;
+extern std::string current_name;
 
 class Symbol {
 public:
@@ -22,11 +22,10 @@ public:
     List *next;
 };
 
-extern std::map<std::string, std::string> vars;
-
+extern std::map<std::string, std::map<std::string, std::string> > vars;
 void readSource();
 void readSource(std::string data);
 void echoTokens();
-
+std::string &getValue(std::string tag, std::string key);
 #endif
 
