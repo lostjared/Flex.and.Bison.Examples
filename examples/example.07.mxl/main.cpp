@@ -16,7 +16,10 @@ int main(int argc, char **argv) {
         std::cout << "Failed to parse source..\n";
         exit(EXIT_FAILURE);
     }
-    
+    if(parser->keyValid("Size", "int")) {
+        std::string val = parser->table("Size", "int");
+        std::cout << "Found Size value is: " << val << "\n";
+    }
     parser->echoTokens();
     return 0;
 }

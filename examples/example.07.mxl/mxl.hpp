@@ -22,8 +22,10 @@ namespace mxl {
         MXL &operator=(const MXL &m);
         MXL &operator=(MXL &&m);
         std::string &operator()(std::string cat, std::string key);
+        std::string &table(std::string cat, std::string key);
         void echoTokens();
         static MXL *parseMXL(const std::string &n);
+        bool keyValid(const std::string &cat, const std::string &key);
         std::map<std::string, std::map<std::string, std::string>> &map() { return vars; }
     private:
         std::map<std::string, std::map<std::string, std::string>> vars;

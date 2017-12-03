@@ -48,6 +48,20 @@ namespace mxl {
         return vars[cat][key];
     }
     
+    std::string &MXL::table(std::string cat, std::string key) {
+        return vars[cat][key];
+    }
+    
+    bool MXL::keyValid(const std::string &cat, const std::string &key) {
+        auto i = vars.find(cat);
+        if(i == vars.end())
+            return false;
+        auto t = i->second.find(key);
+        if(t == i->second.end())
+        	return false;
+        return true;
+    }
+    
     void MXL::echoTokens() {
         std::map<std::string, std::map<std::string, std::string> >::iterator it;
         std::map<std::string, std::string>::iterator n;
