@@ -29,3 +29,12 @@ firstname = "Jared"
 
 lastname = "Bruni"
 
+Keys/Values can be accessed by adding project files (except main) and 
+parsing the text with readSource("filename.mxl");
+Then use
+
+
+std::string value=getValue("Category", "Width");
+
+value would hold "200"
+
