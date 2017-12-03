@@ -1,0 +1,24 @@
+Window =>
+width = "640"
+height = "480"
+color = "black"
+title = "Test Window"
+x = "0"
+y = "0"
+
+User =>
+first = "Jared"
+last = "Bruni"
+ID = "50"
+
+Type =>
+x = "integer"
+y = "integer"
+z = "float"
+q = "struct"
+
+Size =>
+int = "4"
+short = "2"
+long = "8"
+

@@ -9,11 +9,14 @@ int main(int argc, char **argv) {
         std::cout << "Error requires one argument..\n";
         exit(EXIT_FAILURE);
     }
+    // if running multiple threads lock mutex here
     std::unique_ptr<mxl::MXL> parser(mxl::MXL::parseMXL(argv[1]));
+    // release here
     if(!parser) {
         std::cout << "Failed to parse source..\n";
         exit(EXIT_FAILURE);
     }
+    
     parser->echoTokens();
     return 0;
 }
