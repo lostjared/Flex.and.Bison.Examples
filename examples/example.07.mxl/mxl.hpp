@@ -13,7 +13,7 @@ extern std::map<std::string, std::map<std::string, std::string> > vars;
 
 namespace mxl {
     class MXL {
-        MXL() {}
+        MXL() = delete;
     public:
         MXL(const std::map<std::string, std::map<std::string, std::string>> &v);
         MXL(std::map<std::string, std::map<std::string, std::string>> &&v);
