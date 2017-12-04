@@ -20,7 +20,11 @@ int main(int argc, char **argv) {
         std::string val = parser->table("Size", "int");
         std::cout << "Found Size value is: " << val << "\n";
     }
+    parser->setValue("cat", "rat", "bat");
     parser->echoTokens();
+    if(parser->writeToFile("test.mxl")) {
+        std::cout << "Wrote to file: test.mxl\n";
+    }
     return 0;
 }
 

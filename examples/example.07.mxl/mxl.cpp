@@ -1,5 +1,6 @@
 #include "mxl.hpp"
 #include<algorithm>
+#include<fstream>
 
 
 extern int yyparse();
@@ -62,6 +63,10 @@ namespace mxl {
         return true;
     }
     
+    void MXL::setValue(std::string cat, std::string key, std::string val) {
+        vars[cat][key] = val;
+    }
+    
     void MXL::echoTokens() {
         std::map<std::string, std::map<std::string, std::string> >::iterator it;
         std::map<std::string, std::string>::iterator n;
@@ -71,6 +76,22 @@ namespace mxl {
                 std::cout << "Key: [" << n->first << "] := " << n->second << "\n";
             }
         }
+    }
+    
+    bool MXL::writeToFile(std::string filename) {
+        std::fstream file;
+        file.open(filename, std::ios::out);
+        if(!file.is_open())
+            return false;
+        for(auto i = vars.begin(); i != vars.end(); ++i) {
+            file << i->first << " => \n";
+            for(auto j = i->second.begin(); j != i->second.end(); ++j) {
+                file << j->first << " = \"" << j->second << "\"\n";
+            }
+            file << "\n";
+        }
+        file.close();
+        return true;
     }
     
     std::string trimQuotes(std::string value) {
