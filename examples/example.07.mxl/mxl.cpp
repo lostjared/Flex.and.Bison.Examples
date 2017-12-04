@@ -10,6 +10,8 @@ std::string current_name="default";
 
 namespace mxl {
     
+    int error_count = 0;
+    
     MXL::MXL(const std::map<std::string, std::map<std::string, std::string>> &v) {
         vars = v;
     }
@@ -132,18 +134,24 @@ namespace mxl {
         return vars[tag][key];
     }
 
-    void readSource() {
-        yyparse();
+    bool readSource() {
+        if(yyparse() == 0 && error_count == 0)
+            return true;
+        return false;
     }
     
     bool readSource(std::string data) {
+        error_count = 0;
         FILE *fptr = fopen(data.c_str(), "r");
         if(!fptr) {
             std::cerr << "Error oculd not open file: " << data << "\n";
             return false;
         }
         yyrestart(fptr);
-        readSource();
+        if(!readSource()) {
+            fclose(fptr);
+            return false;
+        }
         fclose(fptr);
         return true;
     }
@@ -163,8 +171,9 @@ namespace mxl {
 void yyerror(const char *src, ...) {
     va_list ap;
     va_start(ap, src);
-    fprintf(stderr, "Line %d: error  ", yylineno);
+    fprintf(stderr, "Error on Line %d: ", yylineno);
     vfprintf(stderr, src, ap);
     fprintf(stderr, "\n");
+    mxl::error_count ++;
 }
 

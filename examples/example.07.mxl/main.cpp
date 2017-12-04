@@ -14,7 +14,8 @@ int main(int argc, char **argv) {
     // release here
     if(!parser) {
         std::cout << "Failed to parse source..\n";
-        exit(EXIT_FAILURE);
+        std::cout << "Found: " << mxl::error_count << " error(s).\n";
+        exit(EXIT_FAILURE); // here you can signal the user file is not correct
     }
     if(parser->keyValid("Size", "int")) {
         std::string val = parser->table("Size", "int");

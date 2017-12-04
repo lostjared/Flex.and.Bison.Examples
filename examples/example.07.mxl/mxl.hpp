@@ -34,11 +34,12 @@ namespace mxl {
         std::map<std::string, std::map<std::string, std::string>> vars;
     };
     
-    void readSource();
+    bool readSource();
     bool readSource(std::string data);
     void echoTokens();
     std::string &getValue(std::string tag, std::string key);
     std::string trimQuotes(std::string value);
+    extern int error_count;
 }
 
 #endif
