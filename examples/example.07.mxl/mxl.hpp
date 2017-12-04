@@ -26,7 +26,7 @@ namespace mxl {
         void setValue(std::string cat, std::string key, std::string val);
         void echoTokens();
         bool writeToFile(std::string filename);
-//        void sortedWriteToFile(std::string filename);
+        bool sortedWriteToFile(std::string filename);
         static MXL *parseMXL(const std::string &n);
         bool keyValid(const std::string &cat, const std::string &key);
         std::map<std::string, std::map<std::string, std::string>> &map() { return vars; }

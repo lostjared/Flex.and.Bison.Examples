@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
     }
     parser->setValue("cat", "rat", "bat");
     parser->echoTokens();
-    if(parser->writeToFile("test.mxl")) {
+    if(parser->sortedWriteToFile("test.mxl")) {
         std::cout << "Wrote to file: test.mxl\n";
     }
     return 0;

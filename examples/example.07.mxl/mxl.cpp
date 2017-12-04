@@ -1,7 +1,7 @@
 #include "mxl.hpp"
 #include<algorithm>
 #include<fstream>
-
+#include<vector>
 
 extern int yyparse();
 extern void yyrestart(FILE *);
@@ -91,6 +91,31 @@ namespace mxl {
             file << "\n";
         }
         file.close();
+        return true;
+    }
+    
+    bool MXL::sortedWriteToFile(std::string filename) {
+        std::fstream file;
+        file.open(filename, std::ios::out);
+        if(!file.is_open())
+            return false;
+        std::vector<std::string> cat_keys, keys;
+        for(auto i = vars.begin(); i != vars.end(); ++i) {
+            cat_keys.push_back(i->first);
+        }
+        sort(cat_keys.begin(), cat_keys.end());
+        for(auto i = cat_keys.begin(); i != cat_keys.end(); ++i) {
+            if(!keys.empty()) keys.erase(keys.begin(), keys.end());
+            for(auto z = vars[*i].begin(); z != vars[*i].end(); ++z) {
+                keys.push_back(z->first);
+            }
+            std::sort(keys.begin(), keys.end());
+            file << *i << " =>\n";
+            for(auto z = keys.begin(); z != keys.end(); ++z) {
+                file << *z << " = \"" << vars[*i][*z] << "\"\n";
+            }
+            file << "\n";
+        }
         return true;
     }
     
