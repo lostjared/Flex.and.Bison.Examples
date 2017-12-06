@@ -2,6 +2,7 @@
 #include<iostream>
 #include<cstdlib>
 #include<unordered_map>
+#include<cstdarg>
 
 std::unordered_map<std::string, Symbol *> symbols;
 
