@@ -2,6 +2,7 @@
 #include<algorithm>
 #include<fstream>
 #include<vector>
+#include<cstdarg>
 
 extern int yyparse();
 extern void yyrestart(FILE *);

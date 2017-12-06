@@ -24,7 +24,6 @@ Width = "200"
 Height = "400"
 
 User =>
-
 firstname = "Jared"
 
 lastname = "Bruni"

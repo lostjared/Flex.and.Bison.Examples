@@ -9,6 +9,10 @@ mxltest: $(OBJ_FILES) lex.yy.o
 	$(CXX) lex.yy.cc -c -o lex.yy.o
 	$(CXX) $(OBJ_FILES) lex.yy.o  -o mxltest  
 
+#install: mxltest
+#	$(CXX) $(CXX_FLAGS) -shared -o libMXL.so  lex.yy.o mxl.o parser.tab.o
+#	$(CXX) main.o -o mxl-shared-test -L. -lMXL 
+
 all: mxltest
 
 flex: parser.yy lexer.l

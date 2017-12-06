@@ -1,0 +1,27 @@
+Size =>
+int = "4"
+long = "8"
+short = "2"
+
+Type =>
+q = "struct"
+x = "integer"
+y = "integer"
+z = "float"
+
+User =>
+ID = "50"
+first = "Jared"
+last = "Bruni"
+
+Window =>
+color = "black"
+height = "480"
+title = "Test Window"
+width = "640"
+x = "0"
+y = "0"
+
+cat =>
+rat = "bat"
+
