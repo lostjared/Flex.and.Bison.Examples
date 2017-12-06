@@ -1,6 +1,7 @@
 #include "astheader.hpp"
 #include<iostream>
 #include<cstdlib>
+#include<cstdarg>
 
 AST *createAst(int node_type, AST *l, AST *r) {
     AST *a = new AST(node_type, l, r, 0);
