@@ -52,6 +52,14 @@ public:
         left = nullptr;
         right = nullptr;
     }
+    Node(Symbol *sym, Node<T> *value) {
+        token = "=";
+        id = Var_type::EQUAL;
+        left = new Node<T>(sym->name, Var_type::VARIABLE, nullptr, nullptr);
+        right = value;
+        value = 0;
+        delete sym;
+    }
 };
 
 template<typename T>

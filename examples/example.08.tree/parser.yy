@@ -65,7 +65,9 @@ $$ = new StringNode($1);
 }
 | NAME {
 $$ = new StringNode($1);
-
+}
+| NAME '=' exp {
+$$ = new StringNode($1, $3);
 }
 ;
 
