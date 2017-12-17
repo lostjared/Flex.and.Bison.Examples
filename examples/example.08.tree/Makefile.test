@@ -1,0 +1,9 @@
+OPT= -O2
+OUTPUT=expr-test
+
+all:
+	./expr-code source.exp
+	gcc $(OPT) output.c -o $(OUTPUT)
+clean:
+	rm -f $(OUTPUT)
+
