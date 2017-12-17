@@ -1,13 +1,12 @@
 #include"tree.hpp"
 
+extern int yyparse();
 
 std::unordered_map<std::string, Symbol> symbols;
+StringTree ast;
 
 int main() {
-
-
-
-
+    yyparse();
 	return 0;
 }
 

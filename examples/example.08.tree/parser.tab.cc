@@ -426,8 +426,8 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    34,    34,    35,    40,    41,    44,    47,    50,    53,
-      56,    59,    60,    63
+       0,    34,    34,    35,    43,    44,    47,    50,    53,    56,
+      59,    62,    63,    66
 };
 #endif
 
@@ -1342,59 +1342,62 @@ yyreduce:
         case 3:
 #line 35 "parser.yy"
     {
-
+ast.root = (yyvsp[(2) - (3)].a);
+double d = ast.eval();
+std::cout << "Value is: " << d << "\n";
+ast.release();
 // proc node
 std::cout << "$> ";
 ;}
     break;
 
   case 4:
-#line 40 "parser.yy"
+#line 43 "parser.yy"
     { ;}
     break;
 
   case 7:
-#line 47 "parser.yy"
+#line 50 "parser.yy"
     {
 (yyval.a) = new StringNode("+", Var_type::PLUS, (yyvsp[(1) - (3)].a), (yyvsp[(3) - (3)].a));
 ;}
     break;
 
   case 8:
-#line 50 "parser.yy"
+#line 53 "parser.yy"
     {
 (yyval.a) = new StringNode("-", Var_type::MINUS, (yyvsp[(1) - (3)].a), (yyvsp[(3) - (3)].a));
 ;}
     break;
 
   case 9:
-#line 53 "parser.yy"
+#line 56 "parser.yy"
     {
 (yyval.a) = new StringNode("*", Var_type::MULT, (yyvsp[(1) - (3)].a), (yyvsp[(3) - (3)].a));
 ;}
     break;
 
   case 10:
-#line 56 "parser.yy"
+#line 59 "parser.yy"
     {
 (yyval.a) = new StringNode("/", Var_type::DIV, (yyvsp[(1) - (3)].a), (yyvsp[(3) - (3)].a));
 ;}
     break;
 
   case 11:
-#line 59 "parser.yy"
+#line 62 "parser.yy"
     { (yyval.a) = (yyvsp[(2) - (3)].a); ;}
     break;
 
   case 12:
-#line 60 "parser.yy"
+#line 63 "parser.yy"
     {
 (yyval.a) = new StringNode((yyvsp[(1) - (1)].d));
 ;}
     break;
 
   case 13:
-#line 63 "parser.yy"
+#line 66 "parser.yy"
     {
 (yyval.a) = new StringNode((yyvsp[(1) - (1)].s));
 
@@ -1403,7 +1406,7 @@ std::cout << "$> ";
 
 
 /* Line 1267 of yacc.c.  */
-#line 1407 "parser.tab.cc"
+#line 1410 "parser.tab.cc"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1617,7 +1620,7 @@ yyreturn:
 }
 
 
-#line 69 "parser.yy"
+#line 72 "parser.yy"
 
 
 

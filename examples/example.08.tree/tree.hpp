@@ -60,14 +60,20 @@ public:
     Node<T> *root;
     
     Tree() {
-        root = new Node<T>("Root", Var_type::EMPTY, nullptr, nullptr);
+        root = nullptr;//new Node<T>("Root", Var_type::EMPTY, nullptr, nullptr);
     }
     ~Tree() {
+        if(root != nullptr)
         release(root);
+        root = nullptr;
     }
     
     void print() {
         printNodes(root);
+    }
+    
+    double eval() {
+        return eval(root);
     }
     
     double eval(Node<T> *node) {
@@ -89,6 +95,33 @@ public:
                 return op1+op2;
             }
                 break;
+            case Var_type::MINUS: {
+                double op1 = eval(node->left);
+                double op2 = eval(node->right);
+                std::cout << op1 << "-" << op2 << "\n";
+                return op1-op2;
+            }
+                break;
+            case Var_type::MULT: {
+                double op1 = eval(node->left);
+                double op2 = eval(node->right);
+                std::cout << op1 << "*" << op2 << "\n";
+                return op1*op2;
+            }
+                break;
+            case Var_type::DIV: {
+                double op1 = eval(node->left);
+                double op2 = eval(node->right);
+                if(op2 == 0) {
+                    std::cerr << "Error divde by zero.\n";
+                    return 0;
+                }
+                std::cout << op1 << "/" << op2 << "\n";
+                return op1/op2;
+            }
+                break;
+                
+                
             case Var_type::VARIABLE:
                 v = symbols[node->token].value;
                 std::cout << "Var Value: " << v << "\n";
@@ -103,24 +136,30 @@ public:
         return v;
     }
     
+    void release() {
+        if(root != nullptr)
+        release(root);
+        root = nullptr;
+    }
+    
 private:
     void printNodes(Node<T> *n) {
         if(n != nullptr)
             std::cout << "Node: " << n->token << ":" << static_cast<char>(n->id) << "\n";
         
-        if(n->left != nullptr)
+        if(n != nullptr && n->left != nullptr)
             printNodes(n->left);
         
-        if(n->right != nullptr)
+        if(n != nullptr && n->right != nullptr)
             printNodes(n->right);
     }
     
     void release(Node<T> *n) {
-        if(n->left != nullptr)
+        if(n != nullptr && n->left != nullptr)
             release(n->left);
-        if(n->right != nullptr)
+        if(n != nullptr && n->right != nullptr)
             release(n->right);
-        if(n != 0) {
+        if(n != nullptr) {
             std::cout << "releasing: " << n->token << "\n";
             delete n;
         }
@@ -129,5 +168,8 @@ private:
 
 using StringTree = Tree<std::string>;
 using StringNode = Node<std::string>;
+
+extern StringTree ast;
+
 
 #endif

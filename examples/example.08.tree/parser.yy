@@ -33,7 +33,10 @@ int fn;
 
 calclist:
 | calclist stmt EOL {
-
+ast.root = $2;
+double d = ast.eval();
+std::cout << "Value is: " << d << "\n";
+ast.release();
 // proc node
 std::cout << "$> ";
 }
