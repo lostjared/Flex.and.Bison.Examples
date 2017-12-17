@@ -19,7 +19,7 @@ struct Symbol {
     Symbol(std::string n, double v) : value(v), name(n) {}
 };
 
-enum class Var_type { EMPTY, DIGIT, VARIABLE, PLUS,MINUS,MULT,DIV,EQUAL};
+enum class Var_type { EMPTY, DIGIT, VARIABLE, PLUS,MINUS,MIN,MULT,DIV,EQUAL};
 extern std::unordered_map<std::string, Symbol> symbols;
 extern std::ostringstream code_stream;
 extern std::ostringstream var_stream;
@@ -122,6 +122,12 @@ public:
         double v = 0;
     
         switch(node->id) {
+            case Var_type::MIN: {
+                 v = -eval(node->left);
+                code_stream << "tr_push(-tr_pop());\n";
+                return v;
+            }
+                break;
             case Var_type::EQUAL: {
                 v = eval(node->right);
                 symbols[node->left->token].value = v;

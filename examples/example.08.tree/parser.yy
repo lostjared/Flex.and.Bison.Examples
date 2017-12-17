@@ -63,6 +63,7 @@ $$ = new StringNode("/", Var_type::DIV, $1, $3);
 | NUMBER {
 $$ = new StringNode($1);
 }
+| '-' exp %prec UMINUS { $$ = new StringNode("M", Var_type::MIN, $2, nullptr); }
 | NAME {
 $$ = new StringNode($1);
 delete $1;
