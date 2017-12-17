@@ -3,16 +3,14 @@
 extern int yyparse();
 
 std::unordered_map<std::string, Symbol> symbols;
+std::ostringstream code_stream;
+std::ostringstream var_stream;
 StringTree ast;
 
 int main() {
+    std::cout << "$> ";
     yyparse();
 	return 0;
-}
-
-void add_token(std::string name, double value) {
-    symbols[name].name = name;
-    symbols[name].value = value;
 }
 
 void yyerror(const char *src, ...) {
