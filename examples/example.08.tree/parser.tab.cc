@@ -427,7 +427,7 @@ static const yytype_int8 yyrhs[] =
 static const yytype_uint8 yyrline[] =
 {
        0,    34,    34,    35,    43,    44,    47,    50,    53,    56,
-      59,    62,    63,    66,    69
+      59,    62,    63,    66,    70
 };
 #endif
 
@@ -1400,19 +1400,21 @@ std::cout << "$> ";
 #line 66 "parser.yy"
     {
 (yyval.a) = new StringNode((yyvsp[(1) - (1)].s));
+delete (yyvsp[(1) - (1)].s);
 ;}
     break;
 
   case 14:
-#line 69 "parser.yy"
+#line 70 "parser.yy"
     {
 (yyval.a) = new StringNode((yyvsp[(1) - (3)].s), (yyvsp[(3) - (3)].a));
+delete (yyvsp[(1) - (3)].s);
 ;}
     break;
 
 
 /* Line 1267 of yacc.c.  */
-#line 1416 "parser.tab.cc"
+#line 1418 "parser.tab.cc"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1626,7 +1628,7 @@ yyreturn:
 }
 
 
-#line 74 "parser.yy"
+#line 76 "parser.yy"
 
 
 

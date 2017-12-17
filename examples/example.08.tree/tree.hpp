@@ -58,7 +58,6 @@ public:
         left = new Node<T>(sym->name, Var_type::VARIABLE, nullptr, nullptr);
         right = value;
         value = 0;
-        delete sym;
     }
 };
 
