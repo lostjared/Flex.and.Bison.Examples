@@ -133,7 +133,7 @@ public:
                 symbols[node->left->token].value = v;
                 std::cout << node->left->token << " = " << v << "\n";
                 code_stream << node->left->token << " = " << "tr_pop();\n";
-                code_stream << "printf(\"result = %f\\n\"," <<  node->left->token << ");\n";
+                code_stream << "printf(\"%s = %f\\n\"," << "\"" << node->left->token.c_str() << "\"" << "," << node->left->token << ");\n";
             }
                 break;
             case Var_type::PLUS: {
