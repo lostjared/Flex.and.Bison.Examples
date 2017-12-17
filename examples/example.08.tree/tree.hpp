@@ -84,9 +84,10 @@ public:
     void outputCode(std::ostream &fobj) {
         var_stream.str("");
         fobj << "#include<stdio.h>\n#include<stdlib.h>\n#include<assert.h>\n";
-        fobj << "double stack[5000];\n";
+        fobj << "#define STACK_SIZE 5000\n";
+        fobj << "double stack[STACK_SIZE];\n";
         fobj << "int stack_index = 0;\n";
-        fobj << "\nvoid tr_push(double d) {\nassert(stack_index < 5000);\nstack[stack_index++] = d;\n}\n\n";
+        fobj << "\nvoid tr_push(double d) {\nassert(stack_index < STACK_SIZE);\nstack[stack_index++] = d;\n}\n\n";
         fobj << "double tr_pop() {\nassert(stack_index >= 1);\nreturn stack[--stack_index];\n}\n\n";
         fobj << "\nvoid tr_add() {\ndouble y = tr_pop(), x = tr_pop();\ntr_push(x+y);\n}\n";
         fobj << "\nvoid tr_sub() {\ndouble y = tr_pop(), x = tr_pop();\ntr_push(x-y);\n}\n";
