@@ -88,10 +88,10 @@ public:
         fobj << "int stack_index = 0;\n";
         fobj << "\nvoid tr_push(double d) {\nassert(stack_index < 5000);\nstack[stack_index++] = d;\n}\n\n";
         fobj << "double tr_pop() {\nassert(stack_index >= 1);\nreturn stack[--stack_index];\n}\n\n";
-        fobj << "\nvoid tr_add() {\ndouble x = tr_pop(), y = tr_pop();\ntr_push(x+y);\n}\n";
-        fobj << "\nvoid tr_sub() {\ndouble x = tr_pop(), y = tr_pop();\ntr_push(x-y);\n}\n";
-        fobj << "\nvoid tr_mult() {\ndouble x = tr_pop(), y = tr_pop();\ntr_push(x*y);\n}\n";
-        fobj << "\nvoid tr_div() {\ndouble x = tr_pop(), y = tr_pop();\ntr_push(x/y);\n}\n";
+        fobj << "\nvoid tr_add() {\ndouble y = tr_pop(), x = tr_pop();\ntr_push(x+y);\n}\n";
+        fobj << "\nvoid tr_sub() {\ndouble y = tr_pop(), x = tr_pop();\ntr_push(x-y);\n}\n";
+        fobj << "\nvoid tr_mult() {\ndouble y = tr_pop(), x = tr_pop();\ntr_push(x*y);\n}\n";
+        fobj << "\nvoid tr_div() {\ndouble y = tr_pop(), x = tr_pop();\ntr_push(x/y);\n}\n";
         fobj << "int main() {\n";
         for(auto i = symbols.begin(); i != symbols.end(); ++i) {
             var_stream << "double " << i->first << " = 0;\n";
