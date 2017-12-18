@@ -94,6 +94,7 @@ public:
         fobj << "\nvoid tr_sub() {\n double x,y; q_pop(y); q_pop(x); tr_push(x-y); \n}\n";
         fobj << "\nvoid tr_mult() {\n double x,y; q_pop(y); q_pop(x); tr_push(x*y); \n}\n";
         fobj << "\nvoid tr_div() {\n double x,y; q_pop(y); q_pop(x); tr_push(x/y); \n}\n";
+        fobj << "\n\n";
         fobj << "int main() {\n";
         for(auto i = symbols.begin(); i != symbols.end(); ++i) {
             var_stream << "double " << i->first << " = 0;\n";
