@@ -40,7 +40,7 @@ ast.release();
 // proc node
 std::cout << "$> ";
 }
-| calclist error EOL { }
+| calclist error EOL { std::cout << "$> "; }
 | calclist EOL
 ;
 

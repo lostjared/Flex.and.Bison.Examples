@@ -1353,7 +1353,7 @@ std::cout << "$> ";
 
   case 4:
 #line 43 "parser.yy"
-    { ;}
+    { std::cout << "$> "; ;}
     break;
 
   case 7:

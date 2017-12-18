@@ -11,7 +11,7 @@
 
 void yyerror(const char *src, ...);
 extern int yylineno;
-
+extern int err_num;
 struct Symbol {
     double value;
     std::string name;

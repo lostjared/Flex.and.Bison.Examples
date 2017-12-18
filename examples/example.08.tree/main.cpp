@@ -12,22 +12,31 @@ StringTree ast;
 int main(int argc, char **argv) {
     if(argc == 1) {
     	std::cout << "$> ";
-    	yyparse();
+        yyparse();
     } else if(argc == 2) {
         FILE *fptr = fopen(argv[1], "r");
         yyrestart(fptr);
-        yyparse();
-        fclose(fptr);
-        
+        if(yyparse() == 0 && err_num == 0) {
+            std::cout << "\nExiting, Success!...\n";
+            fclose(fptr);
+            exit(EXIT_SUCCESS);
+        } else {
+        	fclose(fptr);
+            exit(EXIT_FAILURE);
+        }
     } else {
         std::cerr << "invalid arguments..\n";
     }
 	return 0;
 }
 
+int err_num = 0;
+
 void yyerror(const char *src, ...) {
     va_list ap;
     va_start(ap, src);
-    fprintf(stderr, "Line %d: error ", yylineno);
+    fprintf(stderr, "Error on Line %d: ", yylineno);
     vfprintf(stderr, src, ap);
+    fprintf(stderr, "\n");
+    ++err_num;
 }
