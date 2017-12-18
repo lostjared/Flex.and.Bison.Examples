@@ -67,9 +67,9 @@ template<typename T>
 class Tree {
 public:
     Node<T> *root;
-    std::fstream output;
-    Tree() {
-        root = nullptr;
+    
+    Tree() : root(nullptr) {
+   
     }
     ~Tree() {
         if(root != nullptr)
@@ -85,14 +85,20 @@ public:
         var_stream.str("");
         fobj << "#include<stdio.h>\n#include<stdlib.h>\n#include<assert.h>\n";
         fobj << "#define STACK_SIZE 5000\n";
+        fobj << "#define tr_push(val) assert(stack_index < STACK_SIZE-1); stack[stack_index++] = val\n";
+        fobj << "#define q_pop(val) assert(stack_index >= 1); val = stack[--stack_index]\n\n";
         fobj << "double stack[STACK_SIZE];\n";
-        fobj << "int stack_index = 0;\n";
-        fobj << "\nvoid tr_push(double d) {\nassert(stack_index < STACK_SIZE);\nstack[stack_index++] = d;\n}\n\n";
+        fobj << "int stack_index = 0;\n\n";
+        //fobj << "\nvoid tr_push(double d) {\nassert(stack_index < STACK_SIZE);\nstack[stack_index++] = d;\n}\n\n";
         fobj << "double tr_pop() {\nassert(stack_index >= 1);\nreturn stack[--stack_index];\n}\n\n";
-        fobj << "\nvoid tr_add() {\ndouble y = tr_pop(), x = tr_pop();\ntr_push(x+y);\n}\n";
-        fobj << "\nvoid tr_sub() {\ndouble y = tr_pop(), x = tr_pop();\ntr_push(x-y);\n}\n";
-        fobj << "\nvoid tr_mult() {\ndouble y = tr_pop(), x = tr_pop();\ntr_push(x*y);\n}\n";
-        fobj << "\nvoid tr_div() {\ndouble y = tr_pop(), x = tr_pop();\ntr_push(x/y);\n}\n";
+//        fobj << "\nvoid tr_add() {\ndouble y = tr_pop(), x = tr_pop();\ntr_push(x+y);\n}\n";
+        fobj << "\nvoid tr_add() {\n double x,y; q_pop(y); q_pop(x); tr_push(x+y); \n}\n";
+//        fobj << "\nvoid tr_sub() {\ndouble y = tr_pop(), x = tr_pop();\ntr_push(x-y);\n}\n";
+        fobj << "\nvoid tr_sub() {\n double x,y; q_pop(y); q_pop(x); tr_push(x-y); \n}\n";
+//        fobj << "\nvoid tr_mult() {\ndouble y = tr_pop(), x = tr_pop();\ntr_push(x*y);\n}\n";
+        fobj << "\nvoid tr_mult() {\n double x,y; q_pop(y); q_pop(x); tr_push(x*y); \n}\n";
+//        fobj << "\nvoid tr_div() {\ndouble y = tr_pop(), x = tr_pop();\ntr_push(x/y);\n}\n";
+        fobj << "\nvoid tr_div() {\n double x,y; q_pop(y); q_pop(x); tr_push(x/y); \n}\n";
         fobj << "int main() {\n";
         for(auto i = symbols.begin(); i != symbols.end(); ++i) {
             var_stream << "double " << i->first << " = 0;\n";
@@ -133,7 +139,7 @@ public:
                 v = eval(node->right);
                 symbols[node->left->token].value = v;
                 std::cout << node->left->token << " = " << v << "\n";
-                code_stream << node->left->token << " = " << "tr_pop();\n";
+                code_stream << "q_pop(" << node->left->token << ");\n";
                 code_stream << "printf(\"%s = %f\\n\"," << "\"" << node->left->token.c_str() << "\"" << "," << node->left->token << ");\n";
             }
                 break;
