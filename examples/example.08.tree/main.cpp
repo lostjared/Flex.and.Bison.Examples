@@ -21,6 +21,7 @@ int main(int argc, char **argv) {
             fclose(fptr);
             exit(EXIT_SUCCESS);
         } else {
+            std::cout << "Code has " << err_num << " error(s)...\n";
         	fclose(fptr);
             exit(EXIT_FAILURE);
         }
