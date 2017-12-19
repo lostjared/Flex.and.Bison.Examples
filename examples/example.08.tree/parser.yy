@@ -40,6 +40,14 @@ ast.release();
 // proc node
 std::cout << "$> ";
 }
+| calclist stmt ';' {
+ast.root = $2;
+double d = ast.eval();
+std::cout << "Value is: " << d << "\n";
+ast.release();
+// proc node
+std::cout << "$> ";
+}
 | calclist error EOL { std::cout << "$> "; }
 | calclist EOL
 ;
