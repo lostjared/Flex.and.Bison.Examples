@@ -9,17 +9,26 @@
 #include<sstream>
 #include<fstream>
 
+
+enum UFN_TYPE {
+    FN_PRINT,
+    FN_EXIT
+};
+
 void yyerror(const char *src, ...);
+std::string trimQuotes(std::string value);
 extern int yylineno;
 extern int err_num;
 struct Symbol {
     double value;
     std::string name;
+    std::string str_value;
     Symbol() : value(0) {}
     Symbol(std::string n, double v) : value(v), name(n) {}
+    Symbol(std::string n, std::string val) : name(n), str_value(val), value(0) {}
 };
 
-enum class Var_type { EMPTY, DIGIT, VARIABLE, PLUS,MINUS,MIN,MULT,DIV,EQUAL};
+enum class Var_type { EMPTY, DIGIT, VARIABLE, PLUS,MINUS,MIN,MULT,DIV,EQUAL, BFUNCTION};
 extern std::unordered_map<std::string, Symbol> symbols;
 extern std::ostringstream code_stream;
 extern std::ostringstream var_stream;
@@ -30,6 +39,8 @@ public:
     T token;
     double value;
     Var_type id;
+    int bfunc;
+    
     Node<T> *left, *right;
     Node() : id(Var_type::EMPTY), left(nullptr), right(nullptr) {}
     Node(const T &n_token, Var_type n_id, Node<T> *n_left, Node<T> *n_right) {
@@ -60,6 +71,11 @@ public:
         left = new Node<T>(sym->name, Var_type::VARIABLE, nullptr, nullptr);
         right = value;
         value = 0;
+    }
+    Node(int print_func, std::string value) {
+        bfunc = print_func;
+        token = value;
+        id = Var_type::BFUNCTION;
     }
 };
 
@@ -184,6 +200,18 @@ public:
                 v = node->value;
                 std::cout << "Constant Value: [" << v << "]\n";
                 code_stream << "tr_push(" << v << ");\n";
+                break;
+            case Var_type::BFUNCTION: {
+                int func = node->bfunc;
+                switch(func) {
+                    case FN_PRINT:
+                        std::cout << trimQuotes(node->token) << "\n";
+                        code_stream << "printf(\"%s\\n\", " << node->token << ");\n";
+                        return 0;
+                        break;
+                }
+                
+            }
                 break;
             case Var_type::EMPTY:
                 break;

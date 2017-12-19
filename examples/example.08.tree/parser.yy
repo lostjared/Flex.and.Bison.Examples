@@ -18,7 +18,7 @@ int fn;
 }
 
 %token <d> NUMBER
-%token <s> NAME
+%token <s> NAME STR
 %token <fn> FUNC
 %token EOL
 %nonassoc <fn> CMP
@@ -35,17 +35,13 @@ calclist:
 | calclist stmt EOL {
 ast.root = $2;
 double d = ast.eval();
-std::cout << "Value is: " << d << "\n";
 ast.release();
-// proc node
 std::cout << "$> ";
 }
 | calclist stmt ';' {
 ast.root = $2;
 double d = ast.eval();
-std::cout << "Value is: " << d << "\n";
 ast.release();
-// proc node
 std::cout << "$> ";
 }
 | calclist error EOL { std::cout << "$> "; }
@@ -80,7 +76,13 @@ delete $1;
 $$ = new StringNode($1, $3);
 delete $1;
 }
+| FUNC '(' STR ')' {
+$$ = new StringNode($1, $3->str_value);
+delete $3;
+}
 ;
+
+
 
 %%
 

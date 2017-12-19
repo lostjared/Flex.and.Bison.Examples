@@ -26,8 +26,10 @@ EXP ([Ee][-+]?[0-9]+)
 "," |
 ";" { return yytext[0]; }
 
-[a-zA-Z]+[a-zA-Z0-9]* {  yylval.s = new Symbol(yytext, 0); return NAME; }
+"print" { yylval.fn = FN_PRINT; return FUNC; }
 
+[a-zA-Z]+[a-zA-Z0-9]* {  yylval.s = new Symbol(yytext, 0); return NAME; }
+\"(([^\"]|\\\")*[^\\])?\" { yylval.s = new Symbol("const", yytext); return STR; }
 [0-9]+"."[0-9]*{EXP}? |
 "."?[0-9]+{EXP}? { yylval.d = atof(yytext); return NUMBER; }
 
