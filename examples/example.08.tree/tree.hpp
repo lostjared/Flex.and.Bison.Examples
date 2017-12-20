@@ -8,7 +8,7 @@
 #include<unordered_map>
 #include<sstream>
 #include<fstream>
-
+#include<vector>
 
 enum UFN_TYPE {
     FN_PRINT,
@@ -28,7 +28,7 @@ struct Symbol {
     Symbol(std::string n, std::string val) : name(n), str_value(val), value(0) {}
 };
 
-enum class Var_type { EMPTY, DIGIT, VARIABLE, PLUS,MINUS,MIN,MULT,DIV,EQUAL, BFUNCTION};
+enum class Var_type { EMPTY, DIGIT, VARIABLE, PLUS,MINUS,MIN,MULT,DIV,EQUAL, BFUNCTION, ARG, STRING};
 extern std::unordered_map<std::string, Symbol> symbols;
 extern std::ostringstream code_stream;
 extern std::ostringstream var_stream;
@@ -72,12 +72,16 @@ public:
         right = value;
         value = 0;
     }
-    Node(int print_func, std::string value) {
+    Node(int print_func, Node<T> *func) {
         bfunc = print_func;
-        token = value;
         id = Var_type::BFUNCTION;
+        left = func;
+        token = "F";
+        value = 0;
     }
 };
+
+using StringNode = Node<std::string>;
 
 template<typename T>
 class Tree {
@@ -85,11 +89,11 @@ public:
     Node<T> *root;
     
     Tree() : root(nullptr) {
-   
+        
     }
     ~Tree() {
         if(root != nullptr)
-        release(root);
+            release(root);
         root = nullptr;
     }
     
@@ -139,10 +143,10 @@ public:
         
         std::cout << node->token << " current Node.\n";
         double v = 0;
-    
+        
         switch(node->id) {
             case Var_type::MIN: {
-                 v = -eval(node->left);
+                v = -eval(node->left);
                 code_stream << "tr_push(-tr_pop());\n";
                 return v;
             }
@@ -202,18 +206,11 @@ public:
                 code_stream << "tr_push(" << v << ");\n";
                 break;
             case Var_type::BFUNCTION: {
-                int func = node->bfunc;
-                switch(func) {
-                    case FN_PRINT:
-                        std::cout << trimQuotes(node->token) << "\n";
-                        code_stream << "printf(\"%s\\n\", " << node->token << ");\n";
-                        return 0;
-                        break;
-                }
-                
             }
                 break;
             case Var_type::EMPTY:
+                break;
+            default:
                 break;
         }
         return v;
@@ -221,7 +218,7 @@ public:
     
     void release() {
         if(root != nullptr)
-        release(root);
+            release(root);
         root = nullptr;
     }
     
@@ -248,7 +245,6 @@ private:
 };
 
 using StringTree = Tree<std::string>;
-using StringNode = Node<std::string>;
 extern StringTree ast;
 
 #endif

@@ -26,7 +26,7 @@ int fn;
 %left '+' '-'
 %left '*' '/'
 %nonassoc '|' UMINUS
-%type <a> exp stmt
+%type <a> exp stmt elist
 %start calclist
 %%
 
@@ -76,13 +76,15 @@ delete $1;
 $$ = new StringNode($1, $3);
 delete $1;
 }
-| FUNC '(' STR ')' {
-$$ = new StringNode($1, $3->str_value);
-delete $3;
+| FUNC '(' elist ')' {
+$$ = new StringNode($1, $3);
 }
 ;
-
-
+elist: exp
+| exp ',' elist {
+$$ = new StringNode("A",Var_type::ARG, $1, $3);
+}
+;
 
 %%
 
