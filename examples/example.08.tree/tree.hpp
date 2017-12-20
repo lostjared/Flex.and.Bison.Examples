@@ -206,6 +206,14 @@ public:
                 code_stream << "tr_push(" << v << ");\n";
                 break;
             case Var_type::BFUNCTION: {
+                //v = builtinFunc(node);
+                switch(node->bfunc) {
+                    case FN_PRINT:
+                        double v = eval(node->left);
+                        std::cout << "Value [" << v << "]\n";
+                        return 0;
+                        break;
+                }
             }
                 break;
             case Var_type::EMPTY:
@@ -215,6 +223,7 @@ public:
         }
         return v;
     }
+    
     
     void release() {
         if(root != nullptr)
