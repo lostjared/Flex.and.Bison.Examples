@@ -7,7 +7,7 @@ OUTPUT_NAME=expr-code
 %.o: %.cpp
 	$(CXX) $(CXX_FLAGS) -c -o $@ $<
   
-all: $(OBJ_FILES) 
+all: $(OBJ_FILES)  tree.hpp
 	$(CXX) -std=c++11 parser.tab.cc -c -o parser.tab.o
 	$(CXX) -Wno-deprecated-register -std=c++11 lex.yy.cc -c -o lex.yy.o
 	$(CXX) $(OBJ_FILES) parser.tab.o lex.yy.o  -o $(OUTPUT_NAME)  $(LDFLAGS)

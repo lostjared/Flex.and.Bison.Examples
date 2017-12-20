@@ -138,7 +138,7 @@ public:
         return val;
     }
     
-    double eval(Node<T> *node) {
+    double eval(Node<T> *node, bool echo_code = true) {
         if(node == nullptr) return 0;
         
         std::cout << node->token << " current Node.\n";
@@ -198,20 +198,33 @@ public:
             case Var_type::VARIABLE:
                 v = symbols[node->token].value;
                 std::cout << "Variable [" << node->token << "] := Value: [" << v << "]\n";
-                code_stream << "tr_push(" << node->token << ");\n";
+                if(echo_code == true) {
+                    code_stream << "tr_push(" << node->token << ");\n";
+                }
                 break;
             case Var_type::DIGIT:
                 v = node->value;
                 std::cout << "Constant Value: [" << v << "]\n";
-                code_stream << "tr_push(" << v << ");\n";
+                if(echo_code == true) {
+                    code_stream << "tr_push(" << v << ");\n";
+                }
                 break;
             case Var_type::BFUNCTION: {
                 //v = builtinFunc(node);
                 switch(node->bfunc) {
-                    case FN_PRINT:
-                        double v = eval(node->left);
+                    case FN_PRINT: {
+                        double v = eval(node->left, false);
                         std::cout << "Value [" << v << "]\n";
+                        code_stream << "printf(\"Value [%f]\\n\",(double)" << v << ");\n";
                         return 0;
+                    }
+                        break;
+                    case FN_EXIT: {
+                        double v = eval(node->left, false);
+                        unsigned int code_exit = static_cast<unsigned int>(v);
+                        std::cout << "Exiting with Code: " << code_exit << "\n";
+                    	exit(code_exit);
+                    }
                         break;
                 }
             }
