@@ -273,10 +273,10 @@ private:
         
         if(n != nullptr && n->right != nullptr)
             release(n->right);
+        
         if(n != nullptr) {
             std::cout << "released: " << "[" << n->token << ":" << n->value << "]" << " := Token ID [" << int(n->id) << "]\n";
-            delete n;
-            n = nullptr;
+              delete n;
         }
     }
 };
