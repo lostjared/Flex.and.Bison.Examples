@@ -138,7 +138,7 @@ public:
         return val;
     }
     
-    double eval(Node<T> *node, bool echo_code = true) {
+    double eval(Node<T> *node) {
         if(node == nullptr) return 0;
         
         std::cout << node->token << " current Node.\n";
@@ -206,18 +206,36 @@ public:
                 code_stream << "tr_push(" << v << ");\n";
                 
                 break;
+            case Var_type::ARG: {
+                std::cout << "Argument value: " << node->left->token << "\n";
+                return eval(node->left);
+            }
+                break;
             case Var_type::BFUNCTION: {
                 //v = builtinFunc(node);
                 switch(node->bfunc) {
                     case FN_PRINT: {
-                        double v = eval(node->left, false);
+                        //double v = eval(node->left);
+                        unsigned int counter = 0;
+                        Args(node->left, &counter);
                         std::cout << "Value [" << v << "]\n";
-                        code_stream << "printf(\"Value [%f]\\n\"," << "tr_pop()" << ");\n";
+                        code_stream << "printf(\"Values[";
+                        for(unsigned int i = 0; i < counter; ++i)
+                            code_stream << " %f ";
+                        code_stream << "]\\n\",";
+                        for(int i = counter; i > 1; --i)
+                            code_stream << "stack[stack_index-" << i << "]" << ",";
+                        code_stream << "stack[stack_index-1]);\n";
+                        
+                        
+                        code_stream << "stack_index -=" << counter << ";\n";
+                        
+                        
                         return 0;
                     }
                         break;
                     case FN_EXIT: {
-                        double v = eval(node->left, false);
+                        double v = eval(node->left);
                         unsigned int code_exit = static_cast<unsigned int>(v);
                         std::cout << "Exiting with Code: " << code_exit << "\n";
                     	exit(code_exit);
@@ -234,6 +252,18 @@ public:
         return v;
     }
     
+    void Args(Node<T> *arg, unsigned int *counter) {
+        if(arg != nullptr) {
+            if(arg->id != Var_type::ARG) {
+                eval(arg);
+                *counter += 1;
+            }
+        }
+        if(arg != nullptr && arg->left != nullptr)
+            Args(arg->left,counter);
+        if(arg != nullptr && arg->right != nullptr)
+            Args(arg->right,counter);
+    }
     
     void release() {
         if(root != nullptr)
