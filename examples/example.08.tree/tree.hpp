@@ -248,16 +248,7 @@ public:
         }
         return v;
     }
-    
-    void Args(Node<T> *arg, unsigned int *counter) {
-        if(arg != nullptr && arg->left != nullptr)
-            Args(arg->left,counter);
-        if(arg != nullptr && arg->right != nullptr)
-            Args(arg->right,counter);
-        
-        if(arg != nullptr) {}
-    }
-    
+
     void release() {
         if(root != nullptr)
             release(root);
@@ -280,7 +271,7 @@ private:
         if(n != nullptr && n->right != nullptr)
             release(n->right);
         if(n != nullptr) {
-            std::cout << "released: " << n->token << "\n";
+            std::cout << "released: " << "[" << n->token << ":" << n->value << "]"<< " := Token ID [" << int(n->id) << "]\n";
             delete n;
         }
     }
