@@ -216,6 +216,7 @@ public:
                 switch(node->bfunc) {
                     case FN_PRINT: {
                         //double v = eval(node->left);
+                        /*
                         unsigned int counter = 0;
                         Args(node->left, &counter);
                         std::cout << "Value [" << v << "]\n";
@@ -226,11 +227,7 @@ public:
                         for(int i = counter; i > 1; --i)
                             code_stream << "stack[stack_index-" << i << "]" << ",";
                         code_stream << "stack[stack_index-1]);\n";
-                        
-                        
-                        code_stream << "stack_index -=" << counter << ";\n";
-                        
-                        
+                        code_stream << "stack_index -=" << counter << ";\n"; */
                         return 0;
                     }
                         break;
@@ -253,16 +250,12 @@ public:
     }
     
     void Args(Node<T> *arg, unsigned int *counter) {
-        if(arg != nullptr) {
-            if(arg->id != Var_type::ARG) {
-                eval(arg);
-                *counter += 1;
-            }
-        }
         if(arg != nullptr && arg->left != nullptr)
             Args(arg->left,counter);
         if(arg != nullptr && arg->right != nullptr)
             Args(arg->right,counter);
+        
+        if(arg != nullptr) {}
     }
     
     void release() {
