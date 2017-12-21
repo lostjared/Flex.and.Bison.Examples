@@ -198,16 +198,13 @@ public:
             case Var_type::VARIABLE:
                 v = symbols[node->token].value;
                 std::cout << "Variable [" << node->token << "] := Value: [" << v << "]\n";
-                if(echo_code == true) {
-                    code_stream << "tr_push(" << node->token << ");\n";
-                }
+                code_stream << "tr_push(" << node->token << ");\n";
                 break;
             case Var_type::DIGIT:
                 v = node->value;
                 std::cout << "Constant Value: [" << v << "]\n";
-                if(echo_code == true) {
-                    code_stream << "tr_push(" << v << ");\n";
-                }
+                code_stream << "tr_push(" << v << ");\n";
+                
                 break;
             case Var_type::BFUNCTION: {
                 //v = builtinFunc(node);
@@ -215,7 +212,7 @@ public:
                     case FN_PRINT: {
                         double v = eval(node->left, false);
                         std::cout << "Value [" << v << "]\n";
-                        code_stream << "printf(\"Value [%f]\\n\",(double)" << v << ");\n";
+                        code_stream << "printf(\"Value [%f]\\n\"," << "tr_pop()" << ");\n";
                         return 0;
                     }
                         break;
