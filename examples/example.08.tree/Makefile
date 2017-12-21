@@ -4,10 +4,10 @@ CPP_FILES := $(wildcard *.cpp)
 OBJ_FILES := $(addprefix ,$(notdir $(CPP_FILES:.cpp=.o)))
 OUTPUT_NAME=expr-code
 
-%.o: %.cpp
+%.o: %.cpp tree.hpp
 	$(CXX) $(CXX_FLAGS) -c -o $@ $<
   
-all: $(OBJ_FILES)  tree.hpp
+all: $(OBJ_FILES)
 	$(CXX) -std=c++11 parser.tab.cc -c -o parser.tab.o
 	$(CXX) -Wno-deprecated-register -std=c++11 lex.yy.cc -c -o lex.yy.o
 	$(CXX) $(OBJ_FILES) parser.tab.o lex.yy.o  -o $(OUTPUT_NAME)  $(LDFLAGS)

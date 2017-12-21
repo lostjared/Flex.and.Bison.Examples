@@ -9,6 +9,7 @@
 #include<sstream>
 #include<fstream>
 #include<vector>
+#include<cassert>
 
 enum UFN_TYPE {
     FN_PRINT,
@@ -48,6 +49,7 @@ public:
         id = n_id;
         left = n_left;
         right = n_right;
+        value = 0;
     }
     Node(double d) {
         value = d;
@@ -65,11 +67,11 @@ public:
         left = nullptr;
         right = nullptr;
     }
-    Node(Symbol *sym, Node<T> *value) {
+    Node(Symbol *sym, Node<T> *v) {
         token = "=";
         id = Var_type::EQUAL;
         left = new Node<T>(sym->name, Var_type::VARIABLE, nullptr, nullptr);
-        right = value;
+        right = v;
         value = 0;
     }
     Node(int print_func, Node<T> *func) {
@@ -268,11 +270,13 @@ private:
     void release(Node<T> *n) {
         if(n != nullptr && n->left != nullptr)
             release(n->left);
+        
         if(n != nullptr && n->right != nullptr)
             release(n->right);
         if(n != nullptr) {
-            std::cout << "released: " << "[" << n->token << ":" << n->value << "]"<< " := Token ID [" << int(n->id) << "]\n";
+            std::cout << "released: " << "[" << n->token << ":" << n->value << "]" << " := Token ID [" << int(n->id) << "]\n";
             delete n;
+            n = nullptr;
         }
     }
 };
