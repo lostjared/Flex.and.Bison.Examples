@@ -823,7 +823,7 @@ YY_RULE_SETUP
 case 12:
 YY_RULE_SETUP
 #line 29 "lexer.l"
-{ yylval.fn = FN_PRINT; return FUNC; }
+{ return PRINT; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP

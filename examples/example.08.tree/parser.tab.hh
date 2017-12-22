@@ -43,9 +43,10 @@
      NAME = 259,
      STR = 260,
      FUNC = 261,
-     EOL = 262,
-     CMP = 263,
-     UMINUS = 264
+     PRINT = 262,
+     EOL = 263,
+     CMP = 264,
+     UMINUS = 265
    };
 #endif
 /* Tokens.  */
@@ -53,9 +54,10 @@
 #define NAME 259
 #define STR 260
 #define FUNC 261
-#define EOL 262
-#define CMP 263
-#define UMINUS 264
+#define PRINT 262
+#define EOL 263
+#define CMP 264
+#define UMINUS 265
 
 
 
@@ -70,7 +72,7 @@ Symbol *s;
 int fn;
 }
 /* Line 1529 of yacc.c.  */
-#line 74 "parser.tab.hh"
+#line 76 "parser.tab.hh"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

@@ -29,7 +29,7 @@ struct Symbol {
     Symbol(std::string n, std::string val) : name(n), str_value(val), value(0) {}
 };
 
-enum class Var_type { EMPTY, DIGIT, VARIABLE, PLUS,MINUS,MIN,MULT,DIV,EQUAL, BFUNCTION, ARG, STRING};
+enum class Var_type { EMPTY, DIGIT, VARIABLE, PLUS,MINUS,MIN,MULT,DIV,EQUAL, BFUNCTION, ARG, STRING, PRINTFUNC};
 extern std::unordered_map<std::string, Symbol> symbols;
 extern std::ostringstream code_stream;
 extern std::ostringstream var_stream;
@@ -41,15 +41,22 @@ public:
     double value;
     Var_type id;
     int bfunc;
-    
+    Symbol *sym;
     Node<T> *left, *right;
-    Node() : id(Var_type::EMPTY), left(nullptr), right(nullptr) {}
+    
+    ~Node() {
+        if(sym != nullptr) delete sym;
+        sym = nullptr;
+    }
+    
+    Node() : id(Var_type::EMPTY), left(nullptr), right(nullptr), sym(nullptr) {}
     Node(const T &n_token, Var_type n_id, Node<T> *n_left, Node<T> *n_right) {
         token = n_token;
         id = n_id;
         left = n_left;
         right = n_right;
         value = 0;
+        sym = nullptr;
     }
     Node(double d) {
         value = d;
@@ -59,6 +66,7 @@ public:
         token = stream.str();
         left = nullptr;
         right = nullptr;
+        sym = nullptr;
     }
     Node(Symbol *s) {
         token = s->name;
@@ -66,6 +74,7 @@ public:
         id = Var_type::VARIABLE;
         left = nullptr;
         right = nullptr;
+        sym = s;
     }
     Node(Symbol *sym, Node<T> *v) {
         token = "=";
@@ -73,6 +82,7 @@ public:
         left = new Node<T>(sym->name, Var_type::VARIABLE, nullptr, nullptr);
         right = v;
         value = 0;
+        this->sym = sym;
     }
     Node(int print_func, Node<T> *func) {
         bfunc = print_func;
@@ -80,7 +90,9 @@ public:
         left = func;
         token = "F";
         value = 0;
+        sym = nullptr;
     }
+    
 };
 
 using StringNode = Node<std::string>;

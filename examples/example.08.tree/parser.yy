@@ -20,6 +20,7 @@ int fn;
 %token <d> NUMBER
 %token <s> NAME STR
 %token <fn> FUNC
+%token <a> PRINT
 %token EOL
 %nonassoc <fn> CMP
 %right '='
@@ -70,11 +71,9 @@ $$ = new StringNode($1);
 | '-' exp %prec UMINUS { $$ = new StringNode("M", Var_type::MIN, $2, nullptr); }
 | NAME {
 $$ = new StringNode($1);
-delete $1;
 }
 | NAME '=' exp {
 $$ = new StringNode($1, $3);
-delete $1;
 }
 /*| FUNC '(' elist ')' {
 $$ = new StringNode($1, $3);
