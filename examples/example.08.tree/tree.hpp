@@ -34,7 +34,7 @@ struct Symbol {
     Symbol(std::string n, std::string val) : name(n), str_value(val), value(0), vtype(Var_id::ID_STRING), variable(false) {}
 };
 
-enum class Var_type { EMPTY, DIGIT, VARIABLE, PLUS,MINUS,MIN,MULT,DIV,EQUAL, BFUNCTION, ARG, STRING, PRINTFUNC};
+enum class Var_type { EMPTY, DIGIT, VARIABLE, PLUS,MINUS,MIN,MULT,DIV,EQUAL, BFUNCTION, ARG, STRING, PRINTFUNC, PRINTFUNC_EXP};
 extern std::unordered_map<std::string, Symbol> symbols;
 extern std::ostringstream code_stream;
 extern std::ostringstream var_stream;
@@ -48,7 +48,6 @@ public:
     int bfunc;
     Symbol *sym;
     Node<T> *left, *right;
-    
     ~Node() {
         if(sym != nullptr) delete sym;
         sym = nullptr;
@@ -243,17 +242,20 @@ public:
                 
                 break;
             case Var_type::ARG: {
-                std::cout << "Argument value: " << node->left->token << "\n";
                 return eval(node->left);
             }
                 break;
+            case Var_type::PRINTFUNC_EXP: {
+                double val = eval(node->left);
+                std::cout << val << "\n";
+                code_stream << "printf(\"%f\\n\", tr_pop());\n";
+            }
+                break;
             case Var_type::PRINTFUNC: {
-                
                 if(node->sym != nullptr && node->sym->vtype == Var_id::ID_STRING && node->sym->name == "VAR_const") {
                 	std::cout << node->sym->str_value << "\n";
                 	code_stream << "printf(\"%s\\n\", " << node->sym->str_value << ");\n";
                 } else if(node->sym != nullptr && node->sym->vtype == Var_id::ID_NUMERIC) {
-                    
                     if(node->sym->variable == false) {
                     	code_stream << "printf(\"%f\\n\", (double)" << node->sym->value << ");\n";
                         std::cout << node->sym->value << "\n";
