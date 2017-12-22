@@ -80,6 +80,11 @@ $$ = new StringNode($1, $3);
 $$ = new StringNode($1, $3);
 
 }
+| PRINT '(' NUMBER ')' {
+$$ = new StringNode($1, $3);
+}
+;
+
 /*| FUNC '(' elist ')' {
 $$ = new StringNode($1, $3);
 }

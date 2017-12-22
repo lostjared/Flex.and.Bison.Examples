@@ -104,6 +104,15 @@ public:
         value = 0;
         token = "PRINT";
     }
+    Node(Node<T> *val, double v) {
+        id = Var_type::PRINTFUNC;
+        left = nullptr;
+        right = nullptr;
+        token = "PRINT";
+        sym = nullptr;
+        value = 0;
+        sym = new Symbol("const_int", v);
+    }
     
 };
 
@@ -238,11 +247,13 @@ public:
             }
                 break;
             case Var_type::PRINTFUNC: {
-                if(node->sym->name == "VAR_const") {
+                
+                if(node->sym != nullptr && node->sym->vtype == Var_id::ID_STRING && node->sym->name == "VAR_const") {
                 	std::cout << node->sym->str_value << "\n";
                 	code_stream << "printf(\"%s\\n\", " << node->sym->str_value << ");\n";
-                } else {
-                    code_stream << "printf(\"%s\\n\", " << node->sym->name << ");\n";
+                } else if(node->sym != nullptr && node->sym->vtype == Var_id::ID_NUMERIC) {
+                    std::cout << node->sym->value << "\n";
+                    code_stream << "printf(\"%f\\n\", (double)" << node->sym->value << ");\n";
                 }
             }
                 break;
