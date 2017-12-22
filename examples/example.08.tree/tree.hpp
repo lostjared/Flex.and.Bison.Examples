@@ -20,13 +20,17 @@ void yyerror(const char *src, ...);
 std::string trimQuotes(std::string value);
 extern int yylineno;
 extern int err_num;
+
+enum class Var_id { ID_NUMERIC, ID_STRING };
+
 struct Symbol {
     double value;
     std::string name;
     std::string str_value;
+    Var_id vtype;
     Symbol() : value(0) {}
-    Symbol(std::string n, double v) : value(v), name(n) {}
-    Symbol(std::string n, std::string val) : name(n), str_value(val), value(0) {}
+    Symbol(std::string n, double v) : value(v), name(n), vtype(Var_id::ID_NUMERIC) {}
+    Symbol(std::string n, std::string val) : name(n), str_value(val), value(0), vtype(Var_id::ID_STRING) {}
 };
 
 enum class Var_type { EMPTY, DIGIT, VARIABLE, PLUS,MINUS,MIN,MULT,DIV,EQUAL, BFUNCTION, ARG, STRING, PRINTFUNC};
@@ -91,6 +95,14 @@ public:
         token = "F";
         value = 0;
         sym = nullptr;
+    }
+    Node(Node<T> *val, Symbol *s) {
+        sym = s;
+        id = Var_type::PRINTFUNC;
+        left = nullptr;
+        right = nullptr;
+        value = 0;
+        token = "PRINT";
     }
     
 };
@@ -223,6 +235,15 @@ public:
             case Var_type::ARG: {
                 std::cout << "Argument value: " << node->left->token << "\n";
                 return eval(node->left);
+            }
+                break;
+            case Var_type::PRINTFUNC: {
+                if(node->sym->name == "VAR_const") {
+                	std::cout << node->sym->str_value << "\n";
+                	code_stream << "printf(\"%s\\n\", " << node->sym->str_value << ");\n";
+                } else {
+                    code_stream << "printf(\"%s\\n\", " << node->sym->name << ");\n";
+                }
             }
                 break;
             case Var_type::BFUNCTION: {

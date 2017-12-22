@@ -29,7 +29,7 @@ EXP ([Ee][-+]?[0-9]+)
 "print" { return PRINT; }
 
 [a-zA-Z]+[a-zA-Z0-9]* {  yylval.s = new Symbol(yytext, 0); return NAME; }
-\"(([^\"]|\\\")*[^\\])?\" { yylval.s = new Symbol("const", yytext); return STR; }
+\"(([^\"]|\\\")*[^\\])?\" { yylval.s = new Symbol("VAR_const", yytext); return STR; }
 [0-9]+"."[0-9]*{EXP}? |
 "."?[0-9]+{EXP}? { yylval.d = atof(yytext); return NUMBER; }
 

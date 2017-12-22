@@ -834,7 +834,7 @@ case 14:
 /* rule 14 can match eol */
 YY_RULE_SETUP
 #line 32 "lexer.l"
-{ yylval.s = new Symbol("const", yytext); return STR; }
+{ yylval.s = new Symbol("VAR_const", yytext); return STR; }
 	YY_BREAK
 case 15:
 #line 34 "lexer.l"

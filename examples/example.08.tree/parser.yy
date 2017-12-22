@@ -75,6 +75,11 @@ $$ = new StringNode($1);
 | NAME '=' exp {
 $$ = new StringNode($1, $3);
 }
+| PRINT '(' STR ')' {
+
+$$ = new StringNode($1, $3);
+
+}
 /*| FUNC '(' elist ')' {
 $$ = new StringNode($1, $3);
 }

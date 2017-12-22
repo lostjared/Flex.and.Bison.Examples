@@ -15,6 +15,10 @@ int main(int argc, char **argv) {
         yyparse();
     } else if(argc == 2) {
         FILE *fptr = fopen(argv[1], "r");
+        if(!fptr) {
+            std::cerr << "Error could not open file: " << argv[1] << "\n";
+            exit(EXIT_FAILURE);
+        }
         yyrestart(fptr);
         if(yyparse() == 0 && err_num == 0) {
             std::cout << "\nExiting, Success!...\n";
