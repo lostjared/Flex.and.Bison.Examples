@@ -83,6 +83,9 @@ $$ = new StringNode($1, $3);
 | PRINT '(' NUMBER ')' {
 $$ = new StringNode($1, $3);
 }
+| PRINT '(' NAME ')' {
+$$ = new StringNode($1, $3);
+}
 ;
 
 /*| FUNC '(' elist ')' {

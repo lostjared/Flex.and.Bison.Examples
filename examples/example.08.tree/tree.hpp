@@ -28,9 +28,10 @@ struct Symbol {
     std::string name;
     std::string str_value;
     Var_id vtype;
+    bool variable;
     Symbol() : value(0) {}
-    Symbol(std::string n, double v) : value(v), name(n), vtype(Var_id::ID_NUMERIC) {}
-    Symbol(std::string n, std::string val) : name(n), str_value(val), value(0), vtype(Var_id::ID_STRING) {}
+    Symbol(std::string n, double v) : value(v), name(n), vtype(Var_id::ID_NUMERIC), variable(false) {}
+    Symbol(std::string n, std::string val) : name(n), str_value(val), value(0), vtype(Var_id::ID_STRING), variable(false) {}
 };
 
 enum class Var_type { EMPTY, DIGIT, VARIABLE, PLUS,MINUS,MIN,MULT,DIV,EQUAL, BFUNCTION, ARG, STRING, PRINTFUNC};
@@ -109,9 +110,9 @@ public:
         left = nullptr;
         right = nullptr;
         token = "PRINT";
-        sym = nullptr;
         value = 0;
         sym = new Symbol("const_int", v);
+        sym->variable = false;
     }
     
 };
@@ -252,8 +253,15 @@ public:
                 	std::cout << node->sym->str_value << "\n";
                 	code_stream << "printf(\"%s\\n\", " << node->sym->str_value << ");\n";
                 } else if(node->sym != nullptr && node->sym->vtype == Var_id::ID_NUMERIC) {
-                    std::cout << node->sym->value << "\n";
-                    code_stream << "printf(\"%f\\n\", (double)" << node->sym->value << ");\n";
+                    
+                    if(node->sym->variable == false) {
+                    	code_stream << "printf(\"%f\\n\", (double)" << node->sym->value << ");\n";
+                        std::cout << node->sym->value << "\n";
+                    }
+                    else {
+                        code_stream << "printf(\"%f\\n\", (double)" << node->sym->name << ");\n";
+                        std::cout << symbols[node->sym->name].value << "\n";
+                    }
                 }
             }
                 break;
