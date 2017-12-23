@@ -19,15 +19,16 @@ int fn;
 
 %token <d> NUMBER
 %token <s> NAME STR
+
 %token <fn> FUNC
-%token <a> PRINT
+%token <a> PRINT STREAM
 %token EOL
 %nonassoc <fn> CMP
 %right '='
 %left '+' '-'
 %left '*' '/'
 %nonassoc '|' UMINUS
-%type <a> exp stmt //elist
+%type <a> exp stmt
 %start calclist
 %%
 
@@ -75,6 +76,9 @@ $$ = new StringNode($1);
 | NAME '=' exp {
 $$ = new StringNode($1, $3);
 }
+| NAME '=' STR {
+$$ = new StringNode($1, $3);
+}
 | PRINT '(' STR ')' {
 $$ = new StringNode($1, $3);
 }
@@ -88,6 +92,7 @@ $$ = new StringNode($1, $3);
 $$ = new StringNode("PRINT", Var_type::PRINTFUNC_EXP, $3, nullptr);
 }
 ;
+
 
 /*| FUNC '(' elist ')' {
 $$ = new StringNode($1, $3);

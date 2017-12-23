@@ -27,6 +27,7 @@ EXP ([Ee][-+]?[0-9]+)
 ";" { return yytext[0]; }
 "exit" { yylval.fn = FN_EXIT; return FUNC; }
 "print" { return PRINT; }
+"<<" { return STREAM; }
 
 [a-zA-Z]+[a-zA-Z0-9]* {
     yylval.s = new Symbol(yytext, 0);

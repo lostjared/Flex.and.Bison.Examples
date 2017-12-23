@@ -34,7 +34,7 @@ struct Symbol {
     Symbol(std::string n, std::string val) : name(n), str_value(val), value(0), vtype(Var_id::ID_STRING), variable(false) {}
 };
 
-enum class Var_type { EMPTY, DIGIT, VARIABLE, PLUS,MINUS,MIN,MULT,DIV,EQUAL, BFUNCTION, ARG, STRING, PRINTFUNC, PRINTFUNC_EXP};
+enum class Var_type { EMPTY, DIGIT, VARIABLE, PLUS,MINUS,MIN,MULT,DIV,EQUAL, BFUNCTION, ARG, STRING, PRINTFUNC, PRINTFUNC_EXP, STREAMVAR, S_EQUAL};
 extern std::unordered_map<std::string, Symbol> symbols;
 extern std::ostringstream code_stream;
 extern std::ostringstream var_stream;
@@ -49,8 +49,11 @@ public:
     Symbol *sym;
     Node<T> *left, *right;
     ~Node() {
-        if(sym != nullptr) delete sym;
-        sym = nullptr;
+        if(sym != nullptr) {
+            std::cout << "released symbol: [" << sym->name << ":" << sym->value << ":" << sym->str_value << "]\n";
+        	delete sym;
+        	sym = nullptr;
+        }
     }
     
     Node() : id(Var_type::EMPTY), left(nullptr), right(nullptr), sym(nullptr) {}
@@ -113,7 +116,22 @@ public:
         sym = new Symbol("const_int", v);
         sym->variable = false;
     }
-    
+    Node(Symbol *s1, Symbol *s2) {
+        id = Var_type::S_EQUAL;
+        token = "S=";
+        left = new Node();
+        sym = s1;
+        sym->vtype = Var_id::ID_STRING;
+        symbols[sym->name].vtype = Var_id::ID_STRING;
+        value = 0;
+        left->sym = s2;
+        left->sym->vtype = Var_id::ID_STRING;
+        left->id = Var_type::STRING;
+        left->left = nullptr;
+        left->right = nullptr;
+        left->value = 0;
+        right = nullptr;
+    }
 };
 
 using StringNode = Node<std::string>;
@@ -194,6 +212,13 @@ public:
                 code_stream << "printf(\"%s = %f\\n\"," << "\"" << node->left->token.c_str() << "\"" << "," << node->left->token << ");\n";
             }
                 break;
+            case Var_type::S_EQUAL: {
+                std::cout << node->sym->name << ":" << node->left->sym->str_value << "\n";
+                symbols[node->sym->name].str_value = node->left->sym->str_value;
+                symbols[node->sym->name].vtype = Var_id::ID_STRING;
+                return 0;
+            }
+                break;
             case Var_type::PLUS: {
                 double op1 = eval(node->left);
                 double op2 = eval(node->right);
@@ -230,10 +255,12 @@ public:
                 return op1/op2;
             }
                 break;
-            case Var_type::VARIABLE:
+            case Var_type::VARIABLE: {
                 v = symbols[node->token].value;
-                std::cout << "Variable [" << node->token << "] := Value: [" << v << "]\n";
+                std::string sval = symbols[node->token].str_value;
+                std::cout << "Variable [" << node->token << "] := Value: [" << v << ":" << sval << "]\n";
                 code_stream << "tr_push(" << node->token << ");\n";
+            }
                 break;
             case Var_type::DIGIT:
                 v = node->value;
@@ -261,8 +288,16 @@ public:
                         std::cout << node->sym->value << "\n";
                     }
                     else {
-                        code_stream << "printf(\"%f\\n\", (double)" << node->sym->name << ");\n";
-                        std::cout << symbols[node->sym->name].value << "\n";
+                        
+                        if(symbols[node->sym->name].vtype == Var_id::ID_NUMERIC) {
+                        	code_stream << "printf(\"%f\\n\", (double)" << node->sym->name << ");\n";
+                            std::cout << symbols[node->sym->name].value << "\n";
+                        }
+                        else {
+                            //code_stream << "printf(\"%s\\n\", "
+                           
+                            std::cout << symbols[node->sym->name].str_value << "\n";
+                        }
                     }
                 }
             }
