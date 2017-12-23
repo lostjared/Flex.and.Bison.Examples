@@ -213,9 +213,9 @@ public:
             }
                 break;
             case Var_type::S_EQUAL: {
-                std::cout << node->sym->name << ":" << node->left->sym->str_value << "\n";
                 symbols[node->sym->name].str_value = node->left->sym->str_value;
                 symbols[node->sym->name].vtype = Var_id::ID_STRING;
+                code_stream << "const char *sz_" << node->sym->name << " = " << node->left->sym->str_value << ";\n";
                 return 0;
             }
                 break;
@@ -295,7 +295,7 @@ public:
                         }
                         else {
                             //code_stream << "printf(\"%s\\n\", "
-                           
+                            code_stream << "printf(\"%s\\n\", sz_" << node->sym->name << ");\n";
                             std::cout << symbols[node->sym->name].str_value << "\n";
                         }
                     }
