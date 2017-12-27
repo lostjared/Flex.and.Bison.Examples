@@ -170,14 +170,7 @@ public:
         fobj << "\n\n";
         fobj << "int main() {\n";
         for(auto i = symbols.begin(); i != symbols.end(); ++i) {
-            switch(i->second.vtype) {
-                case Var_id::ID_NUMERIC:
-                    var_stream << "double " << i->first << " = 0;\n";
-                    break;
-                case Var_id::ID_STRING:
-                    var_stream << "const char *sz_" << i->first << " = 0;\n";
-                    break;
-            }
+            var_stream << "double " << i->first << " = 0;\n";
         }
         fobj << var_stream.str();
         fobj << code_stream.str();
@@ -222,7 +215,7 @@ public:
             case Var_type::S_EQUAL: {
                 symbols[node->sym->name].str_value = node->left->sym->str_value;
                 symbols[node->sym->name].vtype = Var_id::ID_STRING;
-                code_stream << "sz_" << node->sym->name << " = " << node->left->sym->str_value << ";\n";
+                code_stream << "const char *sz_" << node->sym->name << " = " << node->left->sym->str_value << ";\n";
                 return 0;
             }
                 break;
