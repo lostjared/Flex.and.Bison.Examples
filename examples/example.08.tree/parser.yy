@@ -82,12 +82,6 @@ $$ = new StringNode($1, $3);
 | PRINT '(' STR ')' {
 $$ = new StringNode($1, $3);
 }
-| PRINT '(' NUMBER ')' {
-$$ = new StringNode($1, $3);
-}
-| PRINT '(' NAME ')' {
-$$ = new StringNode($1, $3);
-}
 | PRINT '(' exp ')' {
 $$ = new StringNode("PRINT", Var_type::PRINTFUNC_EXP, $3, nullptr);
 }
