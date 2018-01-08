@@ -39,9 +39,9 @@
    /* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
    enum yytokentype {
-     NUMBER = 258,
-     NAME = 259,
-     STR = 260,
+     NAME = 258,
+     STR = 259,
+     NUMBER = 260,
      EOL = 261,
      FUNC = 262,
      PRINT = 263,
@@ -49,9 +49,9 @@
    };
 #endif
 /* Tokens.  */
-#define NUMBER 258
-#define NAME 259
-#define STR 260
+#define NAME 258
+#define STR 259
+#define NUMBER 260
 #define EOL 261
 #define FUNC 262
 #define PRINT 263
@@ -61,7 +61,15 @@
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+typedef union YYSTYPE
+#line 13 "parser.yy"
+{
+	ast::Symbol *s;
+	double d;
+}
+/* Line 1529 of yacc.c.  */
+#line 72 "parser.tab.hh"
+	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
 # define YYSTYPE_IS_TRIVIAL 1

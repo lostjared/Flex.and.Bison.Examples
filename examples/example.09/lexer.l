@@ -30,21 +30,17 @@ EXP ([Ee][-+]?[0-9]+)
 "<<" { return STREAM; }
 
 [a-zA-Z]+[a-zA-Z0-9]* {
-//    yylval.s = new Symbol(yytext, 0);
-//    yylval.s->variable = true;
+    yylval.s = ast::createSymbol(yytext, "", true);
     return NAME;
 }
 \"(([^\"]|\\\")*[^\\])?\" {
-//yylval.s = new Symbol("VAR_const", yytext);
-//yylval.s->variable = false;
-return STR;
-
+	yylval.s = ast::createSymbol("$const", yytext, false);
+	return STR;
 }
 [0-9]+"."[0-9]*{EXP}? |
 "."?[0-9]+{EXP}? {
-//    yylval.d = atof(yytext);
-    return NUMBER;
-    
+    yylval.d = atof(yytext);
+    return NUMBER;    
 }
 
 \n { return EOL; }

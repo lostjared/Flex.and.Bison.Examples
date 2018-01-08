@@ -66,9 +66,9 @@
    /* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
    enum yytokentype {
-     NUMBER = 258,
-     NAME = 259,
-     STR = 260,
+     NAME = 258,
+     STR = 259,
+     NUMBER = 260,
      EOL = 261,
      FUNC = 262,
      PRINT = 263,
@@ -76,9 +76,9 @@
    };
 #endif
 /* Tokens.  */
-#define NUMBER 258
-#define NAME 259
-#define STR 260
+#define NAME 258
+#define STR 259
+#define NUMBER 260
 #define EOL 261
 #define FUNC 262
 #define PRINT 263
@@ -120,7 +120,15 @@ extern int yylex();
 #endif
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+typedef union YYSTYPE
+#line 13 "parser.yy"
+{
+	ast::Symbol *s;
+	double d;
+}
+/* Line 193 of yacc.c.  */
+#line 131 "parser.tab.cc"
+	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
 # define YYSTYPE_IS_TRIVIAL 1
@@ -132,7 +140,7 @@ typedef int YYSTYPE;
 
 
 /* Line 216 of yacc.c.  */
-#line 136 "parser.tab.cc"
+#line 144 "parser.tab.cc"
 
 #ifdef short
 # undef short
@@ -414,7 +422,7 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    24,    24,    25
+       0,    29,    29,    30
 };
 #endif
 
@@ -423,7 +431,7 @@ static const yytype_uint8 yyrline[] =
    First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
 static const char *const yytname[] =
 {
-  "$end", "error", "$undefined", "NUMBER", "NAME", "STR", "EOL", "FUNC",
+  "$end", "error", "$undefined", "NAME", "STR", "NUMBER", "EOL", "FUNC",
   "PRINT", "STREAM", "$accept", "cmdlist", 0
 };
 #endif
@@ -1312,7 +1320,7 @@ yyreduce:
     {
       
 /* Line 1267 of yacc.c.  */
-#line 1316 "parser.tab.cc"
+#line 1324 "parser.tab.cc"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1526,6 +1534,6 @@ yyreturn:
 }
 
 
-#line 29 "parser.yy"
+#line 34 "parser.yy"
 
 
