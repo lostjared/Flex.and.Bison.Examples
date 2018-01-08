@@ -17,6 +17,8 @@ namespace ast {
         std::string name,value;
     };
     
+    Symbol *createSymbol(std::string name, std::string value, bool var);
+    
 }
 
 extern void yyerror(const char *str, ...);
