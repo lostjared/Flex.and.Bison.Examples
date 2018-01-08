@@ -515,9 +515,7 @@ char *yytext;
 #include<iostream>
 #include<cstdlib>
 
-extern void yyerror(char *s, ...) ;
-
-#line 521 "lex.yy.c"
+#line 519 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -699,10 +697,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 16 "lexer.l"
+#line 14 "lexer.l"
 
 
-#line 706 "lex.yy.c"
+#line 704 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -796,32 +794,34 @@ do_action:	/* This label is used only to access EOF actions. */
 			goto yy_find_action;
 
 case 1:
-#line 19 "lexer.l"
+#line 17 "lexer.l"
 case 2:
-#line 20 "lexer.l"
+#line 18 "lexer.l"
 case 3:
-#line 21 "lexer.l"
+#line 19 "lexer.l"
 case 4:
-#line 22 "lexer.l"
+#line 20 "lexer.l"
 case 5:
-#line 23 "lexer.l"
+#line 21 "lexer.l"
 case 6:
-#line 24 "lexer.l"
+#line 22 "lexer.l"
 case 7:
-#line 25 "lexer.l"
+#line 23 "lexer.l"
 case 8:
-#line 26 "lexer.l"
+#line 24 "lexer.l"
 case 9:
-#line 27 "lexer.l"
+#line 25 "lexer.l"
 case 10:
 YY_RULE_SETUP
-#line 27 "lexer.l"
+#line 25 "lexer.l"
 { return yytext[0]; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 28 "lexer.l"
-{ yylval.fn = FN_EXIT; return FUNC; }
+#line 26 "lexer.l"
+{
+    ///yylval.fn = FN_EXIT;
+    return FUNC; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
@@ -837,8 +837,8 @@ case 14:
 YY_RULE_SETUP
 #line 32 "lexer.l"
 {
-    yylval.s = new Symbol(yytext, 0);
-    yylval.s->variable = true;
+//    yylval.s = new Symbol(yytext, 0);
+//    yylval.s->variable = true;
     return NAME;
 }
 	YY_BREAK
@@ -847,8 +847,8 @@ case 15:
 YY_RULE_SETUP
 #line 37 "lexer.l"
 {
-yylval.s = new Symbol("VAR_const", yytext);
-yylval.s->variable = false;
+//yylval.s = new Symbol("VAR_const", yytext);
+//yylval.s->variable = false;
 return STR;
 
 }
@@ -858,41 +858,45 @@ case 16:
 case 17:
 YY_RULE_SETUP
 #line 44 "lexer.l"
-{ yylval.d = atof(yytext); return NUMBER; }
+{
+//    yylval.d = atof(yytext);
+    return NUMBER;
+    
+}
 	YY_BREAK
 case 18:
 /* rule 18 can match eol */
 YY_RULE_SETUP
-#line 46 "lexer.l"
+#line 50 "lexer.l"
 { return EOL; }
 	YY_BREAK
 case 19:
 /* rule 19 can match eol */
 YY_RULE_SETUP
-#line 47 "lexer.l"
+#line 51 "lexer.l"
 { }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 48 "lexer.l"
+#line 52 "lexer.l"
 
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 49 "lexer.l"
+#line 53 "lexer.l"
 { }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 50 "lexer.l"
+#line 54 "lexer.l"
 { yyerror("Mystery character: %c\n", *yytext); }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 53 "lexer.l"
+#line 57 "lexer.l"
 YY_FATAL_ERROR( "flex scanner jammed" );
 	YY_BREAK
-#line 896 "lex.yy.c"
+#line 900 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1901,7 +1905,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 53 "lexer.l"
+#line 57 "lexer.l"
 
 
 

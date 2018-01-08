@@ -120,16 +120,7 @@ extern int yylex();
 #endif
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef union YYSTYPE
-#line 13 "parser.yy"
-{
-double d;
-Symbol *s;
-int fn;
-}
-/* Line 193 of yacc.c.  */
-#line 132 "parser.tab.cc"
-	YYSTYPE;
+typedef int YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
 # define YYSTYPE_IS_TRIVIAL 1
@@ -141,7 +132,7 @@ int fn;
 
 
 /* Line 216 of yacc.c.  */
-#line 145 "parser.tab.cc"
+#line 136 "parser.tab.cc"
 
 #ifdef short
 # undef short
@@ -423,7 +414,7 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    31,    31,    32
+       0,    24,    24,    25
 };
 #endif
 
@@ -1321,7 +1312,7 @@ yyreduce:
     {
       
 /* Line 1267 of yacc.c.  */
-#line 1325 "parser.tab.cc"
+#line 1316 "parser.tab.cc"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1535,6 +1526,6 @@ yyreturn:
 }
 
 
-#line 36 "parser.yy"
+#line 29 "parser.yy"
 
 
