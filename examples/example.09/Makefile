@@ -4,7 +4,7 @@ CPP_FILES := $(wildcard *.cpp)
 OBJ_FILES := $(addprefix ,$(notdir $(CPP_FILES:.cpp=.o)))
 OUTPUT_NAME=example-09
 
-%.o: %.cpp tree.hpp table.hpp
+%.o: %.cpp tree.hpp table.hpp syntax-tree.hpp
 	$(CXX) $(CXX_FLAGS) -c -o $@ $<
   
 
