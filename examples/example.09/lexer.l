@@ -6,8 +6,6 @@
 #include<iostream>
 #include<cstdlib>
 
-extern void yyerror(char *s, ...) ;
-
 %}
 
 
