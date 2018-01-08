@@ -12,11 +12,9 @@ extern int yylex();
 
 %union {
 	ast::Symbol *s;
-	double d;
 }
 
-%token <s> NAME STR
-%token <d> NUMBER
+%token <s> NAME STR NUMBER
 %token EOL
 %token FUNC
 %token PRINT

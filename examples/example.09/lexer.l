@@ -33,12 +33,12 @@ EXP ([Ee][-+]?[0-9]+)
     return NAME;
 }
 \"(([^\"]|\\\")*[^\\])?\" {
-	yylval.s = ast::createSymbol("$const", yytext, false);
+	yylval.s = ast::createSymbol(std::string(yytext));
 	return STR;
 }
 [0-9]+"."[0-9]*{EXP}? |
 "."?[0-9]+{EXP}? {
-    yylval.d = atof(yytext);
+    yylval.s = ast::createSymbol(atof(yytext));
     return NUMBER;    
 }
 
