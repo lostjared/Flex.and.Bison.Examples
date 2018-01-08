@@ -10,11 +10,10 @@ namespace ast {
     
     class Symbol {
     public:
-        Symbol(std::string name, std::string value);
-        bool variable;
+        Symbol(std::string name, std::string value, bool variable);
         
-    private:
         std::string name,value;
+        bool variable;
     };
     
     Symbol *createSymbol(std::string name, std::string value, bool var);
