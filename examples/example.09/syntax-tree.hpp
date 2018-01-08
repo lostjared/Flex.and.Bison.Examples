@@ -8,11 +8,11 @@ namespace ast {
     
     enum { FN_EXIT, FN_PRINT, FN_SQRT };
     
-    enum class Symbol_Type { STRING, CONSTANT, NUMERIC };
+    enum class Symbol_Type { STRING, NUMERIC, CONSTANT_STRING, CONSTANT_NUMERIC };
     
     class Symbol {
     public:
-        Symbol(std::string name, std::string value, bool variable);
+        Symbol(std::string name, std::string value);
         Symbol(std::string name, double d);
         Symbol(double d);
         Symbol(std::string value);
@@ -23,7 +23,7 @@ namespace ast {
         bool variable;
     };
     
-    Symbol *createSymbol(std::string name, std::string value, bool var);
+    Symbol *createSymbol(std::string name, std::string value);
     Symbol *createSymbol(std::string value);
     Symbol *createSymbol(double d);
     Symbol *createSymbol(std::string n, double v);

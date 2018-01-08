@@ -29,7 +29,7 @@ EXP ([Ee][-+]?[0-9]+)
 "<<" { return STREAM; }
 
 [a-zA-Z]+[a-zA-Z0-9]* {
-    yylval.s = ast::createSymbol(yytext, "", true);
+    yylval.s = ast::createSymbol(yytext, "");
     return NAME;
 }
 \"(([^\"]|\\\")*[^\\])?\" {

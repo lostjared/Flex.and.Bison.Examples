@@ -837,7 +837,7 @@ case 14:
 YY_RULE_SETUP
 #line 31 "lexer.l"
 {
-    yylval.s = ast::createSymbol(yytext, "", true);
+    yylval.s = ast::createSymbol(yytext, "");
     return NAME;
 }
 	YY_BREAK
