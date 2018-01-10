@@ -13,7 +13,13 @@ namespace ast {
     class NodeType {
     public:
         std::string token;
+        double value;
         // values here..
+    };
+    
+    class Var {
+        std::string name, value;
+        double dvalue;
     };
     
     template<typename T>
@@ -35,11 +41,11 @@ namespace ast {
         public:
             Function() : func(0), instruct(0) {}
             std::string name;
-            void (*func)(std::vector<Symbol *> &);
-            std::vector<Symbol *> args;
+            void (*func)(std::vector<Var> &);
+            std::vector<Var> args;
             AST_Node<NodeType> *instruct;
             
-            void setFunction(std::string n_name, void (*f)(std::vector<Symbol *> &), std::vector<Symbol *> &n_args) {
+            void setFunction(std::string n_name, void (*f)(std::vector<Var> &), std::vector<Var> &n_args) {
                 name = n_name;
                 args = n_args;
                 func = f;
