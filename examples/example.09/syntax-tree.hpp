@@ -39,13 +39,14 @@ namespace ast {
         
         class Function {
         public:
+            using FuncCall = void (*)(std::vector<Var> &);
             Function() : func(0), instruct(0) {}
             std::string name;
-            void (*func)(std::vector<Var> &);
+            FuncCall func;
             std::vector<Var> args;
             AST_Node<NodeType> *instruct;
             
-            void setFunction(std::string n_name, void (*f)(std::vector<Var> &), std::vector<Var> &n_args) {
+            void setFunction(std::string n_name, FuncCall f, std::vector<Var> &n_args) {
                 name = n_name;
                 args = n_args;
                 func = f;
