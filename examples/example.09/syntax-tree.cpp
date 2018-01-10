@@ -2,6 +2,7 @@
 
 namespace ast {
     
+    Symbol::Symbol() : dvalue(0), variable(false) {}
     Symbol::Symbol(std::string n, std::string v) : name(n), value(v), dvalue(0), type(Symbol_Type::STRING), variable(true) {}
     
     Symbol::Symbol(std::string n, double d) : name(n), dvalue(d), type(Symbol_Type::NUMERIC), variable(true) {}
@@ -47,6 +48,17 @@ namespace ast {
         return s;
     }
     
+    Symbol *createFunction(std::string name, AST_Node<NodeType> *f) {
+        Symbol *s = new Symbol();
+        if(!s) {
+            std::cerr << "Error allocating function...\n";
+            return nullptr;
+        }
+        s->function.name = name;
+        s->function.instruct = f;
+        s->type = Symbol_Type::FUNCTION;
+        return s;
+    }
     
 }
 

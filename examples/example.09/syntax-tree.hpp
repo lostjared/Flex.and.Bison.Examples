@@ -17,13 +17,15 @@ namespace ast {
         // values here..
     };
     
-    class Var {
-        std::string name, value;
-        double dvalue;
-    };
-    
     template<typename T>
     class AST_Node;
+
+    class SymList {
+    public:
+        AST_Node<NodeType> *arg;
+        SymList *next;
+        
+    };
     
     class Symbol {
     public:
@@ -31,6 +33,7 @@ namespace ast {
         Symbol(std::string name, double d);
         Symbol(double d);
         Symbol(std::string value);
+        Symbol();
         
         std::string name,value;
         double dvalue;
@@ -39,16 +42,15 @@ namespace ast {
         
         class Function {
         public:
-            using FuncCall = void (*)(std::vector<Var> &);
+            using FuncCall = void (*)(SymList *);
             Function() : func(0), instruct(0) {}
             std::string name;
             FuncCall func;
-            std::vector<Var> args;
+            SymList *args;
             AST_Node<NodeType> *instruct;
             
-            void setFunction(std::string n_name, FuncCall f, std::vector<Var> &n_args) {
+            void setFunction(std::string n_name, FuncCall f) {
                 name = n_name;
-                args = n_args;
                 func = f;
             }
         };
@@ -59,6 +61,7 @@ namespace ast {
     Symbol *createSymbol(std::string value);
     Symbol *createSymbol(double d);
     Symbol *createSymbol(std::string n, double v);
+    Symbol *createFunction(std::string name, AST_Node<NodeType> *f);
 
     template<typename T>
     class AST_Node {
