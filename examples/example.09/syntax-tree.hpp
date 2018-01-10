@@ -8,7 +8,16 @@ namespace ast {
     
     enum { FN_EXIT, FN_PRINT, FN_SQRT };
     
-    enum class Symbol_Type { STRING, NUMERIC, CONSTANT_STRING, CONSTANT_NUMERIC };
+    enum class Symbol_Type { STRING, NUMERIC, CONSTANT_STRING, CONSTANT_NUMERIC, FUNCTION };
+    
+    class NodeType {
+    public:
+        std::string token;
+        // values here..
+    };
+    
+    template<typename T>
+    class AST_Node;
     
     class Symbol {
     public:
@@ -21,6 +30,22 @@ namespace ast {
         double dvalue;
         Symbol_Type type;
         bool variable;
+        
+        class Function {
+        public:
+            Function() : func(0), instruct(0) {}
+            std::string name;
+            void (*func)(std::vector<Symbol *> &);
+            std::vector<Symbol *> args;
+            AST_Node<NodeType> *instruct;
+            
+            void setFunction(std::string n_name, void (*f)(std::vector<Symbol *> &), std::vector<Symbol *> &n_args) {
+                name = n_name;
+                args = n_args;
+                func = f;
+            }
+        };
+        Function function;
     };
     
     Symbol *createSymbol(std::string name, std::string value);
@@ -49,6 +74,8 @@ namespace ast {
         }
         return n;
     }
+    
+  
 }
 
 extern void yyerror(const char *str, ...);
