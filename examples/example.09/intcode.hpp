@@ -8,7 +8,7 @@
 
 namespace intcode {
     
-    enum CODE_INST { MOV, PUSH, POP, ADD, SUB, MULT, DIV };
+    enum class CODE_INST { MOV=1, PUSH, POP, ADD, SUB, MULT, DIV, NULL_CODE};
     
     class Operand {
     public:
@@ -17,12 +17,26 @@ namespace intcode {
         //...
     };
     
+    struct CODE_T {
+        std::string text;
+        CODE_INST code;
+        unsigned int num_args;
+    };
+    
+    extern CODE_T code_info[];
+    
+    unsigned int IntCode_LookupCode(const std::string &text);
+    unsigned int IntCode_LookupCode(const CODE_INST &c);
+    
     class IntCode {
     public:
         CODE_INST code;
         std::vector<Operand> operands;
+        unsigned int num_op;
         
         IntCode(const CODE_INST &c);
+        IntCode(const IntCode &ic);        
+        IntCode &operator=(const IntCode &ic);
     };
 }
 

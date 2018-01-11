@@ -2,7 +2,7 @@
 #define __SYNTAX_TREE
 
 #include"table.hpp"
-
+#include"intcode.hpp"
 
 namespace ast {
     
