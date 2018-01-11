@@ -12,13 +12,17 @@ namespace intcode {
     
     class Operand {
     public:
-        
+        std::string value;
+        double dvalue;
+        //...
     };
     
     class IntCode {
     public:
         CODE_INST code;
         std::vector<Operand> operands;
+        
+        IntCode(const CODE_INST &c);
     };
 }
 
