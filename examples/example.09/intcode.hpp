@@ -25,8 +25,8 @@ namespace intcode {
     
     extern CODE_T code_info[];
     
-    unsigned int IntCode_LookupCode(const std::string &text);
-    unsigned int IntCode_LookupCode(const CODE_INST &c);
+    int IntCode_LookupCode(const std::string &text);
+    int IntCode_LookupCode(const CODE_INST &c);
     
     class IntCode {
     public:

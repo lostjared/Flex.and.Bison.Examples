@@ -14,13 +14,13 @@ namespace intcode {
         {"null", CODE_INST::NULL_CODE, 0}
     };
     
-    unsigned int IntCode_LookupCode(const std::string &text) {
+    int IntCode_LookupCode(const std::string &text) {
         for(unsigned int i = 0; code_info[i].code != CODE_INST::NULL_CODE; ++i) {
             if(code_info[i].text==text) return i;
         }
         return -1;
     }
-    unsigned int IntCode_LookupCode(const CODE_INST &c) {
+    int IntCode_LookupCode(const CODE_INST &c) {
         for(unsigned int i = 0; code_info[i].code != CODE_INST::NULL_CODE; ++i) {
             if(code_info[i].code == c) return i;
         }
