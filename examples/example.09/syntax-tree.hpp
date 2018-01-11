@@ -43,12 +43,14 @@ namespace ast {
         class Function {
         public:
             using FuncCall = void (*)(SymList *);
-            Function() : func(0), instruct(0) {}
+        
+            Function() : func(nullptr), args(nullptr), instruct(nullptr) {}
+            
             std::string name;
             FuncCall func;
             SymList *args;
             AST_Node<NodeType> *instruct;
-            
+        
             void setFunction(std::string n_name, FuncCall f) {
                 name = n_name;
                 func = f;
