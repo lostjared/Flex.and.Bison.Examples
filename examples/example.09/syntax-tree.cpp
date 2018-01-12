@@ -11,6 +11,45 @@ namespace ast {
     
     Symbol::Symbol(std::string v) : name("const"), value(v), dvalue(0), type(Symbol_Type::CONSTANT_STRING), variable(false) {}
 
+    Symbol::Symbol(const Symbol &s) {
+        setSymbol(s);
+    }
+    
+    Symbol &Symbol::operator=(const Symbol &s) {
+        setSymbol(s);
+        return *this;
+    }
+    
+    Symbol::Function::Function(const Function &f) {
+        setFunction(f);
+        
+    }
+    
+    Symbol::Function &Symbol::Function::operator=(const Symbol::Function &f) {
+        setFunction(f);
+        return *this;
+    }
+    
+    void Symbol::Function::setFunction(const Symbol::Function &f) {
+        func = f.func;
+        name = f.name;
+        args = f.args;
+        instruct = f.instruct;
+    }
+    
+    void Symbol::setSymbol(const Symbol &s) {
+        dvalue = s.dvalue;
+        variable = s.variable;
+        name = s.name;
+        type = s.type;
+        value = s.value;
+        function = s.function;
+    }
+    
+    void Symbol::Function::setFunction(std::string n_name, FuncCall f) {
+        name = n_name;
+        func = f;
+    }
     
     Symbol *createSymbol(std::string name, std::string value) {
         Symbol *s = new Symbol(name, value);

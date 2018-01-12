@@ -33,6 +33,7 @@ namespace ast {
         Symbol(std::string name, double d);
         Symbol(double d);
         Symbol(std::string value);
+        Symbol(const Symbol &s);
         Symbol();
         
         std::string name,value;
@@ -43,20 +44,19 @@ namespace ast {
         class Function {
         public:
             using FuncCall = void (*)(SymList *);
-        
             Function() : func(nullptr), args(nullptr), instruct(nullptr) {}
-            
+            Function(const Function &f);
+            Function &operator=(const Function &f);
             std::string name;
             FuncCall func;
             SymList *args;
             AST_Node<NodeType> *instruct;
-        
-            void setFunction(std::string n_name, FuncCall f) {
-                name = n_name;
-                func = f;
-            }
+            void setFunction(const Function &f);
+            void setFunction(std::string n_name, FuncCall f);
         };
         Function function;
+        Symbol &operator=(const Symbol &s);
+        void setSymbol(const Symbol &s);
     };
     
     Symbol *createSymbol(std::string name, std::string value);
