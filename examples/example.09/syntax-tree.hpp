@@ -88,7 +88,32 @@ namespace ast {
         return n;
     }
     
-  
+    template<typename T>
+    AST_Node<T> *createNode(T type, unsigned int node_type, Symbol *s) {
+        AST_Node<T> *n = new AST_Node<T>();
+        if(!n) {
+            std::cerr << "Error could not allocate memory for node..\n";
+            return nullptr;
+        }
+        n->type = type;
+        n->node_type = node_type;
+        n->sym = s;
+        return n;
+    }
+    
+    template<typename T>
+    AST_Node<T> *createNode(T type, unsigned int node_type, AST_Node<T> *left, AST_Node<T> *right) {
+        AST_Node<T> *n = new AST_Node<T>();
+        if(!n) {
+            std::cerr << "Error could not allocate node memory..\n";
+            return nullptr;
+        }
+        n->type = type;
+        n->node_type = node_type;
+        n->left = left;
+        n->right = right;
+        return n;
+    }
 }
 
 extern void yyerror(const char *str, ...);
