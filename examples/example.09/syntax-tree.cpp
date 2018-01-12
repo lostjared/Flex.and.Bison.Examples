@@ -3,6 +3,7 @@
 namespace ast {
     
     Symbol::Symbol() : dvalue(0), variable(false) {}
+    
     Symbol::Symbol(std::string n, std::string v) : name(n), value(v), dvalue(0), type(Symbol_Type::STRING), variable(true) {}
     
     Symbol::Symbol(std::string n, double d) : name(n), dvalue(d), type(Symbol_Type::NUMERIC), variable(true) {}
@@ -22,8 +23,12 @@ namespace ast {
     
     Symbol::Function::Function(const Function &f) {
         setFunction(f);
-        
     }
+    
+    Symbol::Function::Function(std::string n_name, FuncCall f) {
+        setFunction(n_name, f);
+    }
+    
     
     Symbol::Function &Symbol::Function::operator=(const Symbol::Function &f) {
         setFunction(f);
@@ -37,6 +42,13 @@ namespace ast {
         instruct = f.instruct;
     }
     
+    void Symbol::Function::setFunction(std::string n_name, FuncCall f) {
+        name = n_name;
+        func = f;
+        args = nullptr;
+        instruct = nullptr;
+    }
+    
     void Symbol::setSymbol(const Symbol &s) {
         dvalue = s.dvalue;
         variable = s.variable;
@@ -44,11 +56,6 @@ namespace ast {
         type = s.type;
         value = s.value;
         function = s.function;
-    }
-    
-    void Symbol::Function::setFunction(std::string n_name, FuncCall f) {
-        name = n_name;
-        func = f;
     }
     
     Symbol *createSymbol(std::string name, std::string value) {
