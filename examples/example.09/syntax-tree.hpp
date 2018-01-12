@@ -117,6 +117,8 @@ namespace ast {
     }
 }
 
+extern int err_num;
+extern int yylineno;
 extern void yyerror(const char *str, ...);
 
 

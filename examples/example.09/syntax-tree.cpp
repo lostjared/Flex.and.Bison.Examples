@@ -108,7 +108,14 @@ namespace ast {
     
 }
 
-void yyerror(const char *str, ...) {
-    
+int err_num = 0;
+
+void yyerror(const char *src, ...) {
+    va_list ap;
+    va_start(ap, src);
+    fprintf(stderr, "Error on Line %d: ", yylineno);
+    vfprintf(stderr, src, ap);
+    fprintf(stderr, "\n");
+    ++err_num;
 }
 
