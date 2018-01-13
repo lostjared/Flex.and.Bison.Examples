@@ -12,6 +12,7 @@ extern int yylex();
 
 %union {
 	ast::Symbol *s;
+	ast::AST_Node<ast::NodeType> *a;
 }
 
 %token <s> NAME STR NUMBER

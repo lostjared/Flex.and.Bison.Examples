@@ -65,9 +65,10 @@ typedef union YYSTYPE
 #line 13 "parser.yy"
 {
 	ast::Symbol *s;
+	ast::AST_Node<ast::NodeType> *a;
 }
 /* Line 1529 of yacc.c.  */
-#line 71 "parser.tab.hh"
+#line 72 "parser.tab.hh"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

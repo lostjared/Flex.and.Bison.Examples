@@ -124,9 +124,10 @@ typedef union YYSTYPE
 #line 13 "parser.yy"
 {
 	ast::Symbol *s;
+	ast::AST_Node<ast::NodeType> *a;
 }
 /* Line 193 of yacc.c.  */
-#line 130 "parser.tab.cc"
+#line 131 "parser.tab.cc"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
@@ -139,7 +140,7 @@ typedef union YYSTYPE
 
 
 /* Line 216 of yacc.c.  */
-#line 143 "parser.tab.cc"
+#line 144 "parser.tab.cc"
 
 #ifdef short
 # undef short
@@ -421,7 +422,7 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    27,    27,    28
+       0,    28,    28,    29
 };
 #endif
 
@@ -1319,7 +1320,7 @@ yyreduce:
     {
       
 /* Line 1267 of yacc.c.  */
-#line 1323 "parser.tab.cc"
+#line 1324 "parser.tab.cc"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1533,6 +1534,6 @@ yyreturn:
 }
 
 
-#line 32 "parser.yy"
+#line 33 "parser.yy"
 
 
