@@ -1,5 +1,6 @@
 #include"tree.hpp"
 #include<cstdio>
+#incldue<cstdarg>
 
 extern int yyparse();
 extern void yyrestart(FILE *fptr);
