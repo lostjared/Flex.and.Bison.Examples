@@ -22,8 +22,13 @@ namespace ast {
     public:
         std::string token;
         double value;
-        // values here..
+        // values here.
     };
+    
+    
+    class Symbol;
+    
+    extern sym::SymbolTable<Symbol> sym_table;
     
     template<typename T>
     class AST_Node;
@@ -128,7 +133,6 @@ namespace ast {
 extern int err_num;
 extern int yylineno;
 extern void yyerror(const char *str, ...);
-
 
 #endif
 

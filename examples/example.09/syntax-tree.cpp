@@ -2,6 +2,8 @@
 
 namespace ast {
     
+    sym::SymbolTable<Symbol> sym_table;
+    
     Symbol::Symbol() : dvalue(0), variable(false) {}
     
     Symbol::Symbol(std::string n, std::string v) : name(n), value(v), dvalue(0), type(Symbol_Type::STRING), variable(true) {}
