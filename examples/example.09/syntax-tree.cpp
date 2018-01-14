@@ -61,7 +61,7 @@ namespace ast {
     Symbol *createSymbol(std::string name, std::string value) {
         Symbol *s = new Symbol(name, value);
         if(!s) {
-            std::cerr << "Error allocating memory..\n";
+            throw SymbolException("Error allocating memory...\n");
             return nullptr;
         }
         return s;
@@ -70,7 +70,7 @@ namespace ast {
     Symbol *createSymbol(std::string value) {
         Symbol *s = new Symbol(value);
         if(!s) {
-            std::cerr << "Error allocating memory..\n";
+            throw SymbolException("Error allocating memory...\n");
             return nullptr;
         }
         return s;
@@ -79,7 +79,7 @@ namespace ast {
     Symbol *createSymbol(std::string n, double v) {
         Symbol *s = new Symbol(n, v);
         if(!s) {
-            std::cerr << "Error allocating memory..\n";
+            throw SymbolException("Error allocating memory...\n");
             return nullptr;
         }
         return s;
@@ -88,7 +88,7 @@ namespace ast {
     Symbol *createSymbol(double d) {
         Symbol *s = new Symbol(d);
         if(!s) {
-            std::cerr << "Error allocating memory..\n";
+            throw SymbolException("Error allocating memory...\n");
             return nullptr;
         }
         return s;
@@ -97,7 +97,7 @@ namespace ast {
     Symbol *createFunction(std::string name, AST_Node<NodeType> *f) {
         Symbol *s = new Symbol();
         if(!s) {
-            std::cerr << "Error allocating function...\n";
+            throw SymbolException("Error allocating memory...\n");
             return nullptr;
         }
         s->function.name = name;

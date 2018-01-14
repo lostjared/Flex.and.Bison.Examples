@@ -8,6 +8,13 @@ namespace ast {
     
     enum { FN_EXIT, FN_PRINT, FN_SQRT };
     
+    class SymbolException {
+    public:
+        std::string value;
+        SymbolException(std::string s) : value(s) {}
+        std::string get() const { return value; }
+    };
+    
     enum class Symbol_Type { STRING, NUMERIC, CONSTANT_STRING, CONSTANT_NUMERIC, FUNCTION };
     
     class NodeType {
