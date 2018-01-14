@@ -3,6 +3,7 @@
 
 #include"table.hpp"
 #include"intcode.hpp"
+#include<cstdarg>
 
 namespace ast {
     
