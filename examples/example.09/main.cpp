@@ -1,4 +1,6 @@
+#include<iostream>
 #include"syntax-tree.hpp"
+
 
 extern int yyparse();
 extern void yyrestart(FILE *);

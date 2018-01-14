@@ -5,7 +5,7 @@
 
 #include<iostream>
 #include<string>
-
+#include"symbol.hpp"
 // comment out below line to not output debug information
 //#define DEBUG_INFO
 
@@ -223,6 +223,7 @@ namespace tree {
 #ifdef DEBUG_INFO
             std::cout << "erasing: [" << node->id << ":" << node->value << "]\n";
 #endif
+            //delete node->value;
             delete node;
         }
     }

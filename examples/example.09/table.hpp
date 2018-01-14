@@ -43,8 +43,7 @@ namespace sym {
     private:
         std::vector<std::unique_ptr<tree::Tree<T>>> tree_stack;
     };
-    
-   
+
     
     template<typename T>
     SymbolTable<T>::SymbolTable(SymbolTable<T> &st) {
