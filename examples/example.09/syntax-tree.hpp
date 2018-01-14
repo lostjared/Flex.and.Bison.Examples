@@ -89,7 +89,7 @@ namespace ast {
     AST_Node<T> *createNode(T type, unsigned int node_type, Symbol *s, AST_Node<T> *left, AST_Node<T> *right) {
         AST_Node<T> *n = new AST_Node<T>(type,node_type,s,left,right);
         if(!n) {
-            std::cerr << "Error could not create node..\n";
+            throw SymbolException("Error allocating memory...\n");
             return nullptr;
         }
         return n;
@@ -99,7 +99,7 @@ namespace ast {
     AST_Node<T> *createNode(unsigned int node_type, Symbol *s, AST_Node<T> *left, AST_Node<T> *right) {
         AST_Node<T> *n = new AST_Node<T>();
         if(!n) {
-            std::cerr << "Error could not allocate memory for node..\n";
+            throw SymbolException("Error allocating memory...\n");
             return nullptr;
         }
         n->node_type = node_type;
@@ -113,7 +113,7 @@ namespace ast {
     AST_Node<T> *createNode(T type, unsigned int node_type, AST_Node<T> *left, AST_Node<T> *right) {
         AST_Node<T> *n = new AST_Node<T>();
         if(!n) {
-            std::cerr << "Error could not allocate node memory..\n";
+            throw SymbolException("Error allocating memory...\n");
             return nullptr;
         }
         n->type = type;
