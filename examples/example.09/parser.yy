@@ -8,25 +8,38 @@
 
 extern int yylex();
 
+using namespace ast;
+
+
 %}
 
 %union {
-	ast::Symbol *s;
-	ast::AST_Node<ast::NodeType> *a;
+ast::AST_Node<ast::NodeType> *a;
+double d;
+ast::Symbol *s;
 }
 
-%token <s> NAME STR NUMBER
+%token <d> NUMBER
+%token <s> NAME
+%token <s> STR
+%token <fn> FUNC
 %token EOL
-%token FUNC
-%token PRINT
-%token STREAM
-
+%right '='
+%left '+' '-'
+%left '*' '/'
+%nonassoc '|' UMINUS
+%type <a> stmt
+%token IF THEN ELSE WHILE DO LET PRINT STREAM
 %start cmdlist
-
 %%
 
 cmdlist:
-| EOL
+| cmdlist stmt EOL
+| cmdlist error EOL
+| cmdlist EOL
+;
+
+stmt: IF { }
 ;
 
 

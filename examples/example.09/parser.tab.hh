@@ -39,36 +39,51 @@
    /* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
    enum yytokentype {
-     NAME = 258,
-     STR = 259,
-     NUMBER = 260,
-     EOL = 261,
-     FUNC = 262,
-     PRINT = 263,
-     STREAM = 264
+     NUMBER = 258,
+     NAME = 259,
+     STR = 260,
+     FUNC = 261,
+     EOL = 262,
+     UMINUS = 263,
+     IF = 264,
+     THEN = 265,
+     ELSE = 266,
+     WHILE = 267,
+     DO = 268,
+     LET = 269,
+     PRINT = 270,
+     STREAM = 271
    };
 #endif
 /* Tokens.  */
-#define NAME 258
-#define STR 259
-#define NUMBER 260
-#define EOL 261
-#define FUNC 262
-#define PRINT 263
-#define STREAM 264
+#define NUMBER 258
+#define NAME 259
+#define STR 260
+#define FUNC 261
+#define EOL 262
+#define UMINUS 263
+#define IF 264
+#define THEN 265
+#define ELSE 266
+#define WHILE 267
+#define DO 268
+#define LET 269
+#define PRINT 270
+#define STREAM 271
 
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 13 "parser.yy"
+#line 16 "parser.yy"
 {
-	ast::Symbol *s;
-	ast::AST_Node<ast::NodeType> *a;
+ast::AST_Node<ast::NodeType> *a;
+double d;
+ast::Symbol *s;
 }
 /* Line 1529 of yacc.c.  */
-#line 72 "parser.tab.hh"
+#line 87 "parser.tab.hh"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

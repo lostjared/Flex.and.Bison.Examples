@@ -70,6 +70,19 @@ namespace ast {
         n->right = right;
         return n;
     }
+    
+    template<typename T>
+    AST_Node<T> *createNode(unsigned int node_type, AST_Node<T> *left, AST_Node<T> *right) {
+        AST_Node<T> *n = new AST_Node<T>();
+        if(!n) {
+            throw SymbolException("Error allocating memroy...\n");
+            return nullptr;
+        }
+        n->type = node_type;
+        n->left = left;
+        n->right = right;
+        return n;
+    }
 
     template<typename T>
     void freeAST(AST_Node<T> *node) {
