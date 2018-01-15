@@ -70,6 +70,18 @@ namespace ast {
         n->right = right;
         return n;
     }
+
+    template<typename T>
+    void freeAST(AST_Node<T> *node) {
+        if(node != nullptr && node->left != nullptr)
+            freeAST(node->left);
+        if(node != nullptr && node->right != nullptr)
+            freeAST(node->right);
+        if(node != nullptr) {
+            delete node;
+            node = nullptr;
+        }
+    }
 }
 
 extern int err_num;
