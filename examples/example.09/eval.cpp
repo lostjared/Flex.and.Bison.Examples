@@ -43,12 +43,14 @@ namespace ast {
             case '$':
                 return *node->sym;
                 break;
+            case 'S':
             case 'N': {
                 if(!sym_table.exisits(node->sym->name)) {
                 	sym_table.insertTop(node->sym->name, *node->sym);
                 }
                 return sym_table.searchStack(node->sym->name)->value;
             }
+                break;
             case '=': {
                 Symbol v = eval(node->left);
                 if(!sym_table.exisits(node->sym->name)) {
