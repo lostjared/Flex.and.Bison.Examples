@@ -14,33 +14,56 @@ using namespace ast;
 %}
 
 %union {
-ast::AST_Node<ast::NodeType> *a;
-double d;
+ast::AST *a;
 ast::Symbol *s;
+int fn;
 }
 
-%token <d> NUMBER
-%token <s> NAME
-%token <s> STR
+%token <s> NAME STR NUMBER
 %token <fn> FUNC
 %token EOL
 %right '='
 %left '+' '-'
 %left '*' '/'
 %nonassoc '|' UMINUS
-%type <a> stmt
+%type <a> stmt expr
+
 %token IF THEN ELSE WHILE DO LET PRINT STREAM
 %start cmdlist
 %%
 
 cmdlist:
-| cmdlist stmt EOL
+| cmdlist stmt EOL {
+	ast::Symbol *s = eval($2);
+	std::cout << "Value: " << s->dvalue << "\n";
+	delete s;
+	freeAST($2);
+}
 | cmdlist error EOL
 | cmdlist EOL
 ;
 
-stmt: IF { }
+stmt: expr
 ;
 
+expr: expr '+' expr {
+$$ = createNode('+', $1, $3);
+}
+| expr '-' expr {
+$$ = createNode('-', $1, $3);
+}
+| expr '*' expr {
+$$ = createNode('*', $1, $3);
+}
+| expr '/' expr {
+$$ = createNode('/', $1, $3);
+}
+| '(' expr ')' { $$ = $2; }
+
+| NUMBER {
+$$ = createNodeValue<NodeType>('$', $1);
+}
+
+;
 
 %%

@@ -78,9 +78,19 @@ namespace ast {
             throw SymbolException("Error allocating memroy...\n");
             return nullptr;
         }
-        n->type = node_type;
+        n->node_type = node_type;
         n->left = left;
         n->right = right;
+        return n;
+    }
+    
+    template<typename T>
+    AST_Node<T> *createNodeValue(unsigned int value, Symbol *s) {
+        AST_Node<T> *n = new AST_Node<T>();
+        n->node_type = '$';
+        n->sym = s;
+        n->left = nullptr;
+        n->right = nullptr;
         return n;
     }
 
@@ -95,6 +105,10 @@ namespace ast {
             node = nullptr;
         }
     }
+    
+    using AST = AST_Node<NodeType>;
+    Symbol *eval(AST *node);
+    
 }
 
 extern int err_num;

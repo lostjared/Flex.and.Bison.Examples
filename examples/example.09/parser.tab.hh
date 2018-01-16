@@ -39,9 +39,9 @@
    /* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
    enum yytokentype {
-     NUMBER = 258,
-     NAME = 259,
-     STR = 260,
+     NAME = 258,
+     STR = 259,
+     NUMBER = 260,
      FUNC = 261,
      EOL = 262,
      UMINUS = 263,
@@ -56,9 +56,9 @@
    };
 #endif
 /* Tokens.  */
-#define NUMBER 258
-#define NAME 259
-#define STR 260
+#define NAME 258
+#define STR 259
+#define NUMBER 260
 #define FUNC 261
 #define EOL 262
 #define UMINUS 263
@@ -78,9 +78,9 @@
 typedef union YYSTYPE
 #line 16 "parser.yy"
 {
-ast::AST_Node<ast::NodeType> *a;
-double d;
+ast::AST *a;
 ast::Symbol *s;
+int fn;
 }
 /* Line 1529 of yacc.c.  */
 #line 87 "parser.tab.hh"
