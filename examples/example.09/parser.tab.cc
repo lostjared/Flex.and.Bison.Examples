@@ -445,8 +445,8 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    35,    35,    36,    42,    43,    46,    49,    52,    55,
-      58,    61,    63
+       0,    35,    35,    36,    43,    44,    47,    50,    53,    56,
+      59,    62,    64
 };
 #endif
 
@@ -1363,46 +1363,47 @@ yyreduce:
     {
 	ast::Symbol *s = eval((yyvsp[(2) - (3)].a));
 	std::cout << "Value: " << s->dvalue << "\n";
-	delete s;
+	if(s->free_memory == 1)
+		delete s;
 	freeAST((yyvsp[(2) - (3)].a));
 ;}
     break;
 
   case 7:
-#line 49 "parser.yy"
+#line 50 "parser.yy"
     {
 (yyval.a) = createNode('+', (yyvsp[(1) - (3)].a), (yyvsp[(3) - (3)].a));
 ;}
     break;
 
   case 8:
-#line 52 "parser.yy"
+#line 53 "parser.yy"
     {
 (yyval.a) = createNode('-', (yyvsp[(1) - (3)].a), (yyvsp[(3) - (3)].a));
 ;}
     break;
 
   case 9:
-#line 55 "parser.yy"
+#line 56 "parser.yy"
     {
 (yyval.a) = createNode('*', (yyvsp[(1) - (3)].a), (yyvsp[(3) - (3)].a));
 ;}
     break;
 
   case 10:
-#line 58 "parser.yy"
+#line 59 "parser.yy"
     {
 (yyval.a) = createNode('/', (yyvsp[(1) - (3)].a), (yyvsp[(3) - (3)].a));
 ;}
     break;
 
   case 11:
-#line 61 "parser.yy"
+#line 62 "parser.yy"
     { (yyval.a) = (yyvsp[(2) - (3)].a); ;}
     break;
 
   case 12:
-#line 63 "parser.yy"
+#line 64 "parser.yy"
     {
 (yyval.a) = createNodeValue<NodeType>('$', (yyvsp[(1) - (1)].s));
 ;}
@@ -1410,7 +1411,7 @@ yyreduce:
 
 
 /* Line 1267 of yacc.c.  */
-#line 1414 "parser.tab.cc"
+#line 1415 "parser.tab.cc"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1624,6 +1625,6 @@ yyreturn:
 }
 
 
-#line 69 "parser.yy"
+#line 70 "parser.yy"
 
 

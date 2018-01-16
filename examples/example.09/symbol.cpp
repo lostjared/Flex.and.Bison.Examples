@@ -3,17 +3,17 @@
 
 namespace ast {
     
-    Symbol::Symbol() : dvalue(0), variable(false) {}
+    Symbol::Symbol() : dvalue(0), variable(false), free_memory(0) {}
     
-    Symbol::Symbol(std::string n, std::string v) : name(n), value(v), dvalue(0), type(Symbol_Type::STRING), variable(true) {}
+    Symbol::Symbol(std::string n, std::string v) : name(n), value(v), dvalue(0), type(Symbol_Type::STRING), variable(true), free_memory(0) {}
     
-    Symbol::Symbol(std::string n, double d) : name(n), dvalue(d), type(Symbol_Type::NUMERIC), variable(true) {}
+    Symbol::Symbol(std::string n, double d) : name(n), dvalue(d), type(Symbol_Type::NUMERIC), variable(true), free_memory(0) {}
     
-    Symbol::Symbol(double d) : name("const"), dvalue(d), type(Symbol_Type::CONSTANT_NUMERIC), variable(false) {}
+    Symbol::Symbol(double d) : name("const"), dvalue(d), type(Symbol_Type::CONSTANT_NUMERIC), variable(false), free_memory(0) {}
     
-    Symbol::Symbol(std::string v) : name("const"), value(v), dvalue(0), type(Symbol_Type::CONSTANT_STRING), variable(false) {}
+    Symbol::Symbol(std::string v) : name("const"), value(v), dvalue(0), type(Symbol_Type::CONSTANT_STRING), variable(false), free_memory(0) {}
     
-    Symbol::Symbol(const Symbol &s) {
+    Symbol::Symbol(const Symbol &s): free_memory(0) {
         setSymbol(s);
     }
     
@@ -57,6 +57,7 @@ namespace ast {
         type = s.type;
         value = s.value;
         function = s.function;
+        free_memory = s.free_memory;
     }
     
     Symbol *createSymbol(std::string name, std::string value) {

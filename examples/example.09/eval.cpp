@@ -6,6 +6,7 @@ namespace ast {
     Symbol *eval(AST *node) {
         
         Symbol *s = new Symbol();
+        s->free_memory = 1;
         
         switch(node->node_type) {
             case '+': {

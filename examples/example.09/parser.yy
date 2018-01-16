@@ -36,7 +36,8 @@ cmdlist:
 | cmdlist stmt EOL {
 	ast::Symbol *s = eval($2);
 	std::cout << "Value: " << s->dvalue << "\n";
-	delete s;
+	if(s->free_memory == 1)
+		delete s;
 	freeAST($2);
 }
 | cmdlist error EOL

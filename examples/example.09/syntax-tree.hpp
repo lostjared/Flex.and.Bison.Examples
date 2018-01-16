@@ -101,6 +101,9 @@ namespace ast {
         if(node != nullptr && node->right != nullptr)
             freeAST(node->right);
         if(node != nullptr) {
+            if(node->sym != nullptr && node->sym->free_memory == 0)
+                delete node->sym;
+            
             delete node;
             node = nullptr;
         }

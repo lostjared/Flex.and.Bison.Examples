@@ -41,6 +41,7 @@ namespace ast {
         double dvalue;
         Symbol_Type type;
         bool variable;
+        int free_memory;
         
         class Function {
         public:
