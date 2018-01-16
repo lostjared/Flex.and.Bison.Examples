@@ -58,6 +58,11 @@ $$ = createNode('*', $1, $3);
 $$ = createNode('/', $1, $3);
 }
 | '(' expr ')' { $$ = $2; }
+
+| '-' expr %prec UMINUS {
+$$ = createNode<NodeType>('M', $2, nullptr);
+}
+
 | NAME '=' expr {
 $$ = createNode<NodeType>('=', $1, $3, nullptr);
 }

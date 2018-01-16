@@ -5,9 +5,7 @@ using namespace ast;
 namespace ast {
     
     Symbol eval(AST *node) {
-        
         Symbol s;
-        
         switch(node->node_type) {
             case '+': {
                 Symbol s1 = eval(node->left), s2 = eval(node->right);
@@ -36,6 +34,12 @@ namespace ast {
                 return s;
             }
                 break;
+            case 'M': {
+                Symbol v = eval(node->left);
+                v.dvalue = -v.dvalue;
+                return v;
+            }
+                break;
             case '$':
                 return *node->sym;
                 break;
@@ -53,11 +57,9 @@ namespace ast {
                     sym_table.searchStack(node->sym->name)->value = v;
                 }
                 return v;
-                
             }
                 break;
         }
-
         return s;
     }
     
