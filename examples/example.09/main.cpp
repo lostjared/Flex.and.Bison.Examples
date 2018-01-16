@@ -1,3 +1,4 @@
+#define DEBUG_MODE
 #include<iostream>
 #include"syntax-tree.hpp"
 
@@ -9,6 +10,9 @@ int main(int argc, char **argv) {
     try {
         if(argc == 1) {
             yyparse();
+#ifdef DEBUG_MODE
+            ast::sym_table.printTable();
+#endif
         } else if(argc == 2) {
             FILE *fptr = fopen(argv[1], "r");
             if(!fptr) {
@@ -25,7 +29,7 @@ int main(int argc, char **argv) {
         std::cerr << "Error: " << se.get() << "\n";
         exit(EXIT_FAILURE);
     } catch(ast::DivideByZero) {
-        std::cerr << "Error divide by Zero exception...\n";
+        std::cerr << "Error divide by Zero Exception...\n";
         exit(EXIT_FAILURE);
     }
     catch(std::exception &e) {

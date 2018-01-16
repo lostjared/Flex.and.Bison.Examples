@@ -112,7 +112,7 @@ namespace ast {
     }
     
     using AST = AST_Node<NodeType>;
-    Symbol *eval(AST *node);
+    Symbol eval(AST *node);
     
 }
 

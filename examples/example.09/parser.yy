@@ -34,10 +34,8 @@ int fn;
 
 cmdlist:
 | cmdlist stmt EOL {
-	ast::Symbol *s = eval($2);
-	std::cout << "Value: " << s->dvalue << "\n";
-	if(s->free_memory == 1)
-		delete s;
+	ast::Symbol s = eval($2);
+	std::cout << "Value: " << s.dvalue << "\n";
 	freeAST($2);
 }
 | cmdlist error EOL
@@ -60,11 +58,15 @@ $$ = createNode('*', $1, $3);
 $$ = createNode('/', $1, $3);
 }
 | '(' expr ')' { $$ = $2; }
-
+| NAME '=' expr {
+$$ = createNode<NodeType>('=', $1, $3, nullptr);
+}
 | NUMBER {
 $$ = createNodeValue<NodeType>('$', $1);
 }
-
+| NAME {
+$$ = createNode<NodeType>('N', $1, nullptr, nullptr);
+}
 ;
 
 %%
