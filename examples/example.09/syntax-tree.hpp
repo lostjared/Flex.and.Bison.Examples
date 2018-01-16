@@ -113,7 +113,7 @@ namespace ast {
     
     using AST = AST_Node<NodeType>;
     Symbol eval(AST *node);
-    
+    std::string trimQuotes(std::string value);
 }
 
 extern int err_num;

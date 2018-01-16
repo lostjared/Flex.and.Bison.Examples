@@ -110,8 +110,8 @@ namespace ast {
 }
 
 std::ostream &operator<<(std::ostream &out, const ast::Symbol &s) {    
-    out << "Symbol [" << s.name << ":" << s.value << ":" << s.dvalue << "]\n";
+    out << "Symbol [" << s.name << ":" << s.value << ":" << s.dvalue << "] ";
     if(s.function.func != nullptr)
-        out << "Function [" << s.function.name << "]\n";
+        out << " - Function [" << s.function.name << "]";
     return out;
 }

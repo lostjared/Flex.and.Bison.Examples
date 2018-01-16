@@ -42,6 +42,7 @@ EXP ([Ee][-+]?[0-9]+)
 }
 \"(([^\"]|\\\")*[^\\])?\" {
 	yylval.s = ast::createSymbol(std::string(yytext));
+	yylval.s->value = ast::trimQuotes(yylval.s->value);
 	return STR;
 }
 [0-9]+"."[0-9]*{EXP}? |

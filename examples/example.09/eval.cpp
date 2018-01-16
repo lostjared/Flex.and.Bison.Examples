@@ -10,6 +10,7 @@ namespace ast {
             case '+': {
                 Symbol s1 = eval(node->left), s2 = eval(node->right);
                 s.dvalue = s1.dvalue + s2.dvalue;
+                s.value = s1.value + s2.value;
                 return s;
             }
             	break;
@@ -40,10 +41,10 @@ namespace ast {
                 return v;
             }
                 break;
+            case 'S':
             case '$':
                 return *node->sym;
                 break;
-            case 'S':
             case 'N': {
                 if(!sym_table.exisits(node->sym->name)) {
                 	sym_table.insertTop(node->sym->name, *node->sym);

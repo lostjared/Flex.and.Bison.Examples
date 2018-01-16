@@ -2,6 +2,15 @@
 
 namespace ast {
     sym::SymbolTable<Symbol> sym_table;
+    
+    std::string trimQuotes(std::string value) {
+        if(value[0] == '\"' && value.length()>=2) {
+            std::string temp;
+            temp = value.substr(1, value.length()-2);
+            return temp;
+        }
+        return value;
+    }
 }
 
 

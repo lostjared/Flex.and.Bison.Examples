@@ -894,14 +894,15 @@ YY_RULE_SETUP
 #line 43 "lexer.l"
 {
 	yylval.s = ast::createSymbol(std::string(yytext));
+	yylval.s->value = ast::trimQuotes(yylval.s->value);
 	return STR;
 }
 	YY_BREAK
 case 22:
-#line 48 "lexer.l"
+#line 49 "lexer.l"
 case 23:
 YY_RULE_SETUP
-#line 48 "lexer.l"
+#line 49 "lexer.l"
 {
     yylval.s = ast::createSymbol(atof(yytext));
     return NUMBER;    
@@ -910,36 +911,36 @@ YY_RULE_SETUP
 case 24:
 /* rule 24 can match eol */
 YY_RULE_SETUP
-#line 53 "lexer.l"
+#line 54 "lexer.l"
 { return EOL; }
 	YY_BREAK
 case 25:
 /* rule 25 can match eol */
 YY_RULE_SETUP
-#line 54 "lexer.l"
+#line 55 "lexer.l"
 { }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 55 "lexer.l"
+#line 56 "lexer.l"
 
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 56 "lexer.l"
+#line 57 "lexer.l"
 { }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 57 "lexer.l"
+#line 58 "lexer.l"
 { yyerror("Mystery character: %c\n", *yytext); }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 60 "lexer.l"
+#line 61 "lexer.l"
 YY_FATAL_ERROR( "flex scanner jammed" );
 	YY_BREAK
-#line 943 "lex.yy.c"
+#line 944 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1948,7 +1949,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 60 "lexer.l"
+#line 61 "lexer.l"
 
 
 
