@@ -10,6 +10,8 @@ namespace ast {
     enum { FN_EXIT, FN_PRINT, FN_SQRT };
     
     extern sym::SymbolTable<Symbol> sym_table;
+    
+    class DivideByZero {};
  
     class NodeType {
     public:

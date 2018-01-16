@@ -24,6 +24,9 @@ int main(int argc, char **argv) {
     } catch(ast::SymbolException &se) {
         std::cerr << "Error: " << se.get() << "\n";
         exit(EXIT_FAILURE);
+    } catch(ast::DivideByZero) {
+        std::cerr << "Error divide by Zero exception...\n";
+        exit(EXIT_FAILURE);
     }
     catch(std::exception &e) {
         std::cerr << "Error: " << e.what() << "\n";

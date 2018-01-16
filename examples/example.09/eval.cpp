@@ -29,10 +29,9 @@ namespace ast {
                 break;
             case '/': {
                 Symbol *s1 = eval(node->left), *s2 = eval(node->right);
-                if(s2->dvalue == 0) {
-                    std::cerr << "Error divide by zero..\n";
-                    exit(EXIT_FAILURE);
-                }
+                if(s2->dvalue == 0)
+                    throw ast::DivideByZero();
+                
                 s->dvalue = s1->dvalue / s2->dvalue;
                 return s;
             }
