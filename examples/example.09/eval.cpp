@@ -9,7 +9,6 @@ namespace ast {
         switch(node->node_type) {
             case '+': {
                 Symbol s1 = eval(node->left), s2 = eval(node->right);
-                std::cout << (int)s1.type << ":" << (int)s2.type << "\n";
                 s.type = s1.type;
                 if((s1.type == Symbol_Type::CONSTANT_NUMERIC || s1.type == Symbol_Type::NUMERIC) && (s2.type == Symbol_Type::CONSTANT_NUMERIC || s2.type == Symbol_Type::NUMERIC)) {
                 	s.dvalue = s1.dvalue + s2.dvalue;
