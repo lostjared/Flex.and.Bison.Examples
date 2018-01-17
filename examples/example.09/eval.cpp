@@ -11,7 +11,7 @@ namespace ast {
                 Symbol s1 = eval(node->left), s2 = eval(node->right);
                 s.type = s1.type;
                 if((s1.type == Symbol_Type::CONSTANT_NUMERIC || s1.type == Symbol_Type::NUMERIC) && (s2.type == Symbol_Type::CONSTANT_NUMERIC || s2.type == Symbol_Type::NUMERIC)) {
-                	s.dvalue = s1.dvalue + s2.dvalue;
+                    s.dvalue = s1.dvalue + s2.dvalue;
                 }
                 else if((s1.type == Symbol_Type::CONSTANT_STRING || s1.type == Symbol_Type::STRING) && (s2.type == Symbol_Type::CONSTANT_STRING || s2.type == Symbol_Type::STRING)) {
                     s.value = s1.value+s2.value;
@@ -20,10 +20,12 @@ namespace ast {
                     std::ostringstream stream;
                     stream << s1.value << s2.dvalue;
                     s.value = stream.str();
+                } else if((s1.type == Symbol_Type::NUMERIC || s1.type == Symbol_Type::CONSTANT_NUMERIC) && (s2.type == Symbol_Type::STRING || s2.type == Symbol_Type::CONSTANT_STRING)) {
+                    throw SymbolException("Invalid argument to expression, plus operator for Numeric requires Numeric");
                 }
                 return s;
             }
-            	break;
+                break;
             case '-': {
                 Symbol s1 = eval(node->left), s2 = eval(node->right);
                 s.dvalue = s1.dvalue - s2.dvalue;
@@ -55,14 +57,14 @@ namespace ast {
             }
                 break;
             case '$':
-                 return *node->sym;
+                return *node->sym;
                 break;
             case 'S':
                 return *node->sym;
                 break;
             case 'N': {
                 if(!sym_table.exisits(node->sym->name)) {
-                	sym_table.insertTop(node->sym->name, *node->sym);
+                    sym_table.insertTop(node->sym->name, *node->sym);
                 }
                 return sym_table.searchStack(node->sym->name)->value;
             }
