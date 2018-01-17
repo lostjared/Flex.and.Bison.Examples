@@ -110,7 +110,7 @@ namespace ast {
 }
 
 std::ostream &operator<<(std::ostream &out, const ast::Symbol &s) {    
-    out << "Symbol [" << s.name << ":" << s.value << ":" << s.dvalue << "] ";
+    out << "Symbol [" << s.name << ":" << s.value << ":" << s.dvalue << " -> " << static_cast<int>(s.type) << "] ";
     if(s.function.func != nullptr)
         out << " - Function [" << s.function.name << "]";
     return out;

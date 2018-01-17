@@ -1368,7 +1368,7 @@ yyreduce:
 #line 36 "parser.yy"
     {
 	ast::Symbol s = eval((yyvsp[(2) - (3)].a));
-	std::cout << "Value: " << s.dvalue << ":" << s.value << "\n";
+	std::cout << "Value: " << s << "\n";
 	freeAST((yyvsp[(2) - (3)].a));
 ;}
     break;
@@ -1377,7 +1377,7 @@ yyreduce:
 #line 41 "parser.yy"
     {
 	ast::Symbol s = eval((yyvsp[(2) - (3)].a));
-	std::cout << "Value: " << s.dvalue << ":" << s.value << "\n";
+	std::cout << "Value: " << s << "\n";
 	freeAST((yyvsp[(2) - (3)].a));
 ;}
     break;

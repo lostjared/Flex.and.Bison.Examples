@@ -21,6 +21,7 @@ EXP ([Ee][-+]?[0-9]+)
 ")" |
 "=" |
 "," |
+"\$" |
 ";" { return yytext[0]; }
 "exit" {
     ///yylval.fn = FN_EXIT;
