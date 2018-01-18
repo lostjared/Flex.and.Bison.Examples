@@ -113,6 +113,7 @@ namespace ast {
     
     using AST = AST_Node<NodeType>;
     Symbol eval(AST *node);
+    void procTree(AST *a);
     std::string trimQuotes(std::string value);
 }
 

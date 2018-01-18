@@ -11,6 +11,20 @@ namespace ast {
         }
         return value;
     }
+    void procTree(AST *node) {
+        try {
+        	ast::Symbol s = eval(node);
+        	std::cout << "Value: " << s << "\n";
+        	freeAST(node);
+        }
+        catch(ast::SymbolException &se) {
+            std::cerr << "Runtime Error: " << se.get() << "\n";
+            exit(EXIT_FAILURE);
+        } catch(ast::DivideByZero) {
+            std::cerr << "Runtime Error: divide by Zero Exception...\n";
+            exit(EXIT_FAILURE);
+        }
+    }
 }
 
 

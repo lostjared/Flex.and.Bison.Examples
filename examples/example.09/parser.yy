@@ -34,14 +34,10 @@ int fn;
 
 cmdlist:
 | cmdlist stmt EOL {
-	ast::Symbol s = eval($2);
-	std::cout << "Value: " << s << "\n";
-	freeAST($2);
+	procTree($2);
 }
 | cmdlist stmt ';' {
-	ast::Symbol s = eval($2);
-	std::cout << "Value: " << s << "\n";
-	freeAST($2);
+	procTree($2);
 }
 | cmdlist error EOL
 | cmdlist EOL
