@@ -19,10 +19,8 @@ namespace ast {
         }
         catch(ast::SymbolException &se) {
             std::cerr << "Error: " << se.get() << "\n";
-            exit(EXIT_FAILURE);
         } catch(ast::DivideByZero) {
-            std::cerr << "Error: divide by Zero Exception...\n";
-            exit(EXIT_FAILURE);
+            std::cerr << "Error: divide by Zero...\n";
         }
     }
 }
