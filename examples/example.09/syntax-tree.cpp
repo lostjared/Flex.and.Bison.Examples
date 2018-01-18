@@ -18,10 +18,10 @@ namespace ast {
         	freeAST(node);
         }
         catch(ast::SymbolException &se) {
-            std::cerr << "Runtime Error: " << se.get() << "\n";
+            std::cerr << "Error: " << se.get() << "\n";
             exit(EXIT_FAILURE);
         } catch(ast::DivideByZero) {
-            std::cerr << "Runtime Error: divide by Zero Exception...\n";
+            std::cerr << "Error: divide by Zero Exception...\n";
             exit(EXIT_FAILURE);
         }
     }

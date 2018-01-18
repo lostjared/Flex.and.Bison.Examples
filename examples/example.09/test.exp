@@ -1,4 +1,4 @@
-x = 10
-y = 20
-z = "Hello World, " + x + " -> " + y
+x = 5
+y = 15
+z = "Hello World: " + (x+y) + "!"
 
