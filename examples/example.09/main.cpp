@@ -16,7 +16,7 @@ int main(int argc, char **argv) {
         } else if(argc == 2) {
             FILE *fptr = fopen(argv[1], "r");
             if(!fptr) {
-                std::cerr << "Error file not found: " << argv[1] << "\n";
+                std::cerr << "Error file could not be opened: " << argv[1] << "\n";
                 exit(EXIT_FAILURE);
             }
             yyrestart(fptr);
