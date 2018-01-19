@@ -1,4 +1,3 @@
-//#define DEBUG_MODE
 #include<iostream>
 #include"syntax-tree.hpp"
 
@@ -10,7 +9,7 @@ int main(int argc, char **argv) {
     try {
         if(argc == 1) {
             yyparse();
-#ifdef DEBUG_MODE
+#ifdef DEBUG_INFO
             ast::sym_table.printTable();
 #endif
         } else if(argc == 2) {
@@ -22,7 +21,7 @@ int main(int argc, char **argv) {
             yyrestart(fptr);
             yyparse();
             fclose(fptr);
-#ifdef DEBUG_MODE
+#ifdef DEBUG_INFO
             ast::sym_table.printTable();
 #endif
         } else {
