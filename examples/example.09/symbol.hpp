@@ -20,7 +20,6 @@ namespace ast {
     
     enum class Symbol_Type { STRING, NUMERIC, CONSTANT_STRING, CONSTANT_NUMERIC, FUNCTION };
     
-    
     class SymList {
     public:
         AST_Node<NodeType> *arg;
@@ -71,5 +70,6 @@ namespace ast {
 }
 
 std::ostream &operator<<(std::ostream &out, const ast::Symbol &s);
+std::ostream &operator<<(std::ostream &out, const ast::Symbol_Type &t);
 
 #endif

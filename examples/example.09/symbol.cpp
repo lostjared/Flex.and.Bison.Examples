@@ -110,8 +110,30 @@ namespace ast {
 }
 
 std::ostream &operator<<(std::ostream &out, const ast::Symbol &s) {    
-    out << "Symbol [" << s.name << ":" << s.value << ":" << s.dvalue << " -> " << static_cast<int>(s.type) << "] ";
+    out << "Symbol [" << s.name << ":" << s.value << ":" << s.dvalue << " -> " << s.type << "] ";
     if(s.function.func != nullptr)
         out << " - Function [" << s.function.name << "]";
     return out;
 }
+
+std::ostream &operator<<(std::ostream &out, const ast::Symbol_Type &t) {
+    switch(t) {
+        case ast::Symbol_Type::STRING:
+            out << "String";
+            break;
+        case ast::Symbol_Type::NUMERIC:
+            out << "Numeric";
+            break;
+        case ast::Symbol_Type::CONSTANT_STRING:
+            out << "Constant String";
+            break;
+        case ast::Symbol_Type::CONSTANT_NUMERIC:
+            out << "Constant Numeric";
+            break;
+        case ast::Symbol_Type::FUNCTION:
+            out << "Function";
+            break;
+    }
+    return out;
+}
+

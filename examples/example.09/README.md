@@ -5,3 +5,8 @@ To build use
 
 $ make flex && make
 
+to build with debug output info use
+
+$ make clean && make flex && make debug
+
+

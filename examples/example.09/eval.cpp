@@ -76,14 +76,18 @@ namespace ast {
                         v.type = Symbol_Type::NUMERIC;
                     else if(v.type == Symbol_Type::CONSTANT_STRING || v.type == Symbol_Type::STRING)
                         v.type = Symbol_Type::STRING;
+                    v.name = node->sym->name;
                     sym_table.insertTop(node->sym->name, v);
                 } else {
                     auto n = sym_table.searchStack(node->sym->name);
-                    if(v.type == Symbol_Type::CONSTANT_NUMERIC || v.type == Symbol_Type::NUMERIC)
-                        n->value.type = Symbol_Type::NUMERIC;
-                    else if(v.type == Symbol_Type::CONSTANT_STRING || v.type == Symbol_Type::STRING)
-                        n->value.type = Symbol_Type::STRING;
                     
+                    if(v.type == Symbol_Type::CONSTANT_NUMERIC || v.type == Symbol_Type::NUMERIC) {
+                        n->value.type = Symbol_Type::NUMERIC;
+                    }
+                    else if(v.type == Symbol_Type::CONSTANT_STRING || v.type == Symbol_Type::STRING) {
+                        n->value.type = Symbol_Type::STRING;
+                    }
+                    n->value.name = v.name;
                     n->value.value = v.value;
                     n->value.dvalue = v.dvalue;
                 }

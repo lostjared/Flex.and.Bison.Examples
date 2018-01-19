@@ -18,6 +18,12 @@ flex:
 	flex lexer.l
 	mv lex.yy.c lex.yy.cc
 
+dclean:
+	make -f Makefile.debug clean
+
+debug:
+	make -f Makefile.debug
+
 install: all
 	cp $(OUTPUT_NAME) /usr/local/bin
 
