@@ -1,8 +1,8 @@
-CXX_FLAGS=-std=c++11
+CXX_FLAGS=-std=c++11 -DDEBUG_MODE
 LDFLAGS=
 CPP_FILES := $(wildcard *.cpp)
 OBJ_FILES := $(addprefix ,$(notdir $(CPP_FILES:.cpp=.o)))
-OUTPUT_NAME=cc-test
+OUTPUT_NAME=cctest-debug
 
 %.o: %.cpp tree.hpp table.hpp syntax-tree.hpp intcode.hpp symbol.hpp
 	$(CXX) $(CXX_FLAGS) -c -o $@ $<

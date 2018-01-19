@@ -22,6 +22,9 @@ int main(int argc, char **argv) {
             yyrestart(fptr);
             yyparse();
             fclose(fptr);
+#ifdef DEBUG_MODE
+            ast::sym_table.printTable();
+#endif
         } else {
             std::cerr << "Argument requires file..\n";
         }
