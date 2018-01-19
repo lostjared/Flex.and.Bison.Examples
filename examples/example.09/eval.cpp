@@ -87,9 +87,7 @@ namespace ast {
                     else if(v.type == Symbol_Type::CONSTANT_STRING || v.type == Symbol_Type::STRING) {
                         n->value.type = Symbol_Type::STRING;
                     }
-                    n->value.name = v.name;
-                    n->value.value = v.value;
-                    n->value.dvalue = v.dvalue;
+                    n->value = v;
                 }
                 return v;
             }
