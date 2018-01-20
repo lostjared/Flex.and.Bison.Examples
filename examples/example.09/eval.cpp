@@ -66,7 +66,9 @@ namespace ast {
                 if(!sym_table.exisits(node->sym->name)) {
                     sym_table.insertTop(node->sym->name, *node->sym);
                 }
-                return sym_table.searchStack(node->sym->name)->value;
+                auto item = sym_table.searchStack(node->sym->name);
+                item->value.name = item->id;
+                return item->value;
             }
                 break;
             case '=': {
@@ -80,13 +82,13 @@ namespace ast {
                     sym_table.insertTop(node->sym->name, v);
                 } else {
                     auto n = sym_table.searchStack(node->sym->name);
-                    
                     if(v.type == Symbol_Type::CONSTANT_NUMERIC || v.type == Symbol_Type::NUMERIC) {
-                        n->value.type = Symbol_Type::NUMERIC;
+                       v.type = Symbol_Type::NUMERIC;
                     }
                     else if(v.type == Symbol_Type::CONSTANT_STRING || v.type == Symbol_Type::STRING) {
-                        n->value.type = Symbol_Type::STRING;
+                        v.type = Symbol_Type::STRING;
                     }
+                    v.name = node->sym->name;
                     n->value = v;
                 }
                 return v;

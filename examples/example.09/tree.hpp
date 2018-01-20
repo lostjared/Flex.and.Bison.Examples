@@ -108,7 +108,7 @@ namespace tree {
                 if(current->id == s_it) {
                     current->value = item;
 #ifdef DEBUG_INFO
-                    std::cout << "Exisiting key found, updating: " << current->id <<":" << current->value << "\n";
+                    std::cout << "Add Item Exisiting key found, updating: " << current->id <<":" << current->value << "\n";
 #endif
                     return;
                 }
@@ -135,7 +135,7 @@ namespace tree {
         while((current = *values) != nullptr) {
             if(current->id == s_it) {
 #ifdef DEBUG_INFO
-                std::cout << "Exisiting key found:: " << current->id <<":" << current->value << "\n";
+                std::cout << "Get Item, Exisiting key found:: " << current->id <<":" << current->value << "\n";
 #endif
                 tval = current->value;
                 return true;
@@ -151,7 +151,7 @@ namespace tree {
         while((current = *values) != nullptr) {
             if(current->id == s_it) {
 #ifdef DEBUG_INFO
-                std::cout << "Exisiting key found:: " << current->id <<":" << current->value << "\n";
+                std::cout << "Find Node, Exisiting key found:: " << current->id <<":" << current->value << "\n";
 #endif
                 return current;
             }
@@ -166,7 +166,7 @@ namespace tree {
         while((current = *values) != nullptr) {
             if(current->id == s_it) {
 #ifdef DEBUG_INFO
-                std::cout << "Exisiting key found:: " << current->id <<":" << current->value << "\n";
+                std::cout << "Find Create, Exisiting key found:: " << current->id <<":" << current->value << "\n";
 #endif
                 return current;
             }
