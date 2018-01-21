@@ -21,7 +21,7 @@ namespace ast {
     void procTree(AST *node) {
         try {
         	ast::Symbol s = eval(node);
-        	std::cout << "Value: " << s << "\n";
+        	std::cout << "[ Value: " << s << "]\n";
         	freeAST(node);
         }
         catch(ast::SymbolException &se) {

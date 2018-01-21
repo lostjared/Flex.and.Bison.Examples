@@ -25,7 +25,7 @@ namespace ast {
         std::string get() const { return value; }
     };
     
-    enum class Symbol_Type { STRING, NUMERIC, CONSTANT_STRING, CONSTANT_NUMERIC, FUNCTION };
+    enum class Symbol_Type { EMPTY, STRING, NUMERIC, CONSTANT_STRING, CONSTANT_NUMERIC, FUNCTION };
     
     class SymList {
     public:

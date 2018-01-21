@@ -124,6 +124,9 @@ std::ostream &operator<<(std::ostream &out, const ast::Symbol &s) {
 
 std::ostream &operator<<(std::ostream &out, const ast::Symbol_Type &t) {
     switch(t) {
+        case ast::Symbol_Type::EMPTY:
+            out << "Empty";
+            break;
         case ast::Symbol_Type::STRING:
             out << "String";
             break;
