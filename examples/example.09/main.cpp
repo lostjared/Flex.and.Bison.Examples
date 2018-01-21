@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
         } else if(argc == 2) {
             FILE *fptr = fopen(argv[1], "r");
             if(!fptr) {
-                std::cerr << "Error file could not be opened: " << argv[1] << "\n";
+                std::cerr << argv[0] <<  ": Error file could not be opened: " << argv[1] << "\n";
                 exit(EXIT_FAILURE);
             }
             yyrestart(fptr);
@@ -32,14 +32,14 @@ int main(int argc, char **argv) {
             ast::sym_table.printTable();
 #endif
         } else {
-            std::cerr << "Argument requires file..\n";
+            std::cerr << argv[0] << ": Argument requires file..\n";
         }
     } 
     catch(std::exception &e) {
-        std::cerr << "Error: " << e.what() << "\n";
+        std::cerr << argv[0] << ": Error: " << e.what() << "\n";
         exit(EXIT_FAILURE);
     } catch(...) {
-        std::cerr << "Error: Unnown Exception...\n";
+        std::cerr << argv[0] << ": Error: Unnown Exception...\n";
         exit(EXIT_FAILURE);
     }
 	return EXIT_SUCCESS;
