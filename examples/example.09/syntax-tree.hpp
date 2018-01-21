@@ -110,6 +110,10 @@ namespace ast {
         if(node != nullptr && node->right != nullptr)
             freeAST(node->right);
         if(node != nullptr) {
+#ifdef DEBUG_INFO
+            if(node->sym != nullptr)
+                std::cout << "Released AST Node: " << *node->sym << "\n";
+#endif
             if(node->sym != nullptr && node->sym->free_memory == 0)
                 delete node->sym;
             

@@ -13,8 +13,6 @@
 #include<iostream>
 #include<string>
 #include"symbol.hpp"
-// comment out below line to not output debug information
-//#define DEBUG_INFO
 
 namespace tree {
     
