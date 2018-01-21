@@ -1,4 +1,11 @@
-#ifndef __SYNTAX_TREE 
+/*
+ 
+ GNU flex & bison test program
+ created by Jared Bruni
+ http://github.com/lostjared
+ 
+ */
+#ifndef __SYNTAX_TREE
 #define __SYNTAX_TREE
 
 #include"intcode.hpp"

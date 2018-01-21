@@ -1,3 +1,11 @@
+/*
+ 
+ GNU flex & bison test program
+ created by Jared Bruni
+ http://github.com/lostjared
+ 
+ */
+
 #include"syntax-tree.hpp"
 #include<sstream>
 using namespace ast;

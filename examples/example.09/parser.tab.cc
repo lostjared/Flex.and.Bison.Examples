@@ -104,7 +104,13 @@
 /* Copy the first part of user declarations.  */
 #line 1 "parser.yy"
 
+/*
 
+GNU flex & bison test program
+created by Jared Bruni
+http://github.com/lostjared
+
+*/
 #include<iostream>
 #include<cstdio>
 #include<cstdlib>
@@ -138,14 +144,14 @@ using namespace ast;
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 16 "parser.yy"
+#line 22 "parser.yy"
 {
 ast::AST *a;
 ast::Symbol *s;
 int fn;
 }
 /* Line 193 of yacc.c.  */
-#line 149 "parser.tab.cc"
+#line 155 "parser.tab.cc"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
@@ -158,7 +164,7 @@ int fn;
 
 
 /* Line 216 of yacc.c.  */
-#line 162 "parser.tab.cc"
+#line 168 "parser.tab.cc"
 
 #ifdef short
 # undef short
@@ -447,8 +453,8 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    35,    35,    36,    39,    42,    43,    46,    49,    52,
-      55,    58,    61,    63,    67,    70,    73,    76
+       0,    41,    41,    42,    45,    48,    49,    52,    55,    58,
+      61,    64,    67,    69,    73,    76,    79,    82
 };
 #endif
 
@@ -1365,82 +1371,82 @@ yyreduce:
   switch (yyn)
     {
         case 3:
-#line 36 "parser.yy"
+#line 42 "parser.yy"
     {
 	procTree((yyvsp[(2) - (3)].a));
 ;}
     break;
 
   case 4:
-#line 39 "parser.yy"
+#line 45 "parser.yy"
     {
 	procTree((yyvsp[(2) - (3)].a));
 ;}
     break;
 
   case 8:
-#line 49 "parser.yy"
+#line 55 "parser.yy"
     {
 (yyval.a) = createNode('+', (yyvsp[(1) - (3)].a), (yyvsp[(3) - (3)].a));
 ;}
     break;
 
   case 9:
-#line 52 "parser.yy"
+#line 58 "parser.yy"
     {
 (yyval.a) = createNode('-', (yyvsp[(1) - (3)].a), (yyvsp[(3) - (3)].a));
 ;}
     break;
 
   case 10:
-#line 55 "parser.yy"
+#line 61 "parser.yy"
     {
 (yyval.a) = createNode('*', (yyvsp[(1) - (3)].a), (yyvsp[(3) - (3)].a));
 ;}
     break;
 
   case 11:
-#line 58 "parser.yy"
+#line 64 "parser.yy"
     {
 (yyval.a) = createNode('/', (yyvsp[(1) - (3)].a), (yyvsp[(3) - (3)].a));
 ;}
     break;
 
   case 12:
-#line 61 "parser.yy"
+#line 67 "parser.yy"
     { (yyval.a) = (yyvsp[(2) - (3)].a); ;}
     break;
 
   case 13:
-#line 63 "parser.yy"
+#line 69 "parser.yy"
     {
 (yyval.a) = createNode<NodeType>('M', (yyvsp[(2) - (2)].a), nullptr);
 ;}
     break;
 
   case 14:
-#line 67 "parser.yy"
+#line 73 "parser.yy"
     {
 (yyval.a) = createNode<NodeType>('=', (yyvsp[(1) - (3)].s), (yyvsp[(3) - (3)].a), nullptr);
 ;}
     break;
 
   case 15:
-#line 70 "parser.yy"
+#line 76 "parser.yy"
     {
 (yyval.a) = createNodeValue<NodeType>('$', (yyvsp[(1) - (1)].s));
 ;}
     break;
 
   case 16:
-#line 73 "parser.yy"
+#line 79 "parser.yy"
     {
 (yyval.a) = createNode<NodeType>('N', (yyvsp[(1) - (1)].s), nullptr, nullptr);
 ;}
     break;
 
   case 17:
-#line 76 "parser.yy"
+#line 82 "parser.yy"
     {
 (yyval.a) = createNode<NodeType>('S', (yyvsp[(1) - (1)].s), nullptr, nullptr);
 ;}
@@ -1448,7 +1454,7 @@ yyreduce:
 
 
 /* Line 1267 of yacc.c.  */
-#line 1452 "parser.tab.cc"
+#line 1458 "parser.tab.cc"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1662,6 +1668,6 @@ yyreturn:
 }
 
 
-#line 81 "parser.yy"
+#line 87 "parser.yy"
 
 

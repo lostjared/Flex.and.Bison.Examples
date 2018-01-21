@@ -1,3 +1,10 @@
+/*
+ 
+ GNU flex & bison test program
+ created by Jared Bruni
+ http://github.com/lostjared
+ 
+*/
 #ifndef __TABLE__H_
 #define __TABLE__H_
 

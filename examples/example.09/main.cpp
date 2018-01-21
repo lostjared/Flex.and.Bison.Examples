@@ -1,3 +1,10 @@
+/*
+ 
+ GNU flex & bison test program
+ created by Jared Bruni
+ http://github.com/lostjared
+ 
+ */
 #include<iostream>
 #include"syntax-tree.hpp"
 

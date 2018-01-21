@@ -76,7 +76,7 @@
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 16 "parser.yy"
+#line 22 "parser.yy"
 {
 ast::AST *a;
 ast::Symbol *s;

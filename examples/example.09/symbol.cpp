@@ -1,4 +1,10 @@
-
+/*
+ 
+ GNU flex & bison test program
+ created by Jared Bruni
+ http://github.com/lostjared
+ 
+ */
 #include "symbol.hpp"
 
 namespace ast {

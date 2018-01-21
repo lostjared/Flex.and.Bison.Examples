@@ -1,6 +1,13 @@
 %option noyywrap nodefault yylineno
 
 %{
+/*
+ 
+ GNU flex & bison test program
+ created by Jared Bruni
+ http://github.com/lostjared
+ 
+ */
 #include"syntax-tree.hpp"
 #include "parser.tab.hh"
 #include<iostream>

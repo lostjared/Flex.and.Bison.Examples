@@ -1,4 +1,10 @@
-
+/*
+ 
+ GNU flex & bison test program
+ created by Jared Bruni
+ http://github.com/lostjared
+ 
+ */
 #ifndef __INTCODE__H__
 #define __INTCODE__H__
 

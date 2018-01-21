@@ -527,12 +527,19 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "lexer.l"
 #line 4 "lexer.l"
+/*
+ 
+ GNU flex & bison test program
+ created by Jared Bruni
+ http://github.com/lostjared
+ 
+ */
 #include"syntax-tree.hpp"
 #include "parser.tab.hh"
 #include<iostream>
 #include<cstdlib>
 
-#line 536 "lex.yy.c"
+#line 543 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -714,10 +721,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 13 "lexer.l"
+#line 20 "lexer.l"
 
 
-#line 721 "lex.yy.c"
+#line 728 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -811,80 +818,80 @@ do_action:	/* This label is used only to access EOF actions. */
 			goto yy_find_action;
 
 case 1:
-#line 16 "lexer.l"
-case 2:
-#line 17 "lexer.l"
-case 3:
-#line 18 "lexer.l"
-case 4:
-#line 19 "lexer.l"
-case 5:
-#line 20 "lexer.l"
-case 6:
-#line 21 "lexer.l"
-case 7:
-#line 22 "lexer.l"
-case 8:
 #line 23 "lexer.l"
-case 9:
+case 2:
 #line 24 "lexer.l"
-case 10:
+case 3:
 #line 25 "lexer.l"
+case 4:
+#line 26 "lexer.l"
+case 5:
+#line 27 "lexer.l"
+case 6:
+#line 28 "lexer.l"
+case 7:
+#line 29 "lexer.l"
+case 8:
+#line 30 "lexer.l"
+case 9:
+#line 31 "lexer.l"
+case 10:
+#line 32 "lexer.l"
 case 11:
 YY_RULE_SETUP
-#line 25 "lexer.l"
+#line 32 "lexer.l"
 { return yytext[0]; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 26 "lexer.l"
+#line 33 "lexer.l"
 {
     ///yylval.fn = FN_EXIT;
     return FUNC; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 29 "lexer.l"
+#line 36 "lexer.l"
 { return PRINT; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 30 "lexer.l"
+#line 37 "lexer.l"
 { return STREAM; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 33 "lexer.l"
+#line 40 "lexer.l"
 { return IF; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 34 "lexer.l"
+#line 41 "lexer.l"
 { return THEN; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 35 "lexer.l"
+#line 42 "lexer.l"
 { return ELSE; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 36 "lexer.l"
+#line 43 "lexer.l"
 { return WHILE; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 37 "lexer.l"
+#line 44 "lexer.l"
 { return DO; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 38 "lexer.l"
+#line 45 "lexer.l"
 { return LET; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 40 "lexer.l"
+#line 47 "lexer.l"
 {
     yylval.s = ast::createSymbol(yytext, "");
     return NAME;
@@ -893,7 +900,7 @@ YY_RULE_SETUP
 case 22:
 /* rule 22 can match eol */
 YY_RULE_SETUP
-#line 44 "lexer.l"
+#line 51 "lexer.l"
 {
 	yylval.s = ast::createSymbol(std::string(yytext));
 	yylval.s->value = ast::trimQuotes(yylval.s->value);
@@ -901,10 +908,10 @@ YY_RULE_SETUP
 }
 	YY_BREAK
 case 23:
-#line 50 "lexer.l"
+#line 57 "lexer.l"
 case 24:
 YY_RULE_SETUP
-#line 50 "lexer.l"
+#line 57 "lexer.l"
 {
     yylval.s = ast::createSymbol(atof(yytext));
     return NUMBER;    
@@ -913,36 +920,36 @@ YY_RULE_SETUP
 case 25:
 /* rule 25 can match eol */
 YY_RULE_SETUP
-#line 55 "lexer.l"
+#line 62 "lexer.l"
 { return EOL; }
 	YY_BREAK
 case 26:
 /* rule 26 can match eol */
 YY_RULE_SETUP
-#line 56 "lexer.l"
+#line 63 "lexer.l"
 { }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 57 "lexer.l"
+#line 64 "lexer.l"
 
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 58 "lexer.l"
+#line 65 "lexer.l"
 { }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 59 "lexer.l"
+#line 66 "lexer.l"
 { yyerror("Mystery character: %c\n", *yytext); }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 62 "lexer.l"
+#line 69 "lexer.l"
 YY_FATAL_ERROR( "flex scanner jammed" );
 	YY_BREAK
-#line 946 "lex.yy.c"
+#line 953 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1951,7 +1958,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 62 "lexer.l"
+#line 69 "lexer.l"
 
 
 

@@ -1,3 +1,10 @@
+/*
+ 
+ GNU flex & bison test program
+ created by Jared Bruni
+ http://github.com/lostjared
+ 
+ */
 // Binary Tree Data Structure Class
 
 #ifndef __TREE_B__H_
