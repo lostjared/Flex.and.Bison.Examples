@@ -9,7 +9,7 @@
 
 namespace ast {
     
-    Symbol::Symbol() : dvalue(0), variable(false), free_memory(0) {}
+    Symbol::Symbol() : dvalue(0), variable(false), free_memory(0), type(Symbol_Type::EMPTY) {}
     
     Symbol::Symbol(std::string n, std::string v) : name(n), value(v), dvalue(0), type(Symbol_Type::STRING), variable(true), free_memory(0) {}
     
