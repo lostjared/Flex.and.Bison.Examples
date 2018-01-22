@@ -69,7 +69,9 @@ namespace ast {
     Symbol *createSymbol(std::string name, std::string value) {
         Symbol *s = new Symbol(name, value);
         if(!s) {
-            throw SymbolException("Error allocating memory...\n");
+            std::ostringstream stream;
+            stream << "Error allocating: " << name << "\n";
+            throw SymbolException(stream.str());
             return nullptr;
         }
         return s;
@@ -78,7 +80,9 @@ namespace ast {
     Symbol *createEmptySymbol(std::string name) {
         Symbol *s = new Symbol();
         if(!s) {
-            throw SymbolException("Error allocating memory...\n");
+            std::ostringstream stream;
+            stream << "Error allocating: " << name << "\n";
+            throw SymbolException(stream.str());
             return nullptr;
         }
         s->name = name;
@@ -92,7 +96,9 @@ namespace ast {
     Symbol *createSymbol(std::string value) {
         Symbol *s = new Symbol(value);
         if(!s) {
-            throw SymbolException("Error allocating memory...\n");
+            std::ostringstream stream;
+            stream << "Error allocating value: " << value << "\n";
+            throw SymbolException(stream.str());
             return nullptr;
         }
         return s;
@@ -101,7 +107,9 @@ namespace ast {
     Symbol *createSymbol(std::string n, double v) {
         Symbol *s = new Symbol(n, v);
         if(!s) {
-            throw SymbolException("Error allocating memory...\n");
+            std::ostringstream stream;
+            stream << "Error allocating: " << n << "\n";
+            throw SymbolException(stream.str());
             return nullptr;
         }
         return s;
@@ -110,7 +118,9 @@ namespace ast {
     Symbol *createSymbol(double d) {
         Symbol *s = new Symbol(d);
         if(!s) {
-            throw SymbolException("Error allocating memory...\n");
+            std::ostringstream stream;
+            stream << "Error allocating value: " << d << "\n";
+            throw SymbolException(stream.str());
             return nullptr;
         }
         return s;
@@ -119,7 +129,9 @@ namespace ast {
     Symbol *createFunction(std::string name, AST_Node<NodeType> *f) {
         Symbol *s = new Symbol();
         if(!s) {
-            throw SymbolException("Error allocating memory...\n");
+            std::ostringstream stream;
+            stream << "Error allocating function: " << name << "\n";
+            throw SymbolException(stream.str());
             return nullptr;
         }
         s->function.name = name;

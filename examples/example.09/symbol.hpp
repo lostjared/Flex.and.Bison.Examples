@@ -10,6 +10,7 @@
 
 #include<iostream>
 #include<string>
+#include<sstream>
 
 namespace ast {
     
@@ -23,7 +24,9 @@ namespace ast {
         std::string value;
         SymbolException(std::string s) : value(s) {}
         std::string get() const { return value; }
+        
     };
+
     
     enum class Symbol_Type { EMPTY, STRING, NUMERIC, CONSTANT_STRING, CONSTANT_NUMERIC, FUNCTION };
     
@@ -33,7 +36,7 @@ namespace ast {
         SymList *next;
         
     };
-    
+
     class Symbol {
     public:
         Symbol(std::string name, std::string value);
