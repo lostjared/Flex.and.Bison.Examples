@@ -75,6 +75,20 @@ namespace ast {
         return s;
     }
     
+    Symbol *createEmptySymbol(std::string name) {
+        Symbol *s = new Symbol();
+        if(!s) {
+            throw SymbolException("Error allocating memory...\n");
+            return nullptr;
+        }
+        s->name = name;
+        s->type = Symbol_Type::EMPTY;
+        s->variable = true;
+        s->free_memory = 0;
+        s->dvalue = 0;
+        return s;
+    }
+    
     Symbol *createSymbol(std::string value) {
         Symbol *s = new Symbol(value);
         if(!s) {

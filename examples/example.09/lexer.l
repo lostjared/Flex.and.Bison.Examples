@@ -45,8 +45,7 @@ EXP ([Ee][-+]?[0-9]+)
 "let" { return LET; }
 
 [a-zA-Z]+[a-zA-Z0-9]* {
-    yylval.s = ast::createSymbol(yytext, "");
-    yylval.s->type = ast::Symbol_Type::EMPTY;
+    yylval.s = ast::createEmptySymbol(yytext);
     return NAME;
 }
 \"(([^\"]|\\\")*[^\\])?\" {

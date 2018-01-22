@@ -69,6 +69,7 @@ namespace ast {
     };
     
     Symbol *createSymbol(std::string name, std::string value);
+    Symbol *createEmptySymbol(std::string name);
     Symbol *createSymbol(std::string value);
     Symbol *createSymbol(double d);
     Symbol *createSymbol(std::string n, double v);
