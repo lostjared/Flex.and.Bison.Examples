@@ -1,5 +1,5 @@
 x = 500
 y = 100
 
-print("Value is " + x + " * " + y + " = " + (x*y))
+println("Value is " + x + " * " + y + " = " + (x*y))
 
