@@ -10,13 +10,57 @@
 namespace ast {
     sym::SymbolTable<Symbol> sym_table;
     
+    std::string escapeCharacters(std::string text) {
+        std::string ec;
+        for(unsigned int i = 0; i < text.length(); ++i) {
+            if(text[i] == '\\') {
+                ++i;
+                switch(text[i]) {
+                    case 'n':
+                        ec += "\n";
+                        break;
+                    case 't':
+                        ec += "\t";
+                        break;
+                    case 'r':
+                        ec += "\r";
+                        break;
+                    case 'a':
+                        ec += "\a";
+                        break;
+                    case 'b':
+                        ec += "\b";
+                        break;
+                    case 'f':
+                        ec += "\f";
+                        break;
+                    case 'v':
+                        ec += "\v";
+                        break;
+                    case '\\':
+                        ec += "\\";
+                        break;
+                    case '\'':
+                        ec += "\'";
+                        break;
+                    case '\"':
+                        ec += "\"";
+                        break;
+                }
+            } else {
+                ec += text[i];
+            }
+        }
+        return ec;
+    }
+    
     std::string trimQuotes(std::string value) {
         if(value[0] == '\"' && value.length()>=2) {
             std::string temp;
             temp = value.substr(1, value.length()-2);
-            return temp;
+            return escapeCharacters(temp);
         }
-        return value;
+        return escapeCharacters(value);
     }
     void procTree(AST *node) {
         try {
