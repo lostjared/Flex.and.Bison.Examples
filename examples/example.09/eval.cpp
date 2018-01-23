@@ -116,6 +116,27 @@ namespace ast {
                         
                     }
                         break;
+                    case FN_PRINT: {
+                        AST *n = node;
+                        if(n->left != nullptr) {
+                            Symbol s = eval(n->left);
+                            switch(s.type) {
+                                case Symbol_Type::NUMERIC:
+                                case Symbol_Type::CONSTANT_NUMERIC:
+                                    std::cout << s.dvalue << "\n";
+                                    break;
+                                case Symbol_Type::STRING:
+                                case Symbol_Type::CONSTANT_STRING:
+                                    std::cout << s.value << "\n";
+                                    break;
+                                case Symbol_Type::EMPTY:
+                                    break;
+                                case Symbol_Type::FUNCTION:
+                                    break;
+                            }
+                        }
+                    }
+                        break;
                 }
             }
                 break;

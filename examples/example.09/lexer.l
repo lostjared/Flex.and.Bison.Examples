@@ -35,7 +35,7 @@ EXP ([Ee][-+]?[0-9]+)
     yylval.s->function.fn = ast::FN_EXIT;
     return FUNC;
 }
-"print" {
+"println" {
     yylval.s = ast::createFunction("print", nullptr);
     yylval.s->function.fn = ast::FN_PRINT;
     return FUNC;
