@@ -25,14 +25,13 @@ ast::Symbol *s;
 int fn;
 }
 
-%token <s> NAME STR NUMBER
-%token <fn> FUNC
+%token <s> NAME STR NUMBER FUNC
 %token EOL
 %right '='
 %left '+' '-'
 %left '*' '/'
 %nonassoc '|' UMINUS
-%type <a> stmt expr
+%type <a> stmt expr exprlist
 
 %token IF THEN ELSE WHILE DO LET PRINT STREAM
 %start cmdlist
@@ -81,6 +80,15 @@ $$ = createNode<NodeType>('N', $1, nullptr, nullptr);
 }
 | STR {
 $$ = createNode<NodeType>('S', $1, nullptr, nullptr);
+}
+| FUNC '(' exprlist ')' {
+$$ = createNode<NodeType>('F', $1, $3, nullptr);
+}
+;
+
+exprlist: expr
+| expr ',' exprlist {
+$$ = createNode<NodeType>('L', nullptr, $1, $3);
 }
 ;
 

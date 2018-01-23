@@ -846,52 +846,58 @@ case 12:
 YY_RULE_SETUP
 #line 33 "lexer.l"
 {
-    ///yylval.fn = FN_EXIT;
-    return FUNC; }
+    yylval.s = ast::createFunction("exit", nullptr);
+    yylval.s->function.fn = ast::FN_EXIT;
+    return FUNC;
+}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 36 "lexer.l"
-{ return PRINT; }
+#line 38 "lexer.l"
+{
+    yylval.s = ast::createFunction("print", nullptr);
+    yylval.s->function.fn = ast::FN_PRINT;
+    return FUNC;
+}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 37 "lexer.l"
+#line 43 "lexer.l"
 { return STREAM; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 40 "lexer.l"
+#line 46 "lexer.l"
 { return IF; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 41 "lexer.l"
+#line 47 "lexer.l"
 { return THEN; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 42 "lexer.l"
+#line 48 "lexer.l"
 { return ELSE; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 43 "lexer.l"
+#line 49 "lexer.l"
 { return WHILE; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 44 "lexer.l"
+#line 50 "lexer.l"
 { return DO; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 45 "lexer.l"
+#line 51 "lexer.l"
 { return LET; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 47 "lexer.l"
+#line 53 "lexer.l"
 {
     yylval.s = ast::createEmptySymbol(yytext);
     return NAME;
@@ -900,7 +906,7 @@ YY_RULE_SETUP
 case 22:
 /* rule 22 can match eol */
 YY_RULE_SETUP
-#line 51 "lexer.l"
+#line 57 "lexer.l"
 {
 	yylval.s = ast::createSymbol(std::string(yytext));
 	yylval.s->value = ast::trimQuotes(yylval.s->value);
@@ -908,10 +914,10 @@ YY_RULE_SETUP
 }
 	YY_BREAK
 case 23:
-#line 57 "lexer.l"
+#line 63 "lexer.l"
 case 24:
 YY_RULE_SETUP
-#line 57 "lexer.l"
+#line 63 "lexer.l"
 {
     yylval.s = ast::createSymbol(atof(yytext));
     return NUMBER;    
@@ -920,36 +926,36 @@ YY_RULE_SETUP
 case 25:
 /* rule 25 can match eol */
 YY_RULE_SETUP
-#line 62 "lexer.l"
+#line 68 "lexer.l"
 { return EOL; }
 	YY_BREAK
 case 26:
 /* rule 26 can match eol */
 YY_RULE_SETUP
-#line 63 "lexer.l"
+#line 69 "lexer.l"
 { }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 64 "lexer.l"
+#line 70 "lexer.l"
 
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 65 "lexer.l"
+#line 71 "lexer.l"
 { }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 66 "lexer.l"
+#line 72 "lexer.l"
 { yyerror("Mystery character: %c\n", *yytext); }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 69 "lexer.l"
+#line 75 "lexer.l"
 YY_FATAL_ERROR( "flex scanner jammed" );
 	YY_BREAK
-#line 953 "lex.yy.c"
+#line 959 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1958,7 +1964,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 69 "lexer.l"
+#line 75 "lexer.l"
 
 
 

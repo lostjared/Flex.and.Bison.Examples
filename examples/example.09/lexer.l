@@ -31,9 +31,15 @@ EXP ([Ee][-+]?[0-9]+)
 "\$" |
 ";" { return yytext[0]; }
 "exit" {
-    ///yylval.fn = FN_EXIT;
-    return FUNC; }
-"print" { return PRINT; }
+    yylval.s = ast::createFunction("exit", nullptr);
+    yylval.s->function.fn = ast::FN_EXIT;
+    return FUNC;
+}
+"print" {
+    yylval.s = ast::createFunction("print", nullptr);
+    yylval.s->function.fn = ast::FN_PRINT;
+    return FUNC;
+}
 "<<" { return STREAM; }
 
 

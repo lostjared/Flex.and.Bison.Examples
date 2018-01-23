@@ -102,6 +102,23 @@ namespace ast {
                 return v;
             }
                 break;
+            case 'F': {
+                if(node->sym != nullptr)
+                switch(node->sym->function.fn) {
+                    case FN_EXIT: {
+                        if(node->left != nullptr) {
+                        	Symbol s = eval(node->left);
+#ifdef DEBUG_INFO
+                            std::cout << "Exiting error code: " << s.dvalue << "\n";
+#endif
+                            exit(static_cast<int>(s.dvalue));
+                        }
+                        
+                    }
+                        break;
+                }
+            }
+                break;
         }
         return s;
     }
