@@ -120,22 +120,20 @@ namespace ast {
                     case FN_PRINT: {
                         std::string end = (node->sym->function.fn == FN_PRINTLN) ? "\n" : "";
                         AST *n = node;
-                        if(n->left != nullptr) {
-                            Symbol s = eval(n->left);
-                            switch(s.type) {
-                                case Symbol_Type::NUMERIC:
-                                case Symbol_Type::CONSTANT_NUMERIC:
-                                    std::cout << s.dvalue << end;
-                                    break;
-                                case Symbol_Type::STRING:
-                                case Symbol_Type::CONSTANT_STRING:
-                                    std::cout << s.value << end;
-                                    break;
-                                case Symbol_Type::EMPTY:
-                                    break;
-                                case Symbol_Type::FUNCTION:
-                                    break;
+                        if(n->left != nullptr && n->left->node_type == 'L') {
+                            n = n->left;
+                            while(n->left != nullptr) {
+                                Symbol sym = eval(n->left);
+                                printSymbol(sym, "");
+                                n = n->right;
                             }
+                            Symbol sym = eval(n);
+                            printSymbol(sym, "");
+                            
+                        } else if(n->left != nullptr) {
+                            Symbol sym = eval(n->left);
+                            printSymbol(sym, end);
+                            s = Symbol(0);
                         }
                     }
                         break;
@@ -144,6 +142,23 @@ namespace ast {
                 break;
         }
         return s;
+    }
+    
+    void printSymbol(Symbol &s, std::string end) {
+        switch(s.type) {
+            case Symbol_Type::NUMERIC:
+            case Symbol_Type::CONSTANT_NUMERIC:
+                std::cout << s.dvalue << end;
+                break;
+            case Symbol_Type::STRING:
+            case Symbol_Type::CONSTANT_STRING:
+                std::cout << s.value << end;
+                break;
+            case Symbol_Type::EMPTY:
+                break;
+            case Symbol_Type::FUNCTION:
+                break;
+        }
     }
     
     
