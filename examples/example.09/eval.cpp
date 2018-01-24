@@ -106,12 +106,14 @@ namespace ast {
                 if(node->sym != nullptr)
                 switch(node->sym->function.fn) {
                     case FN_EXIT: {
-                        if(node->left != nullptr) {
+                        if(node->left != nullptr && node->left->node_type != 'L') {
                         	Symbol s = eval(node->left);
 #ifdef DEBUG_INFO
                             std::cout << "Exiting error code: " << s.dvalue << "\n";
 #endif
                             exit(static_cast<int>(s.dvalue));
+                        } else {
+                            throw SymbolException("exit requires one argment of error code");
                         }
                         
                     }
