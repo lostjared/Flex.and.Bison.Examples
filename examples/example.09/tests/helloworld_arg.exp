@@ -1,0 +1,5 @@
+
+x = 100
+y = 200
+print("Value of x: ", x, " value of y: ", y, " x*y = ", (x*y), "\n")
+
