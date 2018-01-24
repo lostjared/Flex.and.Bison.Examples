@@ -128,7 +128,7 @@ namespace ast {
                                 n = n->right;
                             }
                             Symbol sym = eval(n);
-                            printSymbol(sym, "");
+                            printSymbol(sym, end);
                             
                         } else if(n->left != nullptr) {
                             Symbol sym = eval(n->left);
