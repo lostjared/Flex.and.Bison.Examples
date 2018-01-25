@@ -9,6 +9,8 @@
 
 namespace ast {
     
+    std::string bfunction[] = { "null", "exit", "print", "println", "sqrt", "input_number", "input_name", ""};
+    
     Symbol::Symbol() : dvalue(0), variable(false), free_memory(0), type(Symbol_Type::EMPTY) {}
     
     Symbol::Symbol(std::string n, std::string v) : name(n), value(v), dvalue(0), type(Symbol_Type::STRING), variable(true), free_memory(0) {}
@@ -142,9 +144,14 @@ namespace ast {
 }
 
 std::ostream &operator<<(std::ostream &out, const ast::Symbol &s) {    
-    out << "Symbol [" << s.name << ":" << s.value << ":" << s.dvalue << " -> " << s.type << "] ";
-    if(s.function.func != nullptr)
+    out << "Symbol [" << s.name << ":" << s.value << ":" << s.dvalue << " -> " << s.type << "]";
+
+    if(s.function.fn >= ast::FN_EXIT && s.function.fn <= ast::FN_INPUT_STRING) {
+        out << " - Built-in Function [" << ast::bfunction[s.function.fn] << "]";
+    }
+    else if(s.function.func != nullptr)
         out << " - Function [" << s.function.name << "]";
+    
     return out;
 }
 

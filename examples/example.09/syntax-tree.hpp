@@ -13,9 +13,7 @@
 #include"table.hpp"
 
 namespace ast {
-    
-    enum { FN_EXIT, FN_PRINT, FN_PRINTLN, FN_SQRT, FN_INPUT_NUMBER, FN_INPUT_STRING };
-    
+     
     extern sym::SymbolTable<Symbol> sym_table;
     
     class DivideByZero {};

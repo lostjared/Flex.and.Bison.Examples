@@ -14,6 +14,9 @@
 
 namespace ast {
     
+    enum { FN_EXIT=1, FN_PRINT, FN_PRINTLN, FN_SQRT, FN_INPUT_NUMBER, FN_INPUT_STRING };
+    extern std::string bfunction[];
+    
     class NodeType;
     
     template<typename T>
