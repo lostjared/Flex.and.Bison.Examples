@@ -129,7 +129,6 @@ namespace ast {
                         } else {
                             throw SymbolException("exit requires one argment of error code");
                         }
-                        
                     }
                         break;
                     case FN_PRINTLN:
@@ -145,11 +144,13 @@ namespace ast {
                             }
                             Symbol sym = eval(n);
                             printSymbol(sym, end);
+                            return s;
                             
                         } else if(n->left != nullptr) {
                             Symbol sym = eval(n->left);
                             printSymbol(sym, end);
                             s = Symbol(0);
+                            return s;
                         }
                     }
                         break;
