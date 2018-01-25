@@ -65,7 +65,9 @@ namespace ast {
     void procTree(AST *node) {
         try {
         	ast::Symbol s = eval(node);
+#ifdef DEBUG_INFO
         	std::cout << "[ Value: " << s << "]\n";
+#endif
         	freeAST(node);
         }
         catch(ast::SymbolException &se) {

@@ -105,6 +105,20 @@ namespace ast {
             case 'F': {
                 if(node->sym != nullptr)
                 switch(node->sym->function.fn) {
+                    case FN_INPUT_STRING: {
+                        std::string in_str;
+                        std::getline(std::cin, in_str);
+                        s = Symbol(in_str);
+                        return s;
+                    }
+                        break;
+                    case FN_INPUT_NUMBER: {
+                        double val = 0;
+                        std::cin >> val;
+                        s = Symbol(val);
+                        return s;
+                    }
+                        break;
                     case FN_EXIT: {
                         if(node->left != nullptr && node->left->node_type != 'L') {
                         	Symbol s = eval(node->left);

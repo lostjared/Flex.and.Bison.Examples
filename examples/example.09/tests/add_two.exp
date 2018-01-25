@@ -1,0 +1,7 @@
+print("Please Enter Two Numbers..\n")
+print("enter 1: ")
+x = input_number()
+print("enter 2: ")
+y = input_number()
+result = x+y
+println(x, "+", y, "=", result)

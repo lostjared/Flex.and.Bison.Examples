@@ -46,6 +46,16 @@ EXP ([Ee][-+]?[0-9]+)
     yylval.s->function.fn = ast::FN_PRINT;
     return FUNC;
 }
+"input_number" {
+    yylval.s = ast::createFunction("input_number", nullptr);
+    yylval.s->function.fn = ast::FN_INPUT_NUMBER;
+    return FUNC;
+}
+"input_string" {
+    yylval.s = ast::createFunction("input_string", nullptr);
+    yylval.s->function.fn = ast::FN_INPUT_STRING;
+    return FUNC;
+}
 "<<" { return STREAM; }
 
 

@@ -84,6 +84,9 @@ $$ = createNode<NodeType>('S', $1, nullptr, nullptr);
 | FUNC '(' exprlist ')' {
 $$ = createNode<NodeType>('F', $1, $3, nullptr);
 }
+| FUNC '(' ')' {
+$$ = createNode<NodeType>('F',$1, nullptr, nullptr);
+}
 ;
 
 exprlist: expr
