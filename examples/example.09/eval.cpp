@@ -144,6 +144,7 @@ namespace ast {
                             }
                             Symbol sym = eval(n);
                             printSymbol(sym, end);
+                            s = Symbol(0);
                             return s;
                             
                         } else if(n->left != nullptr) {
