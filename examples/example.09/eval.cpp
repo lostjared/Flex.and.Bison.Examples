@@ -133,25 +133,31 @@ namespace ast {
                         break;
                     case FN_PRINTLN:
                     case FN_PRINT: {
-                        std::string end = (node->sym->function.fn == FN_PRINTLN) ? "\n" : "";
+                        std::string end;
+                        if(node != nullptr && node->sym != nullptr)
+                        	end = (node->sym->function.fn == FN_PRINTLN) ? "\n" : "";
+                        
                         AST *n = node;
-                        if(n->left != nullptr && n->left->node_type == 'L') {
+                        if(n != nullptr && n->left != nullptr && n->left->node_type == 'L') {
                             n = n->left;
-                            while(n->left != nullptr) {
-                                Symbol sym = eval(n->left);
-                                printSymbol(sym, "");
-                                n = n->right;
-                            }
-                            Symbol sym = eval(n);
-                            printSymbol(sym, end);
-                            s = Symbol(0);
-                            return s;
+                            if(n != nullptr) {
+    	                        while(n != nullptr && n->left != nullptr) {
+        	                        Symbol sym = eval(n->left);
+            	                    printSymbol(sym, "");
+                	                n = n->right;
+                    	        }
                             
-                        } else if(n->left != nullptr) {
+                        	    if(n != nullptr) {
+                            		Symbol sym = eval(n);
+                            		printSymbol(sym, end);
+                            	}
+                            }
+                            return Symbol(0);
+                            
+                        } else if(n != nullptr && n->left != nullptr) {
                             Symbol sym = eval(n->left);
                             printSymbol(sym, end);
-                            s = Symbol(0);
-                            return s;
+                            return Symbol(0);
                         }
                     }
                         break;
