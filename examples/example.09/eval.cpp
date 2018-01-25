@@ -108,15 +108,13 @@ namespace ast {
                     case FN_INPUT_STRING: {
                         std::string in_str;
                         std::getline(std::cin, in_str);
-                        s = Symbol(in_str);
-                        return s;
+                        return Symbol(in_str);
                     }
                         break;
                     case FN_INPUT_NUMBER: {
                         double val = 0;
                         std::cin >> val;
-                        s = Symbol(val);
-                        return s;
+                        return Symbol(val);
                     }
                         break;
                     case FN_EXIT: {
@@ -146,7 +144,6 @@ namespace ast {
             	                    printSymbol(sym, "");
                 	                n = n->right;
                     	        }
-                            
                         	    if(n != nullptr) {
                             		Symbol sym = eval(n);
                             		printSymbol(sym, end);
