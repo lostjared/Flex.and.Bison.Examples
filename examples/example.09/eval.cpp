@@ -8,13 +8,16 @@
 
 #include"syntax-tree.hpp"
 #include<sstream>
+#include<cmath>
+
 using namespace ast;
 
 namespace ast {
     
     Symbol eval(AST *node) {
         Symbol s;
-        switch(node->node_type) {
+        unsigned int eval_node_type = node->node_type;
+        switch(eval_node_type) {
             case '+': {
                 Symbol s1 = eval(node->left), s2 = eval(node->right);
                 s.type = s1.type;
@@ -91,7 +94,7 @@ namespace ast {
                 } else {
                     auto n = sym_table.searchStack(node->sym->name);
                     if(v.type == Symbol_Type::CONSTANT_NUMERIC || v.type == Symbol_Type::NUMERIC) {
-                       v.type = Symbol_Type::NUMERIC;
+                        v.type = Symbol_Type::NUMERIC;
                     }
                     else if(v.type == Symbol_Type::CONSTANT_STRING || v.type == Symbol_Type::STRING) {
                         v.type = Symbol_Type::STRING;
@@ -103,64 +106,88 @@ namespace ast {
             }
                 break;
             case 'F': {
-                if(node->sym != nullptr)
-                switch(node->sym->function.fn) {
-                    case FN_INPUT_STRING: {
-                        std::string in_str;
-                        std::getline(std::cin, in_str);
-                        return Symbol(in_str);
-                    }
-                        break;
-                    case FN_INPUT_NUMBER: {
-                        double val = 0;
-                        std::cin >> val;
-                        return Symbol(val);
-                    }
-                        break;
-                    case FN_EXIT: {
-                        if(node->left != nullptr && node->left->node_type != 'L') {
-                        	Symbol s = eval(node->left);
-#ifdef DEBUG_INFO
-                            std::cout << "Exiting error code: " << s.dvalue << "\n";
-#endif
-                            exit(static_cast<int>(s.dvalue));
-                        } else {
-                            throw SymbolException("exit requires one argment of error code");
+                if(node->sym != nullptr) {
+                    unsigned int fn_type = node->sym->function.fn;
+                    switch(fn_type) {
+                        case FN_INPUT_STRING: {
+                            std::string in_str;
+                            std::getline(std::cin, in_str);
+                            return Symbol(in_str);
                         }
-                    }
-                        break;
-                    case FN_PRINTLN:
-                    case FN_PRINT: {
-                        std::string end;
-                        if(node != nullptr && node->sym != nullptr)
-                        	end = (node->sym->function.fn == FN_PRINTLN) ? "\n" : "";
-                        
-                        AST *n = node;
-                        if(n != nullptr && n->left != nullptr && n->left->node_type == 'L') {
-                            n = n->left;
-                            if(n != nullptr) {
-    	                        while(n != nullptr && n->left != nullptr) {
-        	                        Symbol sym = eval(n->left);
-            	                    printSymbol(sym, "");
-                	                n = n->right;
-                    	        }
-                        	    if(n != nullptr) {
-                            		Symbol sym = eval(n);
-                            		printSymbol(sym, end);
-                            	}
+                            break;
+                        case FN_INPUT_NUMBER: {
+                            double val = 0;
+                            std::cin >> val;
+                            return Symbol(val);
+                        }
+                            break;
+                        case FN_SIN:
+                        case FN_COS:
+                        case FN_TAN: {
+                            if(node->left != nullptr && node->left->node_type != 'L') {
+                                Symbol value = eval(node->left);
+                                switch(fn_type) {
+                                    case FN_SIN:
+                                         return Symbol(sin(value.dvalue));
+                                        break;
+                                    case FN_COS:
+                                        return Symbol(cos(value.dvalue));
+                                        break;
+                                    case FN_TAN:
+                                        return Symbol(tan(value.dvalue));
+                                        break;
+                                }
+                            } else {
+                                throw SymbolException("Function requires one numeric argument");
                             }
-                            return Symbol(0);
                             
-                        } else if(n != nullptr && n->left != nullptr) {
-                            Symbol sym = eval(n->left);
-                            printSymbol(sym, end);
-                            return Symbol(0);
                         }
+                            break;
+                        case FN_EXIT: {
+                            if(node->left != nullptr && node->left->node_type != 'L') {
+                                Symbol s = eval(node->left);
+#ifdef DEBUG_INFO
+                                std::cout << "Exiting error code: " << s.dvalue << "\n";
+#endif
+                                exit(static_cast<int>(s.dvalue));
+                            } else {
+                                throw SymbolException("exit requires one argment of error code");
+                            }
+                        }
+                            break;
+                        case FN_PRINTLN:
+                        case FN_PRINT: {
+                            std::string end;
+                            if(node != nullptr && node->sym != nullptr)
+                                end = (node->sym->function.fn == FN_PRINTLN) ? "\n" : "";
+                            
+                            AST *n = node;
+                            if(n != nullptr && n->left != nullptr && n->left->node_type == 'L') {
+                                n = n->left;
+                                if(n != nullptr) {
+                                    while(n != nullptr && n->left != nullptr) {
+                                        Symbol sym = eval(n->left);
+                                        printSymbol(sym, "");
+                                        n = n->right;
+                                    }
+                                    if(n != nullptr) {
+                                        Symbol sym = eval(n);
+                                        printSymbol(sym, end);
+                                    }
+                                }
+                                return Symbol(0);
+                                
+                            } else if(n != nullptr && n->left != nullptr) {
+                                Symbol sym = eval(n->left);
+                                printSymbol(sym, end);
+                                return Symbol(0);
+                            }
+                        }
+                            break;
                     }
-                        break;
                 }
-            }
                 break;
+            }
         }
         return s;
     }

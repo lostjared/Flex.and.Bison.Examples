@@ -56,6 +56,26 @@ EXP ([Ee][-+]?[0-9]+)
     yylval.s->function.fn = ast::FN_INPUT_STRING;
     return FUNC;
 }
+"sqrt" {
+    yylval.s = ast::createFunction("sqrt", nullptr);
+    yylval.s->function.fn = ast::FN_SQRT;
+    return FUNC;
+}
+"sin" {
+    yylval.s = ast::createFunction("sin", nullptr);
+    yylval.s->function.fn = ast::FN_SIN;
+    return FUNC;
+}
+"cos" {
+    yylval.s = ast::createFunction("cos", nullptr);
+    yylval.s->function.fn = ast::FN_COS;
+    return FUNC;
+}
+"tan" {
+    yylval.s = ast::createFunction("tan", nullptr);
+    yylval.s->function.fn = ast::FN_TAN;
+    return FUNC;
+}
 "<<" { return STREAM; }
 
 
