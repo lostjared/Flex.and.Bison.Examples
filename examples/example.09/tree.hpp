@@ -53,6 +53,8 @@ namespace tree {
         node_type *findCreate(std::string s_it);
         void printValues();
         void setScope(const std::string &s);
+        void setDepth(unsigned int depth);
+        unsigned int getDepth();
         std::string getScope();
         node_type *rootNode() { return root; }
         void setOwns(bool b);
@@ -63,15 +65,17 @@ namespace tree {
         void cleanValues(node_type *node);
         std::string scope;
         bool owns;
+        unsigned int depth;
     };
     
     template<typename T>
-    Tree<T>::Tree() : root(nullptr), owns(true) {}
+    Tree<T>::Tree() : root(nullptr), owns(true), depth(0) {}
     
     template<typename T>
     void Tree<T>::moveTree(Tree<T> &&tr) {
         root = std::move(tr.root);
         scope = std::move(tr.scope);
+        depth = std::move(tr.depth);
         tr.setOwns(false);
         owns = true;
     }
@@ -89,6 +93,14 @@ namespace tree {
     template<typename T>
     Tree<T> &Tree<T>::operator=(Tree<T> &&tr) {
         moveTree(tr);
+    }
+    template<typename T>
+    void Tree<T>::setDepth(unsigned int dep) {
+        depth = dep;
+    }
+    template<typename T>
+    unsigned int Tree<T>::getDepth() {
+        return depth;
     }
     
     template<typename T>

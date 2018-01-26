@@ -88,6 +88,7 @@ namespace sym {
         pushTree();
         int level = tree_stack.size()-1;
         tree_stack[level]->setScope(n);
+        tree_stack[level]->setDepth(level);
     }
     
     template<typename T>
@@ -103,7 +104,7 @@ namespace sym {
 #ifdef DEBUG_INFO
         int size = tree_stack.size()-1;
         if(size >= 0) {
-            std::cout << "pop_back tree: " << tree_stack[size]->getScope() << "\n";
+            std::cout << "pop_back tree: " << tree_stack[size]->getScope() << ":" << tree_stack[size]->getDepth() << "\n";
         }
 #endif
         tree_stack.pop_back();
