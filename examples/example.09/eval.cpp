@@ -105,6 +105,11 @@ namespace ast {
                 return v;
             }
                 break;
+            case 'f':
+                if(node->sym != nullptr) {
+                    std::cout <<"CALL: " << node->sym->name << "\n";
+                }
+                break;
             case 'F': {
                 if(node->sym != nullptr) {
                     unsigned int fn_type = node->sym->function.fn;
