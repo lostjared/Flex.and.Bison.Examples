@@ -86,7 +86,7 @@ EXP ([Ee][-+]?[0-9]+)
 "do" { return DO; }
 "let" { return LET; }
 
-[a-zA-Z]+[a-zA-Z0-9]* {
+[a-zA-Z_]+[a-zA-Z0-9_]* {
     yylval.s = ast::createEmptySymbol(yytext);
     return NAME;
 }

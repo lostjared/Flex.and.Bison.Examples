@@ -115,7 +115,11 @@ namespace ast {
                     std::vector<Symbol> symbols;
                     int counter = grabParam(symbols,node);
 #ifdef DEBUG_INFO
-                    std::cout << "count: " << counter << "\n";
+                    std::cout << "Parameters: " << counter << " {\n";
+                    for(int j = 0; j < counter; ++j) {
+                        std::cout << j << ": \t" << symbols[j] << "\n";
+                    }
+                    std::cout << "}\n";
 #endif
                     // call function here
                     return Symbol(counter);
