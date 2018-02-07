@@ -90,6 +90,9 @@ $$ = createNode<NodeType>('F',$1, nullptr, nullptr);
 | NAME '(' exprlist ')' {
 $$ = createNode<NodeType>('f',$1, $3, nullptr);
 }
+| NAME '(' ')' {
+$$ = createNode<NodeType>('f', $1, nullptr, nullptr);
+}
 ;
 
 exprlist: expr
