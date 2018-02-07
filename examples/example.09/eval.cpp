@@ -14,6 +14,8 @@ using namespace ast;
 
 namespace ast {
     
+    int grabParam(std::vector<Symbol> &values, AST *node);
+    
     Symbol eval(AST *node) {
         Symbol s;
         unsigned int eval_node_type = node->node_type;
@@ -106,8 +108,17 @@ namespace ast {
             }
                 break;
             case 'f':
-                if(node->sym != nullptr) {
+                if(node != nullptr && node->sym != nullptr) {
+#ifdef DEBUG_INFO
                     std::cout <<"CALL: " << node->sym->name << "\n";
+#endif
+                    std::vector<Symbol> symbols;
+                    int counter = grabParam(symbols,node);
+#ifdef DEBUG_INFO
+                    std::cout << "count: " << counter << "\n";
+#endif
+                    // call function here
+                    return Symbol(counter);
                 }
                 break;
             case 'F': {
@@ -195,6 +206,35 @@ namespace ast {
             }
         }
         return s;
+    }
+    
+    int grabParam(std::vector<Symbol> &values, AST *node) {
+        int counter = 0;
+        AST *n = node;
+        if(n != nullptr && n->left != nullptr && n->left->node_type == 'L') {
+            n = n->left;
+            if(n != nullptr) {
+                while(n != nullptr && n->left != nullptr) {
+                    Symbol sym = eval(n->left);
+                    values.push_back(sym);
+                    counter++;
+                    n = n->right;
+                }
+                if(n != nullptr) {
+                    Symbol sym = eval(n);
+                    values.push_back(sym);
+                    counter++;
+                }
+            }
+            return counter;
+            
+        } else if(n != nullptr && n->left != nullptr) {
+            Symbol sym = eval(n->left);
+            values.push_back(sym);
+            counter++;
+            return counter;
+        }
+        return counter;
     }
     
     void printSymbol(Symbol &s, std::string end) {
