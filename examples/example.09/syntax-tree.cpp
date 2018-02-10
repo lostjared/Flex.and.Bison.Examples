@@ -6,6 +6,8 @@
  
  */
 #include"syntax-tree.hpp"
+#include<cstdlib>
+#include<ctime>
 
 namespace ast {
     sym::SymbolTable<Symbol> sym_table;
@@ -15,13 +17,28 @@ namespace ast {
         return Symbol(0);
     }
     
-    void insert_functions() {
-        Symbol sym;
-        sym.name = "about";
-        sym.type = Symbol_Type::FUNCTION;
-        sym.function.setFunction("about", about_func);
-        sym_table.insertTop("about", sym);
+    Symbol rand_func(std::vector<Symbol> &vars) {
         
+        if(vars.size()!=1) {
+            throw SymbolException("Random function requires on argument...\n");
+        }
+        unsigned int max = static_cast<unsigned int>(vars[0].dvalue);
+        
+        return Symbol(rand()%max);
+    }
+    
+    void addFunction(std::string name, FuncCall fn) {
+        Symbol sym;
+        sym.name = name;
+        sym.type = Symbol_Type::FUNCTION;
+        sym.function.setFunction(name, fn);
+        sym_table.insertTop(name, sym);
+    }
+    
+    void insert_functions() {
+        srand(static_cast<unsigned int>(time(0)));
+        addFunction("about", about_func);
+        addFunction("random", rand_func);
     }
     
     std::string escapeCharacters(std::string text) {
