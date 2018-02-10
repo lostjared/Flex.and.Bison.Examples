@@ -11,6 +11,7 @@
 #include<iostream>
 #include<string>
 #include<sstream>
+#include<vector>
 
 namespace ast {
     
@@ -39,6 +40,11 @@ namespace ast {
         
     };
 
+
+    class Symbol;
+    
+    using FuncCall = Symbol (*)(std::vector<Symbol> &);
+    
     class Symbol {
     public:
         Symbol(std::string name, std::string value);
@@ -53,10 +59,10 @@ namespace ast {
         Symbol_Type type;
         bool variable;
         int free_memory;
+        bool is_function;
         
         class Function {
         public:
-            using FuncCall = void (*)(SymList *);
             Function() : fn(0), func(nullptr), args(nullptr), instruct(nullptr) {}
             Function(const Function &f);
             Function(std::string n_name, FuncCall f);

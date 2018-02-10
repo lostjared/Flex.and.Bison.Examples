@@ -16,6 +16,8 @@ namespace ast {
      
     extern sym::SymbolTable<Symbol> sym_table;
     
+    void insert_functions();
+    
     class DivideByZero {};
  
     class NodeType {

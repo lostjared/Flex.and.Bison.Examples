@@ -10,6 +10,20 @@
 namespace ast {
     sym::SymbolTable<Symbol> sym_table;
     
+    Symbol about_func(std::vector<Symbol> &vars) {
+        std::cout << "created by Jared Bruni...\n";
+        return Symbol(0);
+    }
+    
+    void insert_functions() {
+        Symbol sym;
+        sym.name = "about";
+        sym.type = Symbol_Type::FUNCTION;
+        sym.function.setFunction("about", about_func);
+        sym_table.insertTop("about", sym);
+        
+    }
+    
     std::string escapeCharacters(std::string text) {
         std::string ec;
         for(unsigned int i = 0; i < text.length(); ++i) {

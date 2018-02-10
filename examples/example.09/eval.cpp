@@ -122,6 +122,19 @@ namespace ast {
                     std::cout << "}\n";
 #endif
                     // call function here
+                    
+                    if(sym_table.exisits(node->sym->name)) {
+                        auto func = sym_table.searchStack(node->sym->name);
+                        if(func->value.type == Symbol_Type::FUNCTION)
+                        	return func->value.function.func(symbols);
+                        else
+                            std::cerr << "Expected function found: " << func->value.type << "\n";
+                        
+                    } else {
+                        std::cerr << "Function: " << node->sym->name << " not found!\n";
+                    }
+                    
+                    
                     return Symbol(counter);
                 }
                 break;

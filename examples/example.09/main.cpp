@@ -14,6 +14,7 @@ extern void yyrestart(FILE *);
 
 int main(int argc, char **argv) {
     try {
+        ast::insert_functions();
         if(argc == 1) {
             yyparse();
 #ifdef DEBUG_INFO
