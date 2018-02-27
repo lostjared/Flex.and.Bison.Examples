@@ -127,6 +127,7 @@ namespace ast {
     void procTree(AST *a);
     std::string trimQuotes(std::string value);
     void printSymbol(Symbol &s, std::string end);
+    int System(const std::string &command);
 }
 
 extern int err_num;
